@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# VirtualBox
+alias bb='vboxmanage snapshot Windows restore BB && vboxmanage startvm Windows'
+
+# Restart in Windows (Dual Boot)
+alias windows='sudo grub-reboot 1 && sudo reboot'
+alias win='windows'
