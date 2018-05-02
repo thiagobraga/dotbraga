@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# Instala o tema Bullet Train para ZSH
+wget http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme \
+  -O ~/.oh-my-zsh/custom/themes/bullet-train.zsh-theme
+
+# Copia arquivos
 cp .aliases ~/.aliases
 cp .profile ~/.profile
 cp .zshrc ~/.zshrc
+cp -r .config/terminator ~/.config
+
+# Atualize seu terminal
+echo -e 'Atualize o terminal\n  source ~/.zshrc'
