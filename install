@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cp .aliases ~/.aliases
+cp .profile ~/.profile
+cp .zshrc ~/.zshrc
