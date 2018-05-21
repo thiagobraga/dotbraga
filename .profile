@@ -22,22 +22,5 @@ if [ -d "$HOME/bin" ]; then
 fi
 
 
-# Other imports
-# ===================================================
-
-# NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# Docker Compose bash completion
-fpath=(~/.zsh/completion $fpath)
-autoload -Uz compinit && compinit -i
-
-# Java
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-
 # PATH
-export PATH=$PATH:~/.local/bin
-export PATH=$PATH:$JAVA_HOME/bin
-export PATH=$PATH:/usr/sbin
+export PATH=$PATH:~/.local/bin:/usr/sbin
