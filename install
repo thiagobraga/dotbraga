@@ -1,17 +1,39 @@
-#!/bin/bash
+#!/bin/zsh
 
-# Instala o tema Bullet Train para ZSH
-echo '[Dotfiles] Fazendo download do tema Bullet Train para ZSH'
-wget http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme \
-  -O ~/.oh-my-zsh/custom/themes/bullet-train.zsh-theme \
-  --quiet
+# Backup files
+echo '[Dotfiles] Backuping files...'
+cp ~/.aliases ~/.aliases-bkp
+cp ~/.profile ~/.profile-bkp
+cp ~/.zshrc ~/.zshrc-bkp
+cp ~/.config/terminator/config ~/.config/terminator/config-bkp
 
-# Copiando arquivos
-echo '[Dotfiles] Copiando arquivos'
+# Install Bullet Train theme for Oh My ZSH
+if [ -e ~/.oh-my-zsh/custom/themes/bullet-train.zsh-theme ]; then
+  echo '[Dotfiles] Bullet Train theme for Oh My ZSH already installed.'
+else
+  echo '[Dotfiles] Downloading Bullet Train theme for Oh My ZSH...'
+  wget http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme \
+    -O ~/.oh-my-zsh/custom/themes/bullet-train.zsh-theme \
+    --quiet
+  echo '[Dotfiles] Bullet Train theme for Oh My ZSH installed successfully.'
+fi
+
+# Copying files
+echo '[Dotfiles] Copying files...'
 cp .aliases ~/.aliases
 cp .profile ~/.profile
 cp .zshrc ~/.zshrc
-cp -r .config/terminator ~/.config
+cp .config/terminator/config ~/.config/terminator/config
 
-# Atualize seu terminal
-echo -e '[Dotfiles] Atualize o terminal\n  source ~/.zshrc'
+sudo cp .local/share/applications/windows.png \
+  .local/share/applications/windows.sh \
+  .local/share/applications/windows.desktop \
+  /usr/share/applications/
+
+sudo chmod 644 /usr/share/applications/windows.{sh,desktop,png}
+sudo chmod -x /usr/share/applications/windows.desktop
+sudo chmod +x /usr/share/applications/windows.sh
+
+# Installation finished sucessfully.
+echo -e '[Dotfiles] Installation finished sucessfully.'
+source ~/.zshrc
