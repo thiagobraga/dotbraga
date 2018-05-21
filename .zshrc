@@ -94,9 +94,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# One-liners para importação de scripts.
-# [ -e regularfile ] retorna 0 se o arquivo
-# não existe e 1 se existe.
-[ -e "$HOME/.profile" ] && source "$HOME/.profile"
-[ -e "$HOME/.aliases" ] && source "$HOME/.aliases"
-[ -e "$HOME/devops/devops" ] && source "$HOME/devops/devops"
+[ -e "$HOME/.profile" ] && . "$HOME/.profile"
+[ -e "$HOME/.aliases" ] && . "$HOME/.aliases"
+[ -e "$HOME/projetos/soma/devops" ] && . "$HOME/projetos/soma/devops"
+
+true
