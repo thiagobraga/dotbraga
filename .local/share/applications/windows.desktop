@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Windows
+Exec=/usr/share/applications/windows.sh
+Icon=/usr/share/applications/windows.png
+Categories=Development;
+Comment=Restart computer in Windows
+Terminal=false
