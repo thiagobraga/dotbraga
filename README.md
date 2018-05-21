@@ -1,11 +1,11 @@
-# My dotfiles
+# Dotfiles
 
-Backup of my dotfiles
+My dotfiles used in development.
 
 ## Installation
 
 ```
 git clone https://github.com/thiagobraga/dotfiles
 cd dotfiles
-./install.sh && source ~/.zshrc
+. ./install
 ```
