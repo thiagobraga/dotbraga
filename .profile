@@ -23,4 +23,4 @@ fi
 
 
 # PATH
-export PATH=$PATH:~/.local/bin:/usr/sbin:~/.npm-global/bin
+export PATH=$PATH:~/.npm-global/bin
