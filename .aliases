@@ -9,6 +9,7 @@ alias dpkg='sudo dpkg'
 # VirtualBox section
 # ===================================================
 alias bb='vboxmanage snapshot Windows restore BB && vboxmanage startvm Windows'
+alias caixa='vboxmanage snapshot Windows restore Caixa && vboxmanage startvm Windows'
 
 # Dual boot section
 # ===================================================
