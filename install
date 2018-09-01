@@ -1,13 +1,7 @@
 #!/bin/zsh
 
-# Backup files
-echo '[Dotfiles] Backuping files...'
-cp ~/.aliases ~/.aliases-bkp
-cp ~/.profile ~/.profile-bkp
-cp ~/.zshrc ~/.zshrc-bkp
-cp ~/.config/terminator/config ~/.config/terminator/config-bkp
-
 # Install Bullet Train theme for Oh My ZSH
+# =========================================================
 if [ -e ~/.oh-my-zsh/custom/themes/bullet-train.zsh-theme ]; then
   echo '[Dotfiles] Bullet Train theme for Oh My ZSH already installed.'
 else
@@ -19,12 +13,14 @@ else
 fi
 
 # Copying files
+# =========================================================
 echo '[Dotfiles] Copying files...'
 cp .aliases ~/.aliases
 cp .profile ~/.profile
 cp .zshrc ~/.zshrc
 cp .config/terminator/config ~/.config/terminator/config
 
+# "Restart to Windows" shortcut
 sudo cp .local/share/applications/windows.png \
   .local/share/applications/windows.sh \
   .local/share/applications/windows.desktop \
@@ -35,5 +31,6 @@ sudo chmod -x /usr/share/applications/windows.desktop
 sudo chmod +x /usr/share/applications/windows.sh
 
 # Installation finished sucessfully.
+# =========================================================
 echo -e '[Dotfiles] Installation finished sucessfully.'
 source ~/.zshrc
