@@ -8,6 +8,8 @@
   title_hide_sizetext = True
 [keybindings]
   hide_window = None
+  copy = <Control>c
+  paste = <Control>v
 [plugins]
 [profiles]
   [[default]]
