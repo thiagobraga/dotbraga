@@ -14,9 +14,7 @@ if [[ $ZSH_THEME == 'spaceship' ]]; then
   SPACESHIP_PHP_SHOW=false
 fi
 
-plugins=(
-  git
-)
+plugins=(docker-compose docker git)
 
 source $ZSH/oh-my-zsh.sh
 
