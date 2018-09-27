@@ -6,14 +6,21 @@ ZSH_THEME='spaceship'
 if [[ $ZSH_THEME == 'spaceship' ]]; then
   SPACESHIP_DIR_SHOW=true
   SPACESHIP_DIR_TRUNC=0
-  SPACESHIP_DOCKER_SHOW=false
-  SPACESHIP_EXEC_TIME_SHOW=false
   SPACESHIP_GIT_STATUS_COLOR='blue'
   SPACESHIP_GIT_STATUS_SHOW=true
-  SPACESHIP_NODE_SHOW=false
-  SPACESHIP_PACKAGE_SHOW=false
-  SPACESHIP_PHP_SHOW=false
-  SPACESHIP_USER_SHOW=false
+
+  SPACESHIP_PROMPT_ORDER=(
+    dir
+    host
+    git
+    venv
+    line_sep
+    battery
+    vi_mode
+    jobs
+    exit_code
+    char
+  )
 fi
 
 plugins=(docker-compose git)
