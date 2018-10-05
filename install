@@ -1,26 +1,31 @@
 #!/bin/zsh
 
-# Install Bullet Train theme for Oh My ZSH
+# Symlinking files
 # =========================================================
-if [ -e ~/.oh-my-zsh/custom/themes/bullet-train.zsh-theme ]; then
-  echo '[Dotfiles] Bullet Train theme for Oh My ZSH already installed.'
-else
-  echo '[Dotfiles] Downloading Bullet Train theme for Oh My ZSH...'
-  wget http://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme \
-    -O ~/.oh-my-zsh/custom/themes/bullet-train.zsh-theme \
-    --quiet
-  echo '[Dotfiles] Bullet Train theme for Oh My ZSH installed successfully.'
-fi
+echo '[Dotfiles] Symlinking files...'
 
-# Copying files
-# =========================================================
-echo '[Dotfiles] Copying files...'
-cp .aliases ~/.aliases
-cp .profile ~/.profile
-cp .zshrc ~/.zshrc
-cp .config/terminator/config ~/.config/terminator/config
+rm ~/.aliases
+rm ~/.profile
+rm ~/.zshrc
+rm ~/.vimrc
+rm ~/.vim/basics.vim
+rm ~/.vim/colors.vim
+rm ~/.vim/keybindings.vim
+rm ~/.vim/plugins.vim
+rm ~/.config/terminator/config
+
+ln -s $PWD/.aliases ~/.aliases
+ln -s $PWD/.profile ~/.profile
+ln -s $PWD/.zshrc ~/.zshrc
+ln -s $PWD/.vimrc ~/.vimrc
+ln -s $PWD/.vim/basics.vim ~/.vim/basics.vim
+ln -s $PWD/.vim/colors.vim ~/.vim/colors.vim
+ln -s $PWD/.vim/keybindings.vim ~/.vim/keybindings.vim
+ln -s $PWD/.vim/plugins.vim ~/.vim/plugins.vim
+ln -s $PWD/.config/terminator/config ~/.config/terminator/config
 
 # "Restart to Windows" shortcut
+echo '[Dotfiles] Creating "Restart to Windows" shortcuts...'
 sudo cp .local/share/applications/windows.png \
   .local/share/applications/windows.sh \
   .local/share/applications/windows.desktop \
@@ -33,4 +38,4 @@ sudo chmod +x /usr/share/applications/windows.sh
 # Installation finished sucessfully.
 # =========================================================
 echo -e '[Dotfiles] Installation finished sucessfully.'
-source ~/.zshrc
+#source ~/.zshrc

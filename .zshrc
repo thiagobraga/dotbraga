@@ -1,3 +1,6 @@
+# Ctrl + S hangs terminal. Disable it with this command.
+stty -ixon
+
 export ZSH="$HOME/.oh-my-zsh"
 
 # Spaceship theme configuration
@@ -25,10 +28,6 @@ plugins=(docker-compose git)
 
 source $ZSH/oh-my-zsh.sh
 
-if [ -e "$HOME/.profile" ]; then
-  . "$HOME/.profile"
-fi
-
-if [ -e "$HOME/.aliases" ]; then
-  . "$HOME/.aliases"
-fi
+if [ -e "$HOME/.env" ];     then . "$HOME/.env";     fi
+if [ -e "$HOME/.profile" ]; then . "$HOME/.profile"; fi
+if [ -e "$HOME/.aliases" ]; then . "$HOME/.aliases"; fi
