@@ -19,6 +19,9 @@
 git clone https://github.com/thiagobraga/dotfiles
 cd dotfiles
 . ./install
+
+# Install zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 ```
 
 ## Contents
@@ -26,6 +29,8 @@ cd dotfiles
 - Terminator configurations
 - Vi configurations
 - zsh configurations with Spaceship theme configured
+- zsh-autosuggestions
+- Hyper configurations
 - Composer on PATH
 - npm on PATH
 - "Windows" shortcut to restart in Windows for dual-boot systems
