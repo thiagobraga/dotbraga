@@ -18,3 +18,8 @@ alias caixa='vboxmanage snapshot Windows restore Caixa && vboxmanage startvm Win
 # Windows need to be the second operating system in boot order.
 alias windows='sudo grub-reboot 1 && sudo reboot'
 alias win='windows'
+
+# Development
+# ===================================================
+alias yd='yarn dev'
+alias yw='yarn watch'
