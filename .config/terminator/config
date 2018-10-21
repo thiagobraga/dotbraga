@@ -6,9 +6,13 @@
   suppress_multiple_term_dialog = True
   title_hide_sizetext = True
 [keybindings]
-  copy = <Control>c
   hide_window = None
+  copy = <Control>c
   paste = <Control>v
+  new_tab = <Control>t
+  close_term = <Control>w
+  split_vert = <Control>d
+  split_horiz = <Control><Shift>d
 [layouts]
   [[default]]
     [[[child0]]]
