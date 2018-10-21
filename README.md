@@ -1,17 +1,10 @@
 # Dotfiles
 
-<img src="https://i.imgur.com/umU8PWM.png" align="left" width="361px" height="192px"/>
-<img align="left" width="0" height="192px" hspace="10"/>
+My dotfiles used in development.  
 
-> My dotfiles used in development. Tested in Ubuntu 18.04. Use at your own risk :)
-
-[![Under Development](https://img.shields.io/badge/under-development-orange.svg)](https://github.com/cez-aug/github-project-boilerplate) [![Public Domain](https://img.shields.io/badge/public-domain-lightgrey.svg)](https://creativecommons.org/publicdomain/zero/1.0/) [![Travis](https://img.shields.io/travis/cez-aug/github-project-boilerplate.svg)](http://github.com/cez-aug/github-project-boilerplate)
-
-
-<br>
-<br>
-<br>
-<br>
+<p align="center">
+  <img src="https://i.imgur.com/umU8PWM.png" />
+</p>
 
 ## Installation
 
@@ -35,11 +28,17 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 - npm on PATH
 - "Windows" shortcut to restart in Windows for dual-boot systems
 
+## Shortcuts
+
+### Terminator
+
+- Copy: `<Ctrl>` + `C`
+- Paste: `<Ctrl>` + `V`
+- New tab: `<Ctrl>` + `T`
+- Close tab: `<Ctrl>` + `W`
+- Split vertically: `<Ctrl>` + `D`
+- Split horizontally: `<Ctrl>` + `<Shift>` + `D`
+
 ## TODO
 
-- [ ] Automated install scripts
-  - [ ] PHP CLI
-  - [ ] Composer
-  - [ ] Docker
-  - [ ] Docker Compose
-  - [ ] ohMyZSH and Spaceship theme
+- [ ] Create a CLI with [oclif](https://oclif.io/) to install tools like PHP, Composer, Docker...
