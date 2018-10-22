@@ -21,5 +21,10 @@ alias win='windows'
 
 # Development
 # ===================================================
+
+# Yarn
+# ---------------------------------------------------
+alias ya='yarn add'
 alias yd='yarn dev'
+alias ys='yarn start'
 alias yw='yarn watch'
