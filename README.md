@@ -3,7 +3,7 @@
 My dotfiles used in development.  
 
 <p align="center">
-  <img src="https://i.imgur.com/umU8PWM.png" />
+  <img src="https://i.imgur.com/N5OuLtb.png" />
 </p>
 
 ## Installation
