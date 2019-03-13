@@ -15,7 +15,7 @@ set noswapfile
 set smartindent
 set smarttab
 set expandtab
-set tabstop=4
+set tabstop=2
 set shiftwidth=4
 set cwh=20
 set cmdheight=2
