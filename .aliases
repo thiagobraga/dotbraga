@@ -29,3 +29,33 @@ alias yd='yarn dev'
 alias yp='yarn prod'
 alias ys='yarn start'
 alias yw='yarn watch'
+
+# Github
+# ===================================================
+function gch {
+  REPO=$1
+  gcl github:$REPO
+}
+
+# Crypto
+# ===================================================
+function mb {
+  curl -sX GET https://www.mercadobitcoin.net/api/${1:-BTC}/ticker/ | jq .
+}
+
+function bt {
+  curl -sX GET https://api.bitcointrade.com.br/v1/public/${1:-BTC}/ticker/ | jq .
+}
+
+function crypto {
+  echo 'Bitcoin - Mercado Bitcoin'
+  mb BTC
+
+  echo ''
+  echo 'Bitcoin - BitcoinTrade'
+  bt BTC
+
+  echo ''
+  echo 'Ethereum - BitcoinTrade'
+  bt ETH
+}
