@@ -4,27 +4,50 @@
 # =========================================================
 echo '[Dotfiles] Symlinking files...'
 
-rm ~/.aliases
-rm ~/.profile
-rm ~/.zshrc
-rm ~/.vimrc
-rm ~/.vim/basics.vim
-rm ~/.vim/colors.vim
-rm ~/.vim/keybindings.vim
-rm ~/.vim/plugins.vim
-rm ~/.config/terminator/config
+[ -e ~/.aliases ] && mv ~/.aliases ~/.aliases.bkp
+[ -e ~/.profile ] && mv ~/.profile ~/.profile.bkp
+[ -e ~/.zshrc ] && mv ~/.zshrc ~/.zshrc.bkp
+[ -e ~/.vimrc ] && mv ~/.vimrc ~/.vimrc.bkp
+[ -e ~/.config/terminator/config ] && mv ~/.config/terminator/config ~/.config/terminator/config.bkp
+
+ln -s $PWD/.config/terminator/config ~/.config/terminator/config
+
+if [[ -d ~/.vim ]]; then
+  [ -e ~/.vim/basics.vim ] && mv ~/.vim/basics.vim ~/.vim/basics.vim.bkp
+  [ -e ~/.vim/colors.vim ] && mv ~/.vim/colors.vim ~/.vim/colors.vim.bkp
+  [ -e ~/.vim/keybindings.vim ] && mv ~/.vim/keybindings.vim ~/.vim/keybindings.vim.bkp
+  [ -e ~/.vim/plugins.vim ] && mv ~/.vim/plugins.vim ~/.vim/plugins.vim.bkp
+fi
 
 ln -s $PWD/.aliases ~/.aliases
 ln -s $PWD/.profile ~/.profile
 ln -s $PWD/.zshrc ~/.zshrc
 ln -s $PWD/.vimrc ~/.vimrc
-ln -s $PWD/.vim/basics.vim ~/.vim/basics.vim
-ln -s $PWD/.vim/colors.vim ~/.vim/colors.vim
-ln -s $PWD/.vim/keybindings.vim ~/.vim/keybindings.vim
-ln -s $PWD/.vim/plugins.vim ~/.vim/plugins.vim
-ln -s $PWD/.config/terminator/config ~/.config/terminator/config
+
+if [[ -d ~/.vim ]]; then
+  ln -s $PWD/.vim/basics.vim ~/.vim/basics.vim
+  ln -s $PWD/.vim/colors.vim ~/.vim/colors.vim
+  ln -s $PWD/.vim/keybindings.vim ~/.vim/keybindings.vim
+  ln -s $PWD/.vim/plugins.vim ~/.vim/plugins.vim
+fi
+
+# Install Spaceship Theme
+# =========================================================
+echo '[Dotfiles] Install Spaceship Theme...'
+if [[ ! -d "$ZSH_CUSTOM/themes/spaceship-prompt" ]]; then
+  git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
+  ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+fi
+
+# Install zsh-autosuggestions
+# =========================================================
+echo '[Dotfiles] Install zsh-autosuggestions...'
+if [[ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]]; then
+  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+fi
 
 # "Restart to Windows" shortcut
+# =========================================================
 echo '[Dotfiles] Creating "Restart to Windows" shortcuts...'
 sudo cp .local/share/applications/windows.png \
   .local/share/applications/windows.sh \
@@ -38,4 +61,4 @@ sudo chmod +x /usr/share/applications/windows.sh
 # Installation finished sucessfully.
 # =========================================================
 echo -e '[Dotfiles] Installation finished sucessfully.'
-#source ~/.zshrc
+. ~/.zshrc
