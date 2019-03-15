@@ -8,7 +8,7 @@ My dotfiles used in development.
 
 ## Installation
 
-```
+``` sh
 git clone https://github.com/thiagobraga/dotfiles
 cd dotfiles
 . ./install
