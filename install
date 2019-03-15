@@ -4,32 +4,19 @@
 # =========================================================
 echo '[Dotfiles] Symlinking files...'
 
-[ -e ~/.aliases ] && mv ~/.aliases ~/.aliases.bkp
-[ -e ~/.profile ] && mv ~/.profile ~/.profile.bkp
-[ -e ~/.zshrc ] && mv ~/.zshrc ~/.zshrc.bkp
-[ -e ~/.vimrc ] && mv ~/.vimrc ~/.vimrc.bkp
-[ -e ~/.config/terminator/config ] && mv ~/.config/terminator/config ~/.config/terminator/config.bkp
-
-ln -s $PWD/.config/terminator/config ~/.config/terminator/config
-
-if [[ -d ~/.vim ]]; then
-  [ -e ~/.vim/basics.vim ] && mv ~/.vim/basics.vim ~/.vim/basics.vim.bkp
-  [ -e ~/.vim/colors.vim ] && mv ~/.vim/colors.vim ~/.vim/colors.vim.bkp
-  [ -e ~/.vim/keybindings.vim ] && mv ~/.vim/keybindings.vim ~/.vim/keybindings.vim.bkp
-  [ -e ~/.vim/plugins.vim ] && mv ~/.vim/plugins.vim ~/.vim/plugins.vim.bkp
+if [[ ! -d ~/.vim ]]; then
+  mkdir ~/.vim
 fi
 
-ln -s $PWD/.aliases ~/.aliases
-ln -s $PWD/.profile ~/.profile
-ln -s $PWD/.zshrc ~/.zshrc
-ln -s $PWD/.vimrc ~/.vimrc
-
-if [[ -d ~/.vim ]]; then
-  ln -s $PWD/.vim/basics.vim ~/.vim/basics.vim
-  ln -s $PWD/.vim/colors.vim ~/.vim/colors.vim
-  ln -s $PWD/.vim/keybindings.vim ~/.vim/keybindings.vim
-  ln -s $PWD/.vim/plugins.vim ~/.vim/plugins.vim
-fi
+ln -f -s $PWD/.aliases ~/.aliases
+ln -f -s $PWD/.profile ~/.profile
+ln -f -s $PWD/.zshrc ~/.zshrc
+ln -f -s $PWD/.vimrc ~/.vimrc
+ln -f -s $PWD/.vim/basics.vim ~/.vim/basics.vim
+ln -f -s $PWD/.vim/colors.vim ~/.vim/colors.vim
+ln -f -s $PWD/.vim/plugins.vim ~/.vim/plugins.vim
+ln -f -s $PWD/.vim/keybindings.vim ~/.vim/keybindings.vim
+ln -f -s $PWD/.config/terminator/config ~/.config/terminator/config
 
 # Install Spaceship Theme
 # =========================================================
@@ -46,6 +33,11 @@ if [[ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]]; 
   git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 fi
 
+# Disable screen lock and screen blackout
+# =========================================================
+gsettings set org.gnome.desktop.session idle-delay 0
+gsettings set org.gnome.desktop.screensaver lock-enabled false
+
 # "Restart to Windows" shortcut
 # =========================================================
 echo '[Dotfiles] Creating "Restart to Windows" shortcuts...'
@@ -61,4 +53,4 @@ sudo chmod +x /usr/share/applications/windows.sh
 # Installation finished sucessfully.
 # =========================================================
 echo -e '[Dotfiles] Installation finished sucessfully.'
-. ~/.zshrc
+source ~/.zshrc
