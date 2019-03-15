@@ -25,7 +25,7 @@ cd dotfiles
 - Hyper configurations
 - Composer on PATH
 - npm on PATH
-- "Windows" shortcut to restart in Windows for dual-boot systems
+- "Restart to Windows" shortcut for dual-boot systems
 
 ## Shortcuts
 
