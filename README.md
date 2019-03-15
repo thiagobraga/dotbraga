@@ -31,12 +31,12 @@ cd dotfiles
 
 ### Terminator
 
-- Copy: `<Ctrl>` + `C`
-- Paste: `<Ctrl>` + `V`
-- New tab: `<Ctrl>` + `T`
-- Close tab: `<Ctrl>` + `W`
-- Split vertically: `<Ctrl>` + `D`
-- Split horizontally: `<Ctrl>` + `<Shift>` + `D`
+- Copy: <kbd>Ctrl</kbd> + <kbd>C</kbd>
+- Paste: <kbd><Ctrl></kbd> + <kbd>V</kbd>
+- New tab: <kbd><Ctrl></kbd> + <kbd>T</kbd>
+- Close tab: <kbd><Ctrl></kbd> + <kbd>W</kbd>
+- Split vertically: <kbd><Ctrl></kbd> + <kbd>D</kbd>
+- Split horizontally: <kbd><Ctrl></kbd> + <kbd><Shift></kbd> + <kbd>D</kbd>
 
 ## TODO
 
