@@ -24,6 +24,7 @@ alias win='windows'
 
 # Yarn
 # ---------------------------------------------------
+alias y='yarn'
 alias ya='yarn add'
 alias yd='yarn dev'
 alias yp='yarn prod'
