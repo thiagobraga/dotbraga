@@ -2,21 +2,26 @@
 
 # Symlinking files
 # =========================================================
-echo '[Dotfiles] Symlinking files...'
+# echo '[Dotfiles] Symlinking files...'
 
-if [[ ! -d ~/.vim ]]; then
-  mkdir ~/.vim
-fi
+# if [[ ! -d ~/.vim ]]; then
+#   mkdir ~/.vim
+# fi
 
-ln -f -s $PWD/.aliases ~/.aliases
-ln -f -s $PWD/.profile ~/.profile
-ln -f -s $PWD/.zshrc ~/.zshrc
-ln -f -s $PWD/.vimrc ~/.vimrc
-ln -f -s $PWD/.vim/basics.vim ~/.vim/basics.vim
-ln -f -s $PWD/.vim/colors.vim ~/.vim/colors.vim
-ln -f -s $PWD/.vim/plugins.vim ~/.vim/plugins.vim
-ln -f -s $PWD/.vim/keybindings.vim ~/.vim/keybindings.vim
-ln -f -s $PWD/.config/terminator/config ~/.config/terminator/config
+# ln -f -s $PWD/.aliases ~/.aliases
+# ln -f -s $PWD/.profile ~/.profile
+# ln -f -s $PWD/.zshrc ~/.zshrc
+# ln -f -s $PWD/.vimrc ~/.vimrc
+# ln -f -s $PWD/.vim/basics.vim ~/.vim/basics.vim
+# ln -f -s $PWD/.vim/colors.vim ~/.vim/colors.vim
+# ln -f -s $PWD/.vim/plugins.vim ~/.vim/plugins.vim
+# ln -f -s $PWD/.vim/keybindings.vim ~/.vim/keybindings.vim
+# ln -f -s $PWD/.config/terminator/config ~/.config/terminator/config
+
+# Install Oh My ZSH
+# =========================================================
+echo '[Dotfiles] Install Oh My ZSH...'
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # Install Spaceship Theme
 # =========================================================
