@@ -1,22 +1,32 @@
 #!/bin/zsh
 
-# Symlinking files
+
+# "Restart to Windows" shortcut
 # =========================================================
-# echo '[Dotfiles] Symlinking files...'
+shortcuts () {
+  echo -e '\n🛠  Creating "Restart to Windows" shortcuts'
+  sudo cp -f ./shortcuts/windows.png \
+    ./shortcuts/windows.sh \
+    ./shortcuts/windows.desktop \
+    /usr/share/applications/
 
-# if [[ ! -d ~/.vim ]]; then
-#   mkdir ~/.vim
-# fi
+  sudo chmod 644 /usr/share/applications/windows.{sh,desktop,png}
+  sudo chmod -x /usr/share/applications/windows.desktop
+  sudo chmod +x /usr/share/applications/windows.sh
 
-# ln -f -s $PWD/.aliases ~/.aliases
-# ln -f -s $PWD/.profile ~/.profile
-# ln -f -s $PWD/.zshrc ~/.zshrc
-# ln -f -s $PWD/.vimrc ~/.vimrc
-# ln -f -s $PWD/.vim/basics.vim ~/.vim/basics.vim
-# ln -f -s $PWD/.vim/colors.vim ~/.vim/colors.vim
-# ln -f -s $PWD/.vim/plugins.vim ~/.vim/plugins.vim
-# ln -f -s $PWD/.vim/keybindings.vim ~/.vim/keybindings.vim
-# ln -f -s $PWD/.config/terminator/config ~/.config/terminator/config
+  echo '✅  Done'
+}
+
+
+# Methods switch
+# =========================================================
+case $1 in
+  shortcuts|--shortcuts) shortcuts;;
+  *) exit;;
+esac
+
+exit
+
 
 # Install Oh My ZSH
 # =========================================================

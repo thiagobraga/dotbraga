@@ -1,8 +1,8 @@
 [Desktop Entry]
 Type=Application
-Name=Windows
+Name=Restart to Windows
 Exec=/usr/share/applications/windows.sh
 Icon=/usr/share/applications/windows.png
 Categories=Development;
-Comment=Restart computer in Windows
+Comment=Shortcut to easy reboot to Windows 10
 Terminal=false
