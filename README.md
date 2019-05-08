@@ -1,9 +1,9 @@
-# Dotfiles
+<h1 align="center">Dotfiles</h1>
 
-My dotfiles used in development.  
+<p align="center">My dotfiles used in development</p>
 
 <p align="center">
-  <img src="https://i.imgur.com/N5OuLtb.png" />
+  <img src="https://i.imgur.com/f9mqu0u.png" />
 </p>
 
 ## Installation
@@ -11,7 +11,8 @@ My dotfiles used in development.
 ``` sh
 git clone https://github.com/thiagobraga/dotfiles
 cd dotfiles
-. ./install
+# Creating a better installation method
+# . ./install
 ```
 
 ## Contents
