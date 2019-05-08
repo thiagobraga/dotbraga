@@ -30,3 +30,6 @@ alias yr='yarn release'
 alias ys='yarn start'
 alias yw='yarn watch'
 
+# Vessel
+# ---------------------------------------------------
+alias v='./vessel'
