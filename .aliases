@@ -22,8 +22,13 @@ alias dpkg='sudo dpkg'
 alias windows='sudo grub-reboot 1 && sudo reboot'
 alias win='windows'
 
+
 # Development
 # ===================================================
+
+# Node
+# ---------------------------------------------------
+alias nt='npx task'
 
 # Yarn
 # ---------------------------------------------------
@@ -34,6 +39,7 @@ alias yd='yarn dev'
 alias yp='yarn prod'
 alias yr='yarn release'
 alias ys='yarn start'
+alias yt='yarn task'
 alias yw='yarn watch'
 
 # Vessel
