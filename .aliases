@@ -1,6 +1,12 @@
 #!/bin/bash
 
 
+# Override Oh My ZSH aliases
+# ===================================================
+alias l='ls -lha --group-directories-first'
+
+
+
 # Without sudo section
 # ===================================================
 alias apt='sudo apt'
