@@ -26,6 +26,15 @@ alias win='windows'
 # Development
 # ===================================================
 
+# Make
+# ---------------------------------------------------
+alias m='make'
+alias mb='make build'
+alias mc='make clean'
+alias mi='make install'
+alias mr='make release'
+alias mw='make watch'
+
 # Node
 # ---------------------------------------------------
 alias nt='npx task'
