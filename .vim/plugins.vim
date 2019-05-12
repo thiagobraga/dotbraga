@@ -8,21 +8,27 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-Plug 'ervandew/supertab'
-Plug 'junegunn/vim-easy-align'
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'scrooloose/nerdtree'
-Plug 'vim-scripts/matchit.zip'
-Plug 'tpope/vim-commentary'
-Plug 'bling/vim-airline'
-Plug 'junegunn/fzf'
-Plug 'mattn/emmet-vim'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'scrooloose/syntastic'
 Plug 'airblade/vim-gitgutter'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'tpope/vim-surround'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dag/vim-fish'
 Plug 'dylanaraps/wal.vim'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'ervandew/supertab'
+Plug 'junegunn/fzf'
+Plug 'junegunn/vim-easy-align'
+Plug 'mattn/emmet-vim'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-scripts/matchit.zip'
 call plug#end()
+
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let mapleader=","
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeQuitOnOpen = 1
