@@ -1,6 +1,14 @@
 #!/bin/zsh
 
 
+# Install Oh My ZSH
+# =========================================================
+ohmyzsh() {
+  echo '\n🛠  Installing Oh My ZSH'
+  OHMYZSH=https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh
+  sh -c "$(curl -fsSL ${ZSH_URL})"
+  echo '✅  Done'
+}
 # "Restart to Windows" shortcut
 # =========================================================
 shortcuts () {
