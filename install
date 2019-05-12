@@ -48,8 +48,10 @@ shortcuts () {
 # Methods switch
 # =========================================================
 case $1 in
-  shortcuts|--shortcuts) shortcuts;;
-  *) exit;;
+  ohmyzsh)   ohmyzsh;;
+  spaceship) spaceship;;
+  shortcuts) shortcuts;;
+  *)         exit;;
 esac
 
 exit
