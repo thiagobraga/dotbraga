@@ -9,6 +9,25 @@ ohmyzsh() {
   sh -c "$(curl -fsSL ${ZSH_URL})"
   echo '✅  Done'
 }
+
+
+# Install Spaceship Theme
+# =========================================================
+spaceship() {
+  echo '\n🛠  Install Spaceship Theme for Oh My ZSH'
+  SPACESHIP_PATH=${ZSH_CUSTOM}/themes/spaceship-prompt
+  if [[ ! -d "${SPACESHIP_PATH}" ]]; then
+    git clone https://github.com/denysdovhan/spaceship-prompt.git ${SPACESHIP_PATH}
+    ln -s ${SPACESHIP_PATH}/spaceship.zsh-theme ${ZSH_CUSTOM}/themes/spaceship.zsh-theme
+    echo '✅  Done'
+  else
+    echo "✅  You've already have Spaceship installed"
+    echo '🔃  Updating...'
+    git --work-tree=${SPACESHIP_PATH} pull origin master
+    echo '✅  Spaceship updated'
+  fi
+}
+
 # "Restart to Windows" shortcut
 # =========================================================
 shortcuts () {
