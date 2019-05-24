@@ -27,7 +27,7 @@ set nu
 set relativenumber
 set ruler
 set scrolloff=3
-set shiftwidth=4
+set shiftwidth=2
 set showcmd
 set sidescrolloff=5
 set smartindent
