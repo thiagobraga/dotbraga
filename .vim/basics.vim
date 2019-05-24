@@ -24,6 +24,7 @@ set nomore
 set noswapfile
 set nowrap
 set nu
+set paste
 set relativenumber
 set ruler
 set scrolloff=3
