@@ -35,10 +35,6 @@ alias mi='make install'
 alias mr='make release'
 alias mw='make watch'
 
-# Node
-# ---------------------------------------------------
-alias nt='npx task'
-
 # Yarn
 # ---------------------------------------------------
 alias y='yarn'
