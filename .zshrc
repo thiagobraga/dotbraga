@@ -17,7 +17,6 @@ SPACESHIP_PROMPT_ORDER=(
   git
   venv
   line_sep
-  battery
   vi_mode
   jobs
   exit_code
