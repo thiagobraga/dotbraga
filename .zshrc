@@ -24,7 +24,12 @@ SPACESHIP_PROMPT_ORDER=(
   char
 )
 
-plugins=(zsh-autosuggestions docker-compose git)
+plugins=(
+  git
+  docker-compose
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+)
 
 source $ZSH/oh-my-zsh.sh
 
