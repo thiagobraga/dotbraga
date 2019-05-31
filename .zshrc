@@ -6,6 +6,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # Spaceship theme configuration
 ZSH_THEME='spaceship'
 
+SPACESHIP_CHAR_SYMBOL=''
 SPACESHIP_DIR_SHOW=true
 SPACESHIP_DIR_TRUNC=0
 SPACESHIP_GIT_STATUS_COLOR='blue'
