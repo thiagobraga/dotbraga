@@ -394,6 +394,20 @@
 			<key>Text</key>
 			<string></string>
 		</dict>
+		<key>0x44-0x120000</key>
+		<dict>
+			<key>Action</key>
+			<integer>29</integer>
+			<key>Text</key>
+			<string>21D21311-396B-4089-A1E0-0BEDCF506652</string>
+		</dict>
+		<key>0x64-0x100000</key>
+		<dict>
+			<key>Action</key>
+			<integer>28</integer>
+			<key>Text</key>
+			<string>21D21311-396B-4089-A1E0-0BEDCF506652</string>
+		</dict>
 		<key>0x9-0x40000</key>
 		<dict>
 			<key>Action</key>
@@ -549,9 +563,9 @@
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>2189 165 606 469 1920 0 1920 1057 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>2549 383 796 486 1920 0 1920 1080 </string>
+	<string>2549 383 796 486 1920 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>1921 0 942 1057 1920 0 1920 1057 </string>
+	<string>1921 0 956 1057 1920 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>1922 0 956 1057 1920 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -762,13 +776,13 @@
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.34064260125160217</real>
+				<real>0.52549019607843139</real>
 				<key>Color Space</key>
-				<string>Calibrated</string>
+				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.2652154266834259</real>
+				<real>0.47843137254901963</real>
 				<key>Red Component</key>
-				<real>0.23306176066398621</real>
+				<real>0.45490196078431372</real>
 			</dict>
 			<key>Ansi 9 Color</key>
 			<dict>
@@ -1523,7 +1537,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2019-05-30T16:04:02Z</date>
+	<date>2019-06-11T16:04:39Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -1559,6 +1573,6 @@
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
-	<false/>
+	<true/>
 </dict>
 </plist>
