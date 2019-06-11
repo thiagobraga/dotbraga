@@ -1,35 +1,14 @@
-# Ctrl + S hangs terminal. Disable it with this command.
-stty -ixon
-
 export ZSH="$HOME/.oh-my-zsh"
 
-# Spaceship theme configuration
 ZSH_THEME='spaceship'
-
 SPACESHIP_CHAR_SYMBOL=''
 SPACESHIP_DIR_SHOW=true
 SPACESHIP_DIR_TRUNC=0
 SPACESHIP_GIT_STATUS_COLOR='blue'
 SPACESHIP_GIT_STATUS_SHOW=true
+SPACESHIP_PROMPT_ORDER=(dir host git venv line_sep jobs char)
 
-SPACESHIP_PROMPT_ORDER=(
-  dir
-  host
-  git
-  venv
-  line_sep
-  vi_mode
-  jobs
-  exit_code
-  char
-)
-
-plugins=(
-  git
-  docker-compose
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
