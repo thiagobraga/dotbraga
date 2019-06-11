@@ -11,8 +11,8 @@
 ``` sh
 git clone https://github.com/thiagobraga/dotfiles
 cd dotfiles
-# Creating a better installation method
-# . ./install
+# Almost complete... or not
+. ./install
 ```
 
 ## Contents
