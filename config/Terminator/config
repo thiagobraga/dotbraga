@@ -17,8 +17,8 @@
   hide_window = None
   new_tab = <Control>t
   paste = <Control>v
-  split_horiz = <Control><Shift>d
-  split_vert = <Control>d
+  split_horiz = <Control>d
+  split_vert = <Control><Shift>d
 [layouts]
   [[default]]
     [[[child0]]]
