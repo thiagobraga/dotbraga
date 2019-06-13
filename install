@@ -43,59 +43,42 @@ sh -c "$(curl -fsSL ${ZSH_URL})"
 echo '✅  Done'
 
 return
+
 # Install Spaceship Theme
 # =========================================================
-spaceship() {
-  echo '\n🛠  Install Spaceship Theme for Oh My ZSH'
-  SPACESHIP_PATH=${ZSH_CUSTOM}/themes/spaceship-prompt
-  if [[ ! -d "${SPACESHIP_PATH}" ]]; then
-    git clone https://github.com/denysdovhan/spaceship-prompt.git ${SPACESHIP_PATH}
-    ln -s ${SPACESHIP_PATH}/spaceship.zsh-theme ${ZSH_CUSTOM}/themes/spaceship.zsh-theme
-    echo '✅  Done'
-  else
-    echo "✅  You've already have Spaceship installed"
-    echo '🔃  Updating...'
-    git --work-tree=${SPACESHIP_PATH} pull origin master
-    echo '✅  Spaceship updated'
-  fi
-}
+echo '\n🛠  Install Spaceship Theme for Oh My ZSH'
+SPACESHIP_PATH=${ZSH_CUSTOM}/themes/spaceship-prompt
+if [[ ! -d "${SPACESHIP_PATH}" ]]; then
+  git clone https://github.com/denysdovhan/spaceship-prompt.git ${SPACESHIP_PATH}
+  ln -s ${SPACESHIP_PATH}/spaceship.zsh-theme ${ZSH_CUSTOM}/themes/spaceship.zsh-theme
+  echo '✅  Done'
+else
+  echo "✅  You've already have Spaceship installed"
+  echo '🔃  Updating...'
+  git --work-tree=${SPACESHIP_PATH} pull origin master
+  echo '✅  Spaceship updated'
+fi
 
 # Install zsh-syntax-highlight
 # =========================================================
-syntax() {
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
-    ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-}
+git clone \
+  https://github.com/zsh-users/zsh-syntax-highlighting.git \
+  ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 
 # "Restart to Windows" shortcut
 # =========================================================
-shortcuts() {
-  echo -e '\n🛠  Creating "Restart to Windows" shortcuts'
-  sudo cp -f ./shortcuts/windows.png \
-    ./shortcuts/windows.sh \
-    ./shortcuts/windows.desktop \
-    /usr/share/applications/
+echo -e '\n🛠  Creating "Restart to Windows" shortcuts'
+sudo cp -f ./shortcuts/windows.png \
+  ./shortcuts/windows.sh \
+  ./shortcuts/windows.desktop \
+  /usr/share/applications/
 
-  sudo chmod 644 /usr/share/applications/windows.{sh,desktop,png}
-  sudo chmod -x /usr/share/applications/windows.desktop
-  sudo chmod +x /usr/share/applications/windows.sh
+sudo chmod 644 /usr/share/applications/windows.{sh,desktop,png}
+sudo chmod -x /usr/share/applications/windows.desktop
+sudo chmod +x /usr/share/applications/windows.sh
 
-  echo '✅  Done'
-}
-
-
-# Methods switch
-# =========================================================
-case $1 in
-  ohmyzsh)   ohmyzsh;;
-  spaceship) spaceship;;
-  shortcuts) shortcuts;;
-  syntax)    syntax;;
-  *)         exit;;
-esac
-
-return true
+echo '✅  Done'
 
 
 # Install zsh-autosuggestions
@@ -109,4 +92,5 @@ fi
 # =========================================================
 gsettings set org.gnome.desktop.session idle-delay 0
 gsettings set org.gnome.desktop.screensaver lock-enabled false
+gsettings set com.canonical.indicator.session suppress-logout-restart-shutdown true
 
