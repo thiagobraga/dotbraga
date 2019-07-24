@@ -1,0 +1,12 @@
+{
+  "theme": "dark",
+  "snippet": {
+    "expanded": true,
+    "newSnippetPrivate": false,
+    "sorting": "updated_at",
+    "sortingReverse": true
+  },
+  "editor": {
+    "tabSize": 2
+  }
+}
