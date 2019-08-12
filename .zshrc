@@ -16,3 +16,5 @@ if [ -e "$HOME/.env" ];     then . "$HOME/.env";     fi
 if [ -e "$HOME/.profile" ]; then . "$HOME/.profile"; fi
 if [ -e "$HOME/.aliases" ]; then . "$HOME/.aliases"; fi
 if [ -e "$HOME/.custom" ];  then . "$HOME/.custom";  fi
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
