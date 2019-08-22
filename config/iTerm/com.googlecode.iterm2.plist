@@ -572,7 +572,7 @@
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>2549 383 796 486 1920 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>1920 0 960 1057 1920 0 1920 1057 </string>
+	<string>2499 44 946 278 1920 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>1922 0 956 1057 1920 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -841,7 +841,7 @@
 			<key>Blur</key>
 			<true/>
 			<key>Blur Radius</key>
-			<real>30</real>
+			<real>10.553023873730965</real>
 			<key>Bold Color</key>
 			<dict>
 				<key>Alpha Component</key>
@@ -1566,7 +1566,7 @@
 			<key>Terminal Type</key>
 			<string>xterm-256color</string>
 			<key>Transparency</key>
-			<real>0.13725214149746187</real>
+			<real>0.42342758565989841</real>
 			<key>Unlimited Scrollback</key>
 			<false/>
 			<key>Use Bold Font</key>
@@ -1610,12 +1610,14 @@
 		<key>topLeft</key>
 		<string>{2558, 845}</string>
 	</dict>
+	<key>NoSyncHaveUsedCopyMode</key>
+	<true/>
 	<key>NoSyncHaveWarnedAboutPasteConfirmationChange</key>
 	<true/>
 	<key>NoSyncInstallationId</key>
 	<string>362A02DC-BA0F-4F64-9DC7-9F2DB7FBBD82</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>6</integer>
+	<integer>7</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -2324,6 +2326,8 @@
 			</dict>
 		</array>
 	</dict>
+	<key>NoSyncSearchHistory</key>
+	<true/>
 	<key>NoSyncSuppressRestartSessionConfirmationAlert</key>
 	<true/>
 	<key>NoSyncSuppressRestartSessionConfirmationAlert_selection</key>
@@ -2386,7 +2390,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2019-08-15T14:15:09Z</date>
+	<date>2019-08-19T14:15:06Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SeparateStatusBarsPerPane</key>
