@@ -95,11 +95,11 @@
 				<key>sensor</key>
 				<string>TC0D</string>
 				<key>set</key>
-				<string>5691DAF5-5CBC-4AA4-82D4-7F125F9EADD5</string>
+				<string>8E81452C-CEF5-4F2D-8E3C-23FB41AF0961</string>
 				<key>type</key>
 				<string>0</string>
 				<key>value</key>
-				<real>80</real>
+				<real>56</real>
 			</dict>
 			<dict>
 				<key>battery</key>
@@ -107,17 +107,52 @@
 				<key>sensor</key>
 				<string>TC0D</string>
 				<key>set</key>
-				<string>05DBC801-B897-4C0A-B70A-7AFBB4B2EBD1</string>
+				<string>A382A087-841B-4F2E-8716-3012849572AA</string>
 				<key>type</key>
 				<string>0</string>
 				<key>value</key>
 				<real>70</real>
+			</dict>
+			<dict>
+				<key>battery</key>
+				<string>0</string>
+				<key>sensor</key>
+				<string>TC0D</string>
+				<key>set</key>
+				<string>D3E79907-2FC5-45D1-8303-FDC7E53AA843</string>
+				<key>type</key>
+				<string>0</string>
+				<key>value</key>
+				<real>78</real>
 			</dict>
 		</array>
 		<key>FanControl_Enabled</key>
 		<true/>
 		<key>FanControl_Sets</key>
 		<array>
+			<dict>
+				<key>model</key>
+				<string>Macmini6,2</string>
+				<key>name</key>
+				<string>Baixo</string>
+				<key>speeds</key>
+				<array>
+					<dict>
+						<key>fan</key>
+						<string>F0Ac</string>
+						<key>high</key>
+						<integer>5500</integer>
+						<key>low</key>
+						<integer>1800</integer>
+						<key>percentage</key>
+						<real>0.26000000000000001</real>
+						<key>speed</key>
+						<real>2750</real>
+					</dict>
+				</array>
+				<key>uuid</key>
+				<string>8E81452C-CEF5-4F2D-8E3C-23FB41AF0961</string>
+			</dict>
 			<dict>
 				<key>model</key>
 				<string>Macmini6,2</string>
@@ -133,13 +168,13 @@
 						<key>low</key>
 						<integer>1800</integer>
 						<key>percentage</key>
-						<real>0.5</real>
+						<real>0.66000000000000003</real>
 						<key>speed</key>
-						<real>3650</real>
+						<real>4250</real>
 					</dict>
 				</array>
 				<key>uuid</key>
-				<string>05DBC801-B897-4C0A-B70A-7AFBB4B2EBD1</string>
+				<string>A382A087-841B-4F2E-8716-3012849572AA</string>
 			</dict>
 			<dict>
 				<key>model</key>
@@ -156,13 +191,13 @@
 						<key>low</key>
 						<integer>1800</integer>
 						<key>percentage</key>
-						<real>1</real>
+						<real>0.93000000000000005</real>
 						<key>speed</key>
-						<real>5500</real>
+						<real>5250</real>
 					</dict>
 				</array>
 				<key>uuid</key>
-				<string>5691DAF5-5CBC-4AA4-82D4-7F125F9EADD5</string>
+				<string>D3E79907-2FC5-45D1-8303-FDC7E53AA843</string>
 			</dict>
 		</array>
 		<key>Memory_DropdownOrderDisabled</key>
@@ -290,15 +325,17 @@
 		<array>
 			<dict>
 				<key>key</key>
-				<string>100</string>
+				<string>3</string>
 				<key>uuid</key>
-				<string>8A3710DD-026C-4B53-AB12-AE604BDE1AC0</string>
+				<string>A6192CF8-CFB5-47B3-83B3-5708ACF43EA5</string>
 			</dict>
 			<dict>
 				<key>key</key>
-				<string>0</string>
+				<string>101</string>
 				<key>uuid</key>
-				<string>2A2CA0CE-A43F-4538-9353-8C1CEE673C94</string>
+				<string>DB70F5DC-43DD-4C1A-A187-B939323AB810</string>
+				<key>width</key>
+				<integer>4</integer>
 			</dict>
 		</array>
 		<key>Sensors_MenubarTextColor-Dark</key>
@@ -306,9 +343,6 @@
 		<key>StatusItems-Order</key>
 		<array>
 			<integer>7</integer>
-			<integer>1</integer>
-			<integer>2</integer>
-			<integer>3</integer>
 			<integer>5</integer>
 		</array>
 		<key>Time_CLockSortCurrentLocationFirst</key>
@@ -377,7 +411,7 @@
 		<key>Zarya-TLE</key>
 		<dict>
 			<key>time</key>
-			<real>1558490779.1745749</real>
+			<real>1570084528.7566619</real>
 			<key>tle</key>
 			<string>ISS (ZARYA)
 1 25544U 98067A   19024.69130787  .00000289  00000-0  11946-4 0  9991
