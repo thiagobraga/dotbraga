@@ -37,3 +37,7 @@ cd dotfiles
 - Close tab: <kbd>Ctrl</kbd> + <kbd>W</kbd>
 - Split vertically: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd>
 - Split horizontally: <kbd>Ctrl</kbd> + <kbd>D</kbd>
+
+## Screenshots
+
+![](https://i.snipboard.io/QKH07V.jpg)
