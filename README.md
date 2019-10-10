@@ -35,5 +35,5 @@ cd dotfiles
 - Paste: <kbd>Ctrl</kbd> + <kbd>V</kbd>
 - New tab: <kbd>Ctrl</kbd> + <kbd>T</kbd>
 - Close tab: <kbd>Ctrl</kbd> + <kbd>W</kbd>
-- Split vertically: <kbd>Ctrl</kbd> + <kbd>D</kbd>
-- Split horizontally: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd>
+- Split vertically: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd>
+- Split horizontally: <kbd>Ctrl</kbd> + <kbd>D</kbd>
