@@ -14,7 +14,6 @@ This wallpaper:
 ``` sh
 git clone https://github.com/thiagobraga/dotfiles
 cd dotfiles
-# Almost complete... or not
 . ./install
 ```
 
