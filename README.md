@@ -40,4 +40,15 @@ cd dotfiles
 
 ## Screenshots
 
-![](https://i.snipboard.io/QKH07V.jpg)
+<table width="100%">
+  <tr>
+    <td width="33%">
+      <a href="https://imgur.com/cYvVT2o" target="_blank" rel="noopener noreferrer">
+        <img src="https://i.imgur.com/cYvVT2o.png" />
+      </a>
+    </td>
+    <td width="33%"></td>
+    <td width="33%"></td>
+  </tr>
+</table>
+    
