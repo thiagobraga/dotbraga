@@ -1,5 +1,17 @@
 #!/bin/zsh
 
+# Installation file
+#
+# Usage:
+# ./install
+#
+# This script automatic install:
+# - Oh My ZSH
+# - Spaceship Theme for Oh My ZSH
+# - ZSH Syntax Highlighting
+# - ZSH Autosuggestions
+# - Some Gnome configurations
+
 NO_COLOR='\e[0m'
 BLACK='\e[0;30m'
 GRAY='\e[37m'
@@ -19,78 +31,123 @@ BOLD_PURPLE='\e[1;35m'
 BOLD_CYAN='\e[1;36m'
 BOLD_WHITE='\e[1;37m'
 
-INFO="${BLUE}[info]${NO_COLOR}"
-SUCCESS="${GREEN}[success]${NO_COLOR}"
+INFO="${BLUE}[!]${NO_COLOR}"
+SUCCESS="${GREEN}[✓]${NO_COLOR}"
+ERROR="${GREEN}[✘]${NO_COLOR}"
+DONE="${BOLD_GREEN}[✓] Done${NO_COLOR}\n"
 
 # Version
 # =========================================================
 VERSION="${GRAY}v0.0.1${NO_COLOR}"
 
-
 # Header
 # =========================================================
-echo "${BOLD_WHITE}@thiagobraga's dotfiles ${VERSION}"
-
+echo "${BOLD_WHITE}@thiagobraga's dotfiles${NO_COLOR} ${VERSION}\n"
 
 # Install Oh My ZSH
 # =========================================================
-echo "${INFO} Install Oh My ZSH"
-echo "${INFO} Checking if it is installed"
-[ -d ${HOME}/.oh-my-zsh ] && echo "${SUCCESS} ✅  Already installed." && return
-echo "${INFO} Installing..."
-OHMYZSH=https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh
-sh -c "$(curl -fsSL ${ZSH_URL})"
-echo '✅  Done'
+{
+  echo "🛠  ${BOLD_WHITE}Install Oh My ZSH"
+  echo "${INFO} Checking if it is installed"
+  if [[ ! -d "${ZSH}" ]]; then
+    echo "${INFO} Installing..."
+    sh -c \
+      $(curl -fsSL \
+        https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)
+  else
+    echo "${SUCCESS} Already installed."
+    echo "${INFO} Updating..."
+    cd ${ZSH} || exit
+    git pull origin master
+    cd -
+  fi
+  echo "${DONE}"
+}
 
-return
-
-# Install Spaceship Theme
+# Install Spaceship Theme for Oh My ZSH
 # =========================================================
-echo '\n🛠  Install Spaceship Theme for Oh My ZSH'
-SPACESHIP_PATH=${ZSH_CUSTOM}/themes/spaceship-prompt
-if [[ ! -d "${SPACESHIP_PATH}" ]]; then
-  git clone https://github.com/denysdovhan/spaceship-prompt.git ${SPACESHIP_PATH}
-  ln -s ${SPACESHIP_PATH}/spaceship.zsh-theme ${ZSH_CUSTOM}/themes/spaceship.zsh-theme
-  echo '✅  Done'
-else
-  echo "✅  You've already have Spaceship installed"
-  echo '🔃  Updating...'
-  git --work-tree=${SPACESHIP_PATH} pull origin master
-  echo '✅  Spaceship updated'
-fi
+{
+  echo "🛠  ${BOLD_WHITE}Install Spaceship Theme for Oh My ZSH"
+  echo "${INFO} Checking if it is installed"
+  THEME_PATH="${ZSH_CUSTOM:-${ZSH}/custom}/themes/spaceship-prompt"
+  if [[ ! -d "${THEME_PATH}" ]]; then
+    git clone \
+      https://github.com/denysdovhan/spaceship-prompt \
+      ${THEME_PATH}
+    ln -s ${THEME_PATH}/spaceship.zsh-theme \
+      ${ZSH}/themes/spaceship.zsh-theme
+  else
+    echo "${SUCCESS} Already installed."
+    echo "${INFO} Updating..."
+    cd ${THEME_PATH} || exit
+    git pull origin master
+    cd -
+  fi
+  echo "${DONE}"
+}
 
-# Install zsh-syntax-highlight
+# Install zsh-syntax-highlight plugin
 # =========================================================
-git clone \
-  https://github.com/zsh-users/zsh-syntax-highlighting.git \
-  ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-
-
-# "Restart to Windows" shortcut
-# =========================================================
-echo -e '\n🛠  Creating "Restart to Windows" shortcuts'
-sudo cp -f ./shortcuts/windows.png \
-  ./shortcuts/windows.sh \
-  ./shortcuts/windows.desktop \
-  /usr/share/applications/
-
-sudo chmod 644 /usr/share/applications/windows.{sh,desktop,png}
-sudo chmod -x /usr/share/applications/windows.desktop
-sudo chmod +x /usr/share/applications/windows.sh
-
-echo '✅  Done'
-
+{
+  echo "🛠  ${BOLD_WHITE}Install zsh-syntax-highlight plugin"
+  echo "${INFO} Checking if it is installed"
+  PLUGIN_PATH="${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
+  if [[ ! -d "${PLUGIN_PATH}" ]]; then
+    git clone \
+      https://github.com/zsh-users/zsh-syntax-highlighting \
+      ${PLUGIN_PATH}
+  else
+    echo "${SUCCESS} Already installed."
+    echo "${INFO} Updating..."
+    git --work-tree=${PLUGIN_PATH} pull origin master
+  fi
+  echo "${DONE}"
+}
 
 # Install zsh-autosuggestions
 # =========================================================
-echo '[Dotfiles] Install zsh-autosuggestions...'
-if [[ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]]; then
-  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-fi
+{
+  echo "🛠  ${BOLD_WHITE}Install zsh-autosuggestions"
+  echo "${INFO} Checking if it is installed"
+  PLUGIN_PATH="${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
+  if [[ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]]; then
+    git clone \
+      https://github.com/zsh-users/zsh-autosuggestions \
+      ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+  else
+    echo "${SUCCESS} Already installed."
+    echo "${INFO} Updating..."
+    git --work-tree=${PLUGIN_PATH} pull origin master
+  fi
+  echo "${DONE}"
+}
 
 # Disable screen lock and screen blackout
 # =========================================================
-gsettings set org.gnome.desktop.session idle-delay 0
-gsettings set org.gnome.desktop.screensaver lock-enabled false
-gsettings set com.canonical.indicator.session suppress-logout-restart-shutdown true
+{
+  echo "🛠  ${BOLD_WHITE}Install zsh-autosuggestions"
+  echo "${INFO} Print a backup of old configurations"
+  gsettings get org.gnome.desktop.session idle-delay
+  gsettings get org.gnome.desktop.screensaver lock-enabled
+  # gsettings get com.canonical.indicator.session suppress-logout-restart-shutdown
+  echo "${SUCCESS} Modifying configurations"
+  gsettings set org.gnome.desktop.session idle-delay 0
+  gsettings set org.gnome.desktop.screensaver lock-enabled false
+  # gsettings set com.canonical.indicator.session suppress-logout-restart-shutdown true
+  echo "${DONE}"
+}
 
+# "Restart to Windows" shortcut
+# =========================================================
+# {
+#   echo -e '\n🛠  Creating "Restart to Windows" shortcuts'
+#   sudo cp -f ./shortcuts/windows.png \
+#     ./shortcuts/windows.sh \
+#     ./shortcuts/windows.desktop \
+#     /usr/share/applications/
+
+#   sudo chmod 644 /usr/share/applications/windows.{sh,desktop,png}
+#   sudo chmod -x /usr/share/applications/windows.desktop
+#   sudo chmod +x /usr/share/applications/windows.sh
+#   echo '✅  Done'
+# }
