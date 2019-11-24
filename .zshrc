@@ -8,7 +8,13 @@ SPACESHIP_GIT_STATUS_COLOR='blue'
 SPACESHIP_GIT_STATUS_SHOW=true
 SPACESHIP_PROMPT_ORDER=(dir host git venv line_sep jobs char)
 
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(
+  git
+  docker
+  docker-compose
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+)
 
 source $ZSH/oh-my-zsh.sh
 
