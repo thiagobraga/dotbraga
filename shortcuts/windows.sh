@@ -10,8 +10,16 @@ zenity \
   --text="Are you sure you want to restart to Windows?"
 
 answer=$?
+SO='windows'
 
 if [[ "${answer}" == 0 ]]; then
-  sudo grub-reboot 1 && sudo reboot
+  ID=`grep -e '^menuentry' /boot/grub/grub.cfg | \
+    grep -v generic | \
+    grep -e '--class os' | \
+    nl | grep -i ${SO} | \
+    awk '{ print $1 }'`
+  echo ${ID}
+  sudo grub-reboot ${ID}
+  sudo reboot
   exit 1
 fi
