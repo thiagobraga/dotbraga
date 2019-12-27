@@ -110,7 +110,7 @@ echo "${BOLD_WHITE}@thiagobraga's dotfiles${NO_COLOR} ${VERSION}\n"
   echo "🛠  ${BOLD_WHITE}Install zsh-autosuggestions"
   echo "${INFO} Checking if it is installed"
   PLUGIN_PATH="${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
-  if [[ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]]; then
+  if [[ ! -d "${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]]; then
     git clone \
       https://github.com/zsh-users/zsh-autosuggestions \
       ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
@@ -125,29 +125,28 @@ echo "${BOLD_WHITE}@thiagobraga's dotfiles${NO_COLOR} ${VERSION}\n"
 # Create symbolic links for configurations
 # =========================================================
 {
-  echo "🛠  ${BOLD_WHITE}Install zsh-autosuggestions"
-  echo "${INFO} Print a backup of old configurations"
-  gsettings get org.gnome.desktop.session idle-delay
-  gsettings get org.gnome.desktop.screensaver lock-enabled
-  # gsettings get com.canonical.indicator.session suppress-logout-restart-shutdown
-  echo "${SUCCESS} Modifying configurations"
-  gsettings set org.gnome.desktop.session idle-delay 0
-  gsettings set org.gnome.desktop.screensaver lock-enabled false
-  # gsettings set com.canonical.indicator.session suppress-logout-restart-shutdown true
+  echo "🛠  ${BOLD_WHITE}Create symbolic links"
+  ln -sf ${PWD}/.aliases ~/.aliases
+  ln -sf ${PWD}/.zshrc ~/.zshrc
+  ln -sf ${PWD}/.vimrc ~/.vimrc
+  ln -sf ${PWD}/.vim ~/.vim
+
+  mkdir -p ~/.config/terminator
+  ln -sf ${PWD}/config/Terminator/config ~/.config/terminator/config
   echo "${DONE}"
 }
 
 # "Restart to Windows" shortcut
 # =========================================================
-# {
-#   echo -e '\n🛠  Creating "Restart to Windows" shortcuts'
-#   sudo cp -f ./shortcuts/windows.png \
-#     ./shortcuts/windows.sh \
-#     ./shortcuts/windows.desktop \
-#     /usr/share/applications/
+{
+  echo -e '\n🛠  Creating "Restart to Windows" shortcuts'
+  sudo cp -f ./shortcuts/windows.png \
+    ./shortcuts/windows.sh \
+    ./shortcuts/windows.desktop \
+    /usr/share/applications/
 
-#   sudo chmod 644 /usr/share/applications/windows.{sh,desktop,png}
-#   sudo chmod -x /usr/share/applications/windows.desktop
-#   sudo chmod +x /usr/share/applications/windows.sh
-#   echo '✅  Done'
-# }
+  sudo chmod 644 /usr/share/applications/windows.{sh,desktop,png}
+  sudo chmod -x /usr/share/applications/windows.desktop
+  sudo chmod +x /usr/share/applications/windows.sh
+  echo '✅  Done'
+}
