@@ -43,7 +43,7 @@
     background_type = transparent
     cursor_color = "#d8dee9"
     cursor_shape = ibeam
-    font = Meslo LG L DZ for Powerline 9
+    font = Fira Code 9
     foreground_color = "#d8dee9"
     icon_bell = False
     palette = "#3b4252:#bf616a:#a3be8c:#ebcb8b:#81a1c1:#b48ead:#88c0d0:#e5e9f0:#60687a:#bf616a:#a3be8c:#ebcb8b:#81a1c1:#b48ead:#8fbcbb:#eceff4"
