@@ -7,10 +7,10 @@
 #
 # This script automatic install:
 # - Oh My ZSH
-# - Spaceship Theme for Oh My ZSH
-# - ZSH Syntax Highlighting
-# - ZSH Autosuggestions
-# - Some Gnome configurations
+#   - Spaceship theme
+#   - ZSH Syntax Highlighting
+#   - ZSH Autosuggestions
+# - Create symbolic links for configurations
 
 NO_COLOR='\e[0m'
 BLACK='\e[0;30m'
@@ -64,10 +64,10 @@ echo "${BOLD_WHITE}@thiagobraga's dotfiles${NO_COLOR} ${VERSION}\n"
   echo "${DONE}"
 }
 
-# Install Spaceship Theme for Oh My ZSH
+# Install Spaceship theme
 # =========================================================
 {
-  echo "🛠  ${BOLD_WHITE}Install Spaceship Theme for Oh My ZSH"
+  echo "🛠  ${BOLD_WHITE}Install Spaceship theme"
   echo "${INFO} Checking if it is installed"
   THEME_PATH="${ZSH_CUSTOM:-${ZSH}/custom}/themes/spaceship-prompt"
   if [[ ! -d "${THEME_PATH}" ]]; then
@@ -122,7 +122,7 @@ echo "${BOLD_WHITE}@thiagobraga's dotfiles${NO_COLOR} ${VERSION}\n"
   echo "${DONE}"
 }
 
-# Disable screen lock and screen blackout
+# Create symbolic links for configurations
 # =========================================================
 {
   echo "🛠  ${BOLD_WHITE}Install zsh-autosuggestions"
