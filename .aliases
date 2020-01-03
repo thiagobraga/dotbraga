@@ -1,8 +1,6 @@
 #!/bin/bash
 
 
-# Without sudo section
-# ===================================================
 alias apt='sudo apt'
 alias apt-get='sudo apt-get'
 alias aptitude='sudo aptitude'
