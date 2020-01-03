@@ -6,14 +6,10 @@ alias apt-get='sudo apt-get'
 alias aptitude='sudo aptitude'
 alias dpkg='sudo dpkg'
 
-
-# Dual boot section
-# ===================================================
-
-# Restart in Windows
-# Windows need to be the second operating system in boot order.
-alias windows='sudo grub-reboot 1 && sudo reboot'
-alias win='windows'
+alias l='LC_COLLATE=C ls -alh --color=tty --group-directories-first'
+alias ls='LC_COLLATE=C ls -h --color=tty --group-directories-first'
+alias ll='LC_COLLATE=C ls -lh --color=tty --group-directories-first'
+alias rm='/bin/rm -v'
 
 
 # Development
