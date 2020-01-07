@@ -7,6 +7,8 @@ SPACESHIP_DIR_TRUNC=0
 SPACESHIP_GIT_STATUS_COLOR='blue'
 SPACESHIP_GIT_STATUS_SHOW=true
 SPACESHIP_PROMPT_ORDER=(dir host git venv line_sep jobs char)
+DISABLE_AUTO_UPDATE=true
+ZSH_DISABLE_COMPFIX=true
 
 plugins=(
   git
@@ -36,3 +38,4 @@ if [ -e "$HOME/.env" ];     then . "$HOME/.env";     fi
 if [ -e "$HOME/.profile" ]; then . "$HOME/.profile"; fi
 if [ -e "$HOME/.aliases" ]; then . "$HOME/.aliases"; fi
 if [ -e "$HOME/.custom" ];  then . "$HOME/.custom";  fi
+
