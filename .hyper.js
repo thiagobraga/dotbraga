@@ -40,7 +40,7 @@ module.exports = {
   ],
 
   keymaps: {
-    // 'editor:copy': 'ctrl+c',
+    'editor:copy': 'ctrl+shift+c', // :(
     'editor:paste': 'ctrl+v',
     'pane:splitVertical': 'ctrl+shift+d',
     'pane:splitHorizontal': 'ctrl+d',
