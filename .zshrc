@@ -34,6 +34,9 @@ pastefinish() {
 zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
 
+export N_PREFIX="$HOME/n"
+[[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
+
 if [ -e "$HOME/.env" ];     then . "$HOME/.env";     fi
 if [ -e "$HOME/.profile" ]; then . "$HOME/.profile"; fi
 if [ -e "$HOME/.aliases" ]; then . "$HOME/.aliases"; fi
