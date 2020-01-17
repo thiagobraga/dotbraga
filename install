@@ -36,6 +36,10 @@ SUCCESS="${GREEN}[✓]${NO_COLOR}"
 ERROR="${GREEN}[✘]${NO_COLOR}"
 DONE="${BOLD_GREEN}[✓] Done${NO_COLOR}\n"
 
+# Define project path
+# =========================================================
+PROJECT_PATH=`dirname "$(readlink -f "$0")"`
+
 # Version
 # =========================================================
 VERSION="${GRAY}v0.0.1${NO_COLOR}"
@@ -48,7 +52,6 @@ echo "${BOLD_WHITE}@thiagobraga's dotfiles${NO_COLOR} ${VERSION}\n"
 # =========================================================
 {
   echo "🛠  ${BOLD_WHITE}Install Oh My ZSH"
-  echo "${INFO} Checking if it is installed"
   if [[ ! -d "${ZSH}" ]]; then
     echo "${INFO} Installing..."
     sh -c \
@@ -68,13 +71,12 @@ echo "${BOLD_WHITE}@thiagobraga's dotfiles${NO_COLOR} ${VERSION}\n"
 # =========================================================
 {
   echo "🛠  ${BOLD_WHITE}Install Spaceship theme"
-  echo "${INFO} Checking if it is installed"
   THEME_PATH="${ZSH_CUSTOM:-${ZSH}/custom}/themes/spaceship-prompt"
   if [[ ! -d "${THEME_PATH}" ]]; then
     git clone \
       https://github.com/denysdovhan/spaceship-prompt \
-      ${THEME_PATH}
-    ln -s ${THEME_PATH}/spaceship.zsh-theme \
+      {THEME_PATH}
+    ln -sf ${THEME_PATH}/spaceship.zsh-theme \
       ${ZSH}/themes/spaceship.zsh-theme
   else
     echo "${SUCCESS} Already installed."
@@ -90,7 +92,6 @@ echo "${BOLD_WHITE}@thiagobraga's dotfiles${NO_COLOR} ${VERSION}\n"
 # =========================================================
 {
   echo "🛠  ${BOLD_WHITE}Install zsh-syntax-highlight plugin"
-  echo "${INFO} Checking if it is installed"
   PLUGIN_PATH="${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
   if [[ ! -d "${PLUGIN_PATH}" ]]; then
     git clone \
@@ -99,7 +100,9 @@ echo "${BOLD_WHITE}@thiagobraga's dotfiles${NO_COLOR} ${VERSION}\n"
   else
     echo "${SUCCESS} Already installed."
     echo "${INFO} Updating..."
-    git --work-tree=${PLUGIN_PATH} pull origin master
+    cd ${PLUGIN_PATH} || exit
+    git pull origin master
+    cd -
   fi
   echo "${DONE}"
 }
@@ -108,16 +111,17 @@ echo "${BOLD_WHITE}@thiagobraga's dotfiles${NO_COLOR} ${VERSION}\n"
 # =========================================================
 {
   echo "🛠  ${BOLD_WHITE}Install zsh-autosuggestions"
-  echo "${INFO} Checking if it is installed"
   PLUGIN_PATH="${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
-  if [[ ! -d "${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]]; then
+  if [[ ! -d "${PLUGIN_PATH}" ]]; then
     git clone \
       https://github.com/zsh-users/zsh-autosuggestions \
       ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
   else
     echo "${SUCCESS} Already installed."
     echo "${INFO} Updating..."
-    git --work-tree=${PLUGIN_PATH} pull origin master
+    cd ${PLUGIN_PATH} || exit
+    git pull origin master
+    cd -
   fi
   echo "${DONE}"
 }
@@ -126,27 +130,39 @@ echo "${BOLD_WHITE}@thiagobraga's dotfiles${NO_COLOR} ${VERSION}\n"
 # =========================================================
 {
   echo "🛠  ${BOLD_WHITE}Create symbolic links"
-  ln -sf ${PWD}/.aliases ~/.aliases
-  ln -sf ${PWD}/.zshrc ~/.zshrc
-  ln -sf ${PWD}/.vimrc ~/.vimrc
-  ln -sf ${PWD}/.vim ~/.vim
 
-  mkdir -p ~/.config/terminator
-  ln -sf ${PWD}/config/Terminator/config ~/.config/terminator/config
+  FILES=(
+    .aliases
+    .gitconfig
+    .hushlogin
+    .hyper.js
+    .sudo_as_admin_successful
+    .vimrc
+    .xinputrc
+    .zshrc
+  )
+
+  for FILE in ${FILES}; do
+    ln -sfn ${PROJECT_PATH}/${FILE} ${HOME}
+  done
+
+  mkdir -p ${HOME}/{.config/{terminator,fontconfig/conf.d},.vim}
+
+  # TODO: Improve this hardcoded work
+  ln -sfn ${PROJECT_PATH}/.vim/{basics,colors,keybindings,plugins}.vim ${HOME}/.vim/
+  ln -sfn ${PROJECT_PATH}/.config/fontconfig/conf.d/01-emoji.conf ${HOME}/.config/fontconfig/conf.d/01-emoji.conf
+  ln -sfn ${PROJECT_PATH}/.config/qt5ct/qt5ct.conf ${HOME}/.config/qt5ct/qt5ct.conf
+  ln -sfn ${PROJECT_PATH}/.config/strawberry/strawberry.conf ${HOME}/.config/strawberry/strawberry.conf
+  ln -sfn ${PROJECT_PATH}/.config/terminator/config ${HOME}/.config/terminator/config
+
   echo "${DONE}"
 }
 
-# "Restart to Windows" shortcut
-# =========================================================
-{
-  echo -e '\n🛠  Creating "Restart to Windows" shortcuts'
-  sudo cp -f ./shortcuts/windows.png \
-    ./shortcuts/windows.sh \
-    ./shortcuts/windows.desktop \
-    /usr/share/applications/
-
-  sudo chmod 644 /usr/share/applications/windows.{sh,desktop,png}
-  sudo chmod -x /usr/share/applications/windows.desktop
-  sudo chmod +x /usr/share/applications/windows.sh
-  echo '✅  Done'
-}
+echo "🛠  ${BOLD_WHITE}TODO${NO_COLOR}"
+echo '[ ] Install Gnome extensions'
+echo '[ ] Configure Gnome extensions'
+echo '[ ] Configure Gnome behavior'
+echo '[ ] KDE configurations'
+echo '[ ] Install Fira Code font'
+echo '[ ] Install and configure Noto Emoji'
+echo '[ ] Backup Gnome Keyboard Shortcuts'
