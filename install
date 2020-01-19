@@ -150,10 +150,9 @@ echo "${BOLD_WHITE}@thiagobraga's dotfiles${NO_COLOR} ${VERSION}\n"
 
   # TODO: Improve this hardcoded work
   ln -sfn ${PROJECT_PATH}/.vim/{basics,colors,keybindings,plugins}.vim ${HOME}/.vim/
-  ln -sfn ${PROJECT_PATH}/.config/fontconfig/conf.d/01-emoji.conf ${HOME}/.config/fontconfig/conf.d/01-emoji.conf
-  ln -sfn ${PROJECT_PATH}/.config/qt5ct/qt5ct.conf ${HOME}/.config/qt5ct/qt5ct.conf
-  ln -sfn ${PROJECT_PATH}/.config/strawberry/strawberry.conf ${HOME}/.config/strawberry/strawberry.conf
-  ln -sfn ${PROJECT_PATH}/.config/terminator/config ${HOME}/.config/terminator/config
+  ln -sfn ${PROJECT_PATH}/config/fontconfig/01-emoji.conf ${HOME}/.config/fontconfig/conf.d/01-emoji.conf
+  ln -sfn ${PROJECT_PATH}/config/qt5ct/qt5ct.conf ${HOME}/.config/qt5ct/qt5ct.conf
+  ln -sfn ${PROJECT_PATH}/config/terminator/config ${HOME}/.config/terminator/config
 
   echo "${DONE}"
 }
