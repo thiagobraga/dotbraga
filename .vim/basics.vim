@@ -11,6 +11,9 @@ set complete-=i
 set cwh=20
 set display+=lastline
 set expandtab
+set foldmethod=indent
+set foldnestmax=10
+set foldlevel=4
 set hi=1000
 set ic
 set incsearch
