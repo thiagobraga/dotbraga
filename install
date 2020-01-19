@@ -156,12 +156,3 @@ echo "${BOLD_WHITE}@thiagobraga's dotfiles${NO_COLOR} ${VERSION}\n"
 
   echo "${DONE}"
 }
-
-echo "🛠  ${BOLD_WHITE}TODO${NO_COLOR}"
-echo '[ ] Install Gnome extensions'
-echo '[ ] Configure Gnome extensions'
-echo '[ ] Configure Gnome behavior'
-echo '[ ] KDE configurations'
-echo '[ ] Install Fira Code font'
-echo '[ ] Install and configure Noto Emoji'
-echo '[ ] Backup Gnome Keyboard Shortcuts'

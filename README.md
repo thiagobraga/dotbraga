@@ -51,4 +51,13 @@ cd dotfiles
     <td width="33%"></td>
   </tr>
 </table>
-    
+
+## TODO
+
+- [ ] Install Gnome extensions
+- [ ] Configure Gnome extensions
+- [ ] Configure Gnome behavior
+- [ ] KDE configurations
+- [ ] Install Fira Code font
+- [ ] Install and configure Noto Emoji
+- [ ] Backup Gnome Keyboard Shortcuts
