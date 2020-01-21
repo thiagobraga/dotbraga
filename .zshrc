@@ -34,13 +34,6 @@ pastefinish() {
 zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
 
-# Sometimes Gnome crash its extensions, so this script
-# check if user extensions are disabled, so enabled it.
-# TODO: Move to a Ubuntu or Gnome specific file/branch
-if gsettings get org.gnome.shell disable-user-extensions &>/dev/null; then
-  gsettings set org.gnome.shell disable-user-extensions false
-fi
-
 if [ -e "$HOME/.env" ];     then . "$HOME/.env";     fi
 if [ -e "$HOME/.profile" ]; then . "$HOME/.profile"; fi
 if [ -e "$HOME/.aliases" ]; then . "$HOME/.aliases"; fi
