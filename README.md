@@ -19,10 +19,10 @@ cd dotfiles
 
 ## Contents
 
-- Terminator configurations
-- Vi configurations
-- zsh configurations with Spaceship theme configured and zsh-autosuggestions
-- Hyper configurations
+- Terminator settings
+- Vi settings
+- zsh settings with Spaceship theme configured and zsh-autosuggestions
+- Hyper settings
 - Composer on PATH
 - npm on PATH
 - "Restart to Windows" shortcut for dual-boot systems
@@ -57,7 +57,7 @@ cd dotfiles
 - [ ] Install Gnome extensions
 - [ ] Configure Gnome extensions
 - [ ] Configure Gnome behavior
-- [ ] KDE configurations
+- [ ] KDE settings
 - [ ] Install Fira Code font
 - [ ] Install and configure Noto Emoji
 - [ ] Backup Gnome Keyboard Shortcuts
