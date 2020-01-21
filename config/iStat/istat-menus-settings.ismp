@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>build</key>
-	<string>1090</string>
+	<string>1116</string>
 	<key>preferences</key>
 	<dict>
 		<key>CPU_DropdownOrderDisabled</key>
@@ -33,6 +33,33 @@
 				<integer>4</integer>
 			</dict>
 		</array>
+		<key>CombinedMenubarDisplayMode</key>
+		<array>
+			<dict>
+				<key>key</key>
+				<string>1</string>
+				<key>uuid</key>
+				<string>539FFDC2-855B-40FD-B57B-8CEBF0FDDB04</string>
+			</dict>
+			<dict>
+				<key>key</key>
+				<string>2</string>
+				<key>uuid</key>
+				<string>3B2908D9-C98B-43EA-A3F6-D432F6DB8C33</string>
+			</dict>
+			<dict>
+				<key>key</key>
+				<string>3</string>
+				<key>uuid</key>
+				<string>0B7548A4-477E-49BB-90D7-0F892A9287A8</string>
+			</dict>
+			<dict>
+				<key>key</key>
+				<string>4</string>
+				<key>uuid</key>
+				<string>277469ED-A8A7-402E-8330-D27D9D0B1B57</string>
+			</dict>
+		</array>
 		<key>Disks_ActivityGraphMode</key>
 		<integer>1</integer>
 		<key>Disks_DropdownOrderDisabled</key>
@@ -59,7 +86,7 @@
 				<key>key</key>
 				<string>5CACDA09-0EA5-4778-A07A-CD135D957BE0</string>
 				<key>name</key>
-				<string>Mac OS</string>
+				<string>Mac OS - Dados</string>
 			</dict>
 		</array>
 		<key>Disks_MenubarMode</key>
@@ -99,7 +126,7 @@
 				<key>type</key>
 				<string>0</string>
 				<key>value</key>
-				<real>56</real>
+				<real>55</real>
 			</dict>
 			<dict>
 				<key>battery</key>
@@ -145,9 +172,9 @@
 						<key>low</key>
 						<integer>1800</integer>
 						<key>percentage</key>
-						<real>0.26000000000000001</real>
+						<real>0.19</real>
 						<key>speed</key>
-						<real>2750</real>
+						<real>2500</real>
 					</dict>
 				</array>
 				<key>uuid</key>
@@ -321,28 +348,25 @@
 		<string>frequency,temperature,power,voltage,ampwerage,ambient-light,buttons</string>
 		<key>Sensors_Label-Dark</key>
 		<string>1.00 1.00 1.00 0.25</string>
+		<key>Sensors_MenubarFontStyle</key>
+		<integer>0</integer>
 		<key>Sensors_MenubarMode</key>
 		<array>
 			<dict>
 				<key>key</key>
-				<string>3</string>
+				<string>2</string>
 				<key>uuid</key>
-				<string>A6192CF8-CFB5-47B3-83B3-5708ACF43EA5</string>
+				<string>A2B9ECF2-38B6-45BC-A931-19714FA0D68F</string>
 			</dict>
 			<dict>
 				<key>key</key>
-				<string>101</string>
+				<string>3</string>
 				<key>uuid</key>
-				<string>DB70F5DC-43DD-4C1A-A187-B939323AB810</string>
-				<key>width</key>
-				<integer>4</integer>
+				<string>586CFC7A-1801-4F72-A3F4-207F9BCAF6E7</string>
 			</dict>
 		</array>
-		<key>Sensors_MenubarTextColor-Dark</key>
-		<string>1.00 1.00 1.00 0.75</string>
 		<key>StatusItems-Order</key>
 		<array>
-			<integer>7</integer>
 			<integer>5</integer>
 		</array>
 		<key>Time_CLockSortCurrentLocationFirst</key>
@@ -357,15 +381,14 @@
 		<string>cities,buttons</string>
 		<key>Time_EventsRange</key>
 		<integer>5</integer>
+		<key>Time_FirstDay</key>
+		<integer>0</integer>
 		<key>Time_MenubarFormat</key>
 		<array>
 			<dict>
 				<key>format</key>
 				<array>
 					<array>
-						<string>' '</string>
-						<string>___ICON__GEAPHITE___</string>
-						<string>' '</string>
 						<string>EE</string>
 						<string>' '</string>
 						<string>dd</string>
@@ -373,9 +396,7 @@
 						<string>MM</string>
 						<string>'/'</string>
 						<string>yyyy</string>
-						<string>'  '</string>
-						<string>___ICON__CLOCK__</string>
-						<string>' '</string>
+						<string>'   '</string>
 						<string>HH</string>
 						<string>':'</string>
 						<string>mm</string>
@@ -389,6 +410,11 @@
 		</array>
 		<key>TimerFrequency</key>
 		<integer>3</integer>
+		<key>Updater_Attempts</key>
+		<dict>
+			<key>1113</key>
+			<string>1</string>
+		</dict>
 		<key>Weather_Locations</key>
 		<array>
 			<dict>
@@ -411,7 +437,7 @@
 		<key>Zarya-TLE</key>
 		<dict>
 			<key>time</key>
-			<real>1570084528.7566619</real>
+			<real>1579107516.03983</real>
 			<key>tle</key>
 			<string>ISS (ZARYA)
 1 25544U 98067A   19024.69130787  .00000289  00000-0  11946-4 0  9991
@@ -420,6 +446,6 @@
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>6.31</string>
+	<string>6.40</string>
 </dict>
 </plist>
