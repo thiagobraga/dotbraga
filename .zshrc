@@ -31,6 +31,13 @@ pastefinish() {
   zle -N self-insert $OLD_SELF_INSERT
 }
 
+# Sometimes Gnome crash its extensions, so this script
+# check if user extensions are disabled, so enabled it.
+# TODO: Move to a Ubuntu or Gnome specific file/branch
+if gsettings get org.gnome.shell disable-user-extensions; then
+  gsettings set org.gnome.shell disable-user-extensions false
+fi
+
 zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
 
