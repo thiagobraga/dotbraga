@@ -41,10 +41,6 @@ if gsettings get org.gnome.shell disable-user-extensions &>/dev/null; then
   gsettings set org.gnome.shell disable-user-extensions false
 fi
 
-# TODO: It should be in profile, right?
-export N_PREFIX="$HOME/n"
-[[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
-
 if [ -e "$HOME/.env" ];     then . "$HOME/.env";     fi
 if [ -e "$HOME/.profile" ]; then . "$HOME/.profile"; fi
 if [ -e "$HOME/.aliases" ]; then . "$HOME/.aliases"; fi
