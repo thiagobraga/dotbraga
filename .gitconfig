@@ -1,0 +1,16 @@
+[core]
+  editor = code --wait
+  fileMode = false
+[diff]
+  tool = default-difftool
+[difftool "default-difftool"]
+  cmd = code --wait --diff $LOCAL $REMOTE
+[pull]
+  rebase = true
+
+# Example configuration
+[includeIf "gitdir:~/www/enterprise/"]
+  path = ~/www/enterprise/.gitconfig
+[user]
+  name = User Name
+  email = dev@email.com
