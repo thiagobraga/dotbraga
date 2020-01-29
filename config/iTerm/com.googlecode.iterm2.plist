@@ -1218,7 +1218,7 @@
 	<key>LoadPrefsFromCustomFolder</key>
 	<true/>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/projetos/thiago/dotfiles/config/iTerm</string>
+	<string>~/www/dotfiles/config/iTerm</string>
 	<key>NSNavLastUserSetHideExtensionButtonState</key>
 	<true/>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
@@ -1268,6 +1268,8 @@
 	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>1997 160 641 339 1920 0 1920 1057 </string>
+	<key>NSWindow Frame NSNavPanelAutosaveName</key>
+	<string>2480 456 799 448 0 0 1920 1057 </string>
 	<key>NSWindow Frame SUAutomaticUpdateAlert</key>
 	<string>2572 662 616 174 1920 0 1920 1057 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
@@ -2333,7 +2335,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>362A02DC-BA0F-4F64-9DC7-9F2DB7FBBD82</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>111</integer>
+	<integer>130</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -3068,6 +3070,10 @@
 	</dict>
 	<key>NoSyncSearchHistory</key>
 	<true/>
+	<key>NoSyncSearchHistory2</key>
+	<array>
+		<string>OPTIONS</string>
+	</array>
 	<key>NoSyncSuppressRestartSessionConfirmationAlert</key>
 	<true/>
 	<key>NoSyncSuppressRestartSessionConfirmationAlert_selection</key>
@@ -3120,7 +3126,7 @@
 		</dict>
 	</dict>
 	<key>PrefsCustomFolder</key>
-	<string>/Users/thiagobraga/projetos/thiago/dotfiles/config/iTerm</string>
+	<string>/Users/thiagobraga/www/dotfiles/config/iTerm</string>
 	<key>PromptOnQuit</key>
 	<false/>
 	<key>QuitWhenAllWindowsClosed</key>
@@ -3136,7 +3142,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2019-12-16T14:28:17Z</date>
+	<date>2020-01-29T12:19:47Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateRelaunchingMarker</key>
