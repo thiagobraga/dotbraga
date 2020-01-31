@@ -51,6 +51,7 @@ alias dcdn='docker-compose down'
 # Git
 # ---------------------------------------------------
 alias gmn='git merge --no-ff --no-edit'
+alias gpf='git push -f'
 
 # Make
 # ---------------------------------------------------
