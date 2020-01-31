@@ -2,6 +2,12 @@
 
 <p align="center">My dotfiles used in development</p>
 
+<h3 align="center">
+  <a href="https://github.com/thiagobraga/dotfiles/tree/ubuntu">Ubuntu</a> &bull; 
+  <a href="https://github.com/thiagobraga/dotfiles/tree/macos">Mac OS</a> &bull; 
+  <a href="https://github.com/thiagobraga/dotfiles/tree/windows">Windows</a>
+</h3>
+
 <p align="center">
   <img src="https://i.imgur.com/0K0LqAI.png" />
 </p>
@@ -14,7 +20,7 @@ This wallpaper:
 ``` sh
 git clone https://github.com/thiagobraga/dotfiles
 cd dotfiles
-. ./install
+./install
 ```
 
 ## Contents
