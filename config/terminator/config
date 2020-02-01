@@ -13,6 +13,7 @@
   always_split_with_profile = True
 [keybindings]
   new_tab = <Control>t
+  new_terminator = <Control>n
   split_horiz = <Control>d
   split_vert = <Control><Shift>d
   close_term = <Control>w
@@ -27,7 +28,7 @@
     background_type = transparent
     cursor_shape = ibeam
     cursor_color = "#d8dee9"
-    font = Fira Code weight=453 9
+    font = Fira Code 9
     foreground_color = "#d8dee9"
     show_titlebar = False
     scrollback_lines = 5000
