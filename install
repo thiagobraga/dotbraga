@@ -48,111 +48,113 @@ VERSION="${GRAY}v0.0.1${NO_COLOR}"
 # =========================================================
 echo "${BOLD_WHITE}@thiagobraga's dotfiles${NO_COLOR} ${VERSION}\n"
 
-# Install Oh My ZSH
-# =========================================================
-{
-  echo "🛠  ${BOLD_WHITE}Install Oh My ZSH"
-  if [[ ! -d "${ZSH}" ]]; then
-    echo "${INFO} Installing..."
-    sh -c \
-      $(curl -fsSL \
-        https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)
-  else
-    echo "${SUCCESS} Already installed."
-    echo "${INFO} Updating..."
-    cd ${ZSH} || exit
-    git pull origin master
-    cd -
-  fi
-  echo "${DONE}"
+install() {
+  # Install Oh My ZSH
+  # =========================================================
+  {
+    echo "🛠  ${BOLD_WHITE}Install Oh My ZSH"
+    if [[ ! -d "${ZSH}" ]]; then
+      echo "${INFO} Installing..."
+      sh -c \
+        $(curl -fsSL \
+          https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)
+    else
+      echo "${SUCCESS} Already installed."
+      echo "${INFO} Updating..."
+      cd ${ZSH} || exit
+      git pull origin master
+      cd -
+    fi
+    echo "${DONE}"
+  }
+
+  # Install Spaceship theme
+  # =========================================================
+  {
+    echo "🛠  ${BOLD_WHITE}Install Spaceship theme"
+    THEME_PATH="${ZSH_CUSTOM:-${ZSH}/custom}/themes/spaceship-prompt"
+    if [[ ! -d "${THEME_PATH}" ]]; then
+      git clone \
+        https://github.com/denysdovhan/spaceship-prompt \
+        ${THEME_PATH}
+      ln -sf ${THEME_PATH}/spaceship.zsh-theme \
+        ${ZSH}/themes/spaceship.zsh-theme
+    else
+      echo "${SUCCESS} Already installed."
+      echo "${INFO} Updating..."
+      cd ${THEME_PATH} || exit
+      git pull origin master
+      cd -
+    fi
+    echo "${DONE}"
+  }
+
+  # Install zsh-syntax-highlight plugin
+  # =========================================================
+  {
+    echo "🛠  ${BOLD_WHITE}Install zsh-syntax-highlight plugin"
+    PLUGIN_PATH="${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
+    if [[ ! -d "${PLUGIN_PATH}" ]]; then
+      git clone \
+        https://github.com/zsh-users/zsh-syntax-highlighting \
+        ${PLUGIN_PATH}
+    else
+      echo "${SUCCESS} Already installed."
+      echo "${INFO} Updating..."
+      cd ${PLUGIN_PATH} || exit
+      git pull origin master
+      cd -
+    fi
+    echo "${DONE}"
+  }
+
+  # Install zsh-autosuggestions
+  # =========================================================
+  {
+    echo "🛠  ${BOLD_WHITE}Install zsh-autosuggestions"
+    PLUGIN_PATH="${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
+    if [[ ! -d "${PLUGIN_PATH}" ]]; then
+      git clone \
+        https://github.com/zsh-users/zsh-autosuggestions \
+        ${PLUGIN_PATH}
+    else
+      echo "${SUCCESS} Already installed."
+      echo "${INFO} Updating..."
+      cd ${PLUGIN_PATH} || exit
+      git pull origin master
+      cd -
+    fi
+    echo "${DONE}"
+  }
+
+  # Create symbolic links for configurations
+  # =========================================================
+  {
+    echo "🛠  ${BOLD_WHITE}Create symbolic links"
+
+    FILES=(
+      .aliases
+      .gitconfig
+      .hushlogin
+      .hyper.js
+      .sudo_as_admin_successful
+      .vimrc
+      .zshrc
+    )
+
+    for FILE in ${FILES}; do
+      ln -sfn ${PROJECT_PATH}/${FILE} ${HOME}
+    done
+
+    mkdir -p ${HOME}/{.config/{terminator,fontconfig/conf.d},.vim}
+
+    ln -sfn ${PROJECT_PATH}/.vim/{basics,colors,keybindings,plugins}.vim ${HOME}/.vim/
+    ln -sfn ${PROJECT_PATH}/config/fontconfig/01-emoji.conf ${HOME}/.config/fontconfig/conf.d/01-emoji.conf
+    ln -sfn ${PROJECT_PATH}/config/qt5ct/qt5ct.conf ${HOME}/.config/qt5ct/qt5ct.conf
+    ln -sfn ${PROJECT_PATH}/config/terminator/config ${HOME}/.config/terminator/config
+
+    echo "${DONE}"
+  }
 }
 
-# Install Spaceship theme
-# =========================================================
-{
-  echo "🛠  ${BOLD_WHITE}Install Spaceship theme"
-  THEME_PATH="${ZSH_CUSTOM:-${ZSH}/custom}/themes/spaceship-prompt"
-  if [[ ! -d "${THEME_PATH}" ]]; then
-    git clone \
-      https://github.com/denysdovhan/spaceship-prompt \
-      {THEME_PATH}
-    ln -sf ${THEME_PATH}/spaceship.zsh-theme \
-      ${ZSH}/themes/spaceship.zsh-theme
-  else
-    echo "${SUCCESS} Already installed."
-    echo "${INFO} Updating..."
-    cd ${THEME_PATH} || exit
-    git pull origin master
-    cd -
-  fi
-  echo "${DONE}"
-}
-
-# Install zsh-syntax-highlight plugin
-# =========================================================
-{
-  echo "🛠  ${BOLD_WHITE}Install zsh-syntax-highlight plugin"
-  PLUGIN_PATH="${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
-  if [[ ! -d "${PLUGIN_PATH}" ]]; then
-    git clone \
-      https://github.com/zsh-users/zsh-syntax-highlighting \
-      ${PLUGIN_PATH}
-  else
-    echo "${SUCCESS} Already installed."
-    echo "${INFO} Updating..."
-    cd ${PLUGIN_PATH} || exit
-    git pull origin master
-    cd -
-  fi
-  echo "${DONE}"
-}
-
-# Install zsh-autosuggestions
-# =========================================================
-{
-  echo "🛠  ${BOLD_WHITE}Install zsh-autosuggestions"
-  PLUGIN_PATH="${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
-  if [[ ! -d "${PLUGIN_PATH}" ]]; then
-    git clone \
-      https://github.com/zsh-users/zsh-autosuggestions \
-      ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-  else
-    echo "${SUCCESS} Already installed."
-    echo "${INFO} Updating..."
-    cd ${PLUGIN_PATH} || exit
-    git pull origin master
-    cd -
-  fi
-  echo "${DONE}"
-}
-
-# Create symbolic links for configurations
-# =========================================================
-{
-  echo "🛠  ${BOLD_WHITE}Create symbolic links"
-
-  FILES=(
-    .aliases
-    .gitconfig
-    .hushlogin
-    .hyper.js
-    .sudo_as_admin_successful
-    .vimrc
-    .xinputrc
-    .zshrc
-  )
-
-  for FILE in ${FILES}; do
-    ln -sfn ${PROJECT_PATH}/${FILE} ${HOME}
-  done
-
-  mkdir -p ${HOME}/{.config/{terminator,fontconfig/conf.d},.vim}
-
-  # TODO: Improve this hardcoded work
-  ln -sfn ${PROJECT_PATH}/.vim/{basics,colors,keybindings,plugins}.vim ${HOME}/.vim/
-  ln -sfn ${PROJECT_PATH}/config/fontconfig/01-emoji.conf ${HOME}/.config/fontconfig/conf.d/01-emoji.conf
-  ln -sfn ${PROJECT_PATH}/config/qt5ct/qt5ct.conf ${HOME}/.config/qt5ct/qt5ct.conf
-  ln -sfn ${PROJECT_PATH}/config/terminator/config ${HOME}/.config/terminator/config
-
-  echo "${DONE}"
-}
+install
