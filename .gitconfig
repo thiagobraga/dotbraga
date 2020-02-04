@@ -7,10 +7,11 @@
   cmd = code --wait --diff $LOCAL $REMOTE
 [pull]
   rebase = true
-
-# Example configuration
-[includeIf "gitdir:~/www/enterprise/"]
-  path = ~/www/enterprise/.gitconfig
-[user]
-  name = User Name
-  email = dev@email.com
+[advice]
+  pushNonFastForward = false
+  statusHints = false
+  commitBeforeMerge = false
+  resolveConflict = false
+  detachedHead = false
+[include]
+  path = ~/www/.gitconfig
