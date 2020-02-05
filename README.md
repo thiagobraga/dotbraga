@@ -67,9 +67,3 @@ cd dotfiles
 - [ ] Install Fira Code font
 - [ ] Install and configure Noto Emoji
 - [ ] Backup Gnome Keyboard Shortcuts
-
-## Don't Forget
-
-``` sh
-git update-index --assume-unchanged .gitconfig
-```
