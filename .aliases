@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 alias apt='sudo apt'
 alias apt-get='sudo apt-get'
 alias aptitude='sudo aptitude'
@@ -10,10 +9,6 @@ alias l='LC_COLLATE=C ls -alh --color=tty --group-directories-first'
 alias ls='LC_COLLATE=C ls -h --color=tty --group-directories-first'
 alias ll='LC_COLLATE=C ls -lh --color=tty --group-directories-first'
 alias rm='/bin/rm -v'
-
-
-# Development
-# ===================================================
 
 # Brew
 # ---------------------------------------------------
