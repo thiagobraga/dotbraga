@@ -12,6 +12,8 @@
 	<true/>
 	<key>AppleAntiAliasingThreshold</key>
 	<integer>1</integer>
+	<key>ApplePressAndHoldEnabled</key>
+	<false/>
 	<key>AppleScrollAnimationEnabled</key>
 	<integer>0</integer>
 	<key>AppleSmoothFixedFontsSizeThreshold</key>
@@ -1218,7 +1220,7 @@
 	<key>LoadPrefsFromCustomFolder</key>
 	<true/>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/www/dotfiles/config/iTerm</string>
+	<string>~/projetos/dotfiles/config/iTerm</string>
 	<key>NSNavLastUserSetHideExtensionButtonState</key>
 	<true/>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
@@ -1283,7 +1285,7 @@
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>1920 0 967 1057 1920 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>1922 514 585 525 1920 0 1920 1057 </string>
+	<string>1922 0 967 1057 1920 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
 	<string>1922 0 956 1057 1920 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 4</key>
@@ -1548,7 +1550,7 @@
 			<key>Blur</key>
 			<true/>
 			<key>Blur Radius</key>
-			<real>10.553023873730965</real>
+			<real>9.3690474302030449</real>
 			<key>Bold Color</key>
 			<dict>
 				<key>Alpha Component</key>
@@ -2273,7 +2275,7 @@
 			<key>Terminal Type</key>
 			<string>xterm-256color</string>
 			<key>Transparency</key>
-			<real>0.42342758565989841</real>
+			<real>0.27093512055837554</real>
 			<key>Unlimited Scrollback</key>
 			<false/>
 			<key>Use Bold Font</key>
@@ -2297,6 +2299,7 @@
 	<key>NoSyncAllAppVersions</key>
 	<array>
 		<string>3.3.6</string>
+		<string>3.3.8</string>
 		<string>3.3.1</string>
 		<string>3.3.3</string>
 		<string>3.3.5</string>
@@ -2335,7 +2338,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>362A02DC-BA0F-4F64-9DC7-9F2DB7FBBD82</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>130</integer>
+	<integer>134</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -3070,10 +3073,6 @@
 	</dict>
 	<key>NoSyncSearchHistory</key>
 	<true/>
-	<key>NoSyncSearchHistory2</key>
-	<array>
-		<string>OPTIONS</string>
-	</array>
 	<key>NoSyncSuppressRestartSessionConfirmationAlert</key>
 	<true/>
 	<key>NoSyncSuppressRestartSessionConfirmationAlert_selection</key>
@@ -3142,7 +3141,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-01-29T12:19:47Z</date>
+	<date>2020-02-10T13:43:47Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateRelaunchingMarker</key>
@@ -3192,7 +3191,7 @@
 	<key>findMode_iTerm</key>
 	<integer>0</integer>
 	<key>iTerm Version</key>
-	<string>3.3.7</string>
+	<string>3.3.8</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
