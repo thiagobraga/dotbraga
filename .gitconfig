@@ -1,3 +1,5 @@
+[alias]
+  undo = reset --soft HEAD~1
 [core]
   editor = code --wait
   fileMode = false
