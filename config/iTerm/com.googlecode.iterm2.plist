@@ -1287,7 +1287,7 @@
 	<key>NSWindow Frame iTerm Window 2</key>
 	<string>1922 0 967 1057 1920 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
-	<string>1922 0 956 1057 1920 0 1920 1057 </string>
+	<string>1922 0 967 1057 1920 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 4</key>
 	<string>1922 0 956 1057 1920 0 1920 1057 </string>
 	<key>NeverWarnAboutShortLivedSessions_21D21311-396B-4089-A1E0-0BEDCF506652</key>
@@ -1550,7 +1550,7 @@
 			<key>Blur</key>
 			<true/>
 			<key>Blur Radius</key>
-			<real>9.3690474302030449</real>
+			<real>19.321089784263961</real>
 			<key>Bold Color</key>
 			<dict>
 				<key>Alpha Component</key>
@@ -2275,7 +2275,7 @@
 			<key>Terminal Type</key>
 			<string>xterm-256color</string>
 			<key>Transparency</key>
-			<real>0.27093512055837554</real>
+			<real>0.19878450190355315</real>
 			<key>Unlimited Scrollback</key>
 			<false/>
 			<key>Use Bold Font</key>
@@ -2304,6 +2304,7 @@
 		<string>3.3.3</string>
 		<string>3.3.5</string>
 		<string>3.3.7</string>
+		<string>3.3.9</string>
 		<string>3.2.9</string>
 		<string>3.3.2</string>
 		<string>3.3.4</string>
@@ -2338,7 +2339,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>362A02DC-BA0F-4F64-9DC7-9F2DB7FBBD82</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>134</integer>
+	<integer>142</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -3141,7 +3142,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-02-10T13:43:47Z</date>
+	<date>2020-02-14T16:24:16Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateRelaunchingMarker</key>
@@ -3191,7 +3192,7 @@
 	<key>findMode_iTerm</key>
 	<integer>0</integer>
 	<key>iTerm Version</key>
-	<string>3.3.8</string>
+	<string>3.3.9</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
