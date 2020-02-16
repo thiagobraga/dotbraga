@@ -155,6 +155,17 @@ install() {
 
     echo "${DONE}"
   }
+
+  # Shortcuts for Dual Boot
+  # =========================================================
+  {
+    echo "🛠  ${BOLD_WHITE}Shortcuts for Dual Boot"
+
+    sudo ln -sfn ${PROJECT_PATH}/shortcuts/windows.{desktop,png,sh} \
+      /usr/share/applications
+
+    echo "${DONE}"
+  }
 }
 
 install
