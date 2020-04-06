@@ -4,7 +4,7 @@
     { "column": 80, "color": "#434c5e88" }
   ],
   "files.associations": {
-    "**/config/terminator/config": "toml",
+    "**/config/terminator/config": "ini",
     "**/config/fontconfig/*": "xml",
     "**/install": "shellscript",
     "**/scripts/**/*": "shellscript",
