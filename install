@@ -35,7 +35,7 @@ install() {
     echo "${BWhite}dotfiles${Color_Off} ${Yellow}${VERSION}${Color_Off}"
   }
 
-  # Bump version of the project
+  # (WIP) Bump version of the project
   # Change README.md
   # Change this script
   # NEW_VERSION='0.1.0' && sed -E 's/version-(.*)-/version--/gmi' README.md | head -n 10
@@ -194,6 +194,9 @@ install() {
     step '[2/8]' "🔗 Linking .zshrc in \$HOME...${IBlack}"
     ln ${LN_OPTS} -t ${HOME} ${PROJECT_PATH}/config/.zshrc
 
+    step '[2/8]' "🔗 Linking .profile in \$HOME...${IBlack}"
+    ln ${LN_OPTS} -t ${HOME} ${PROJECT_PATH}/linux/.profile
+
     step '[3/8]' "🔗 Linking .gitconfig in \$HOME...${IBlack}"
     ln ${LN_OPTS} -t ${HOME} ${PROJECT_PATH}/config/.gitconfig
 
@@ -225,9 +228,6 @@ install() {
     VIM_FILE="${HOME}/.vimrc"
     VIM_FOLDER="${HOME}/.vim/"
 
-    # Test only
-    rm -rf $VIM_FILE $VIM_FOLDER
-
     [[ ! $(command -v vim) ]] && {
       step '[2/3]' "💻 Installing vim...${IBlack}"
       sudo apt install ${APT_PARAMS} vim
@@ -243,12 +243,13 @@ install() {
 
     [[ "$ANSWER" =~ ^([yY][eE][sS]|[yY])$ ]] && {
       printf ${IBlack}
-      mkdir -p ${VIM_FOLDER}
+      mkdir -p ${VIM_FOLDER}/plugins/
       ln ${LN_OPTS} -t ${HOME} ${PROJECT_PATH}/config/vim/.vimrc
       ln ${LN_OPTS} -t ${VIM_FOLDER} ${PROJECT_PATH}/config/vim/basics.vim
       ln ${LN_OPTS} -t ${VIM_FOLDER} ${PROJECT_PATH}/config/vim/colors.vim
       ln ${LN_OPTS} -t ${VIM_FOLDER} ${PROJECT_PATH}/config/vim/keybindings.vim
       ln ${LN_OPTS} -t ${VIM_FOLDER} ${PROJECT_PATH}/config/vim/plugins.vim
+      ln ${LN_OPTS} -t ${VIM_FOLDER}/plugins/ ${PROJECT_PATH}/config/vim/plugins/nerdtree.vim
       vim -E -s -u "${HOME}/.vimrc" +PlugInstall +qall >/dev/null
       success 'VIM installed and configured'
     } || {
@@ -256,7 +257,7 @@ install() {
     }
   }
 
-  # Call the install script without parameters
+  # Call the install script without parameters.
   all() {
     ohmyzsh
     spaceship
@@ -267,10 +268,10 @@ install() {
     vimrc
   }
 
-  # Call the header of the application
+  # Call the header of the application.
   header
 
-  # Detect execution modes
+  # Detect execution modes.
   for i in "$@"; do
     if [[ $i == "-v" ]] || [[ $i == "--verbose" ]]; then
       VERBOSE=true
@@ -282,22 +283,23 @@ install() {
       FORCE=true
       info 'Run without confirmation activated'
     fi
-
-    shift
   done
 
-  case $1 in
-  ohmyzsh) ohmyzsh ;;
-  spaceship) spaceship ;;
-  zsh-syntax-highlighting) zsh-syntax-highlighting ;;
-  zsh-autosuggestions) zsh-autosuggestions ;;
-  shortcuts) shortcuts ;;
-  -l | --link | symlinks) symlinks $@ ;;
-  vim | vimrc) vimrc ;;
-  bump) bump $@ ;;
-  "") all ;;
-  *) exit ;;
-  esac
+  # Detect the function to run after define modes above.
+  for i in "$@"; do
+    case $i in
+    ohmyzsh) ohmyzsh ;;
+    spaceship) spaceship ;;
+    zsh-syntax-highlighting) zsh-syntax-highlighting ;;
+    zsh-autosuggestions) zsh-autosuggestions ;;
+    shortcuts) shortcuts ;;
+    -l | --link | symlinks) symlinks $@ ;;
+    vim | vimrc) vimrc ;;
+    bump) bump $@ ;;
+    "" | -f | -v | --force | --verbose) all ;;
+    *) exit ;;
+    esac
+  done
 }
 
 # Call the script

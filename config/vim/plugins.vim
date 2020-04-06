@@ -31,7 +31,4 @@ call plug#end()
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 let mapleader = ","
 
-let NERDTreeAutoDeleteBuffer = 1
-let NERDTreeQuitOnOpen = 1
-let NERDTreeShowHidden = 1
-set splitright
+source ~/.vim/plugins/nerdtree.vim
