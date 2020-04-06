@@ -213,7 +213,7 @@ install() {
 
     step '[8/8]' "🔗 Linking Qt5 settings...${IBlack}"
     TARGET="${HOME}/.config/qt5ct/" && mkdir -p ${TARGET}
-    ln ${LN_OPTS} -t ${TARGET} ${PROJECT_PATH}/config/qt5ct/qt5ct.conf
+    ln ${LN_OPTS} -t ${TARGET} ${PROJECT_PATH}/linux/qt5ct/qt5ct.conf
 
     success 'Symlinks created!'
   }
