@@ -1,19 +1,29 @@
-<h1 align="center">Dotfiles</h1>
-
-<p align="center">My dotfiles used in development</p>
-
-<h3 align="center">
-  <a href="https://github.com/thiagobraga/dotfiles/tree/ubuntu">Ubuntu</a> &bull; 
-  <a href="https://github.com/thiagobraga/dotfiles/tree/macos">Mac OS</a> &bull; 
-  <a href="https://github.com/thiagobraga/dotfiles/tree/windows">Windows</a>
-</h3>
-
 <p align="center">
-  <img src="https://i.imgur.com/0K0LqAI.png" />
+  <img src="./public/icons/config-icon.png" width="128" />
 </p>
 
-This wallpaper:  
-🖥️ http://wallpaperswide.com/ghost_nebula-wallpapers.html
+<h1 align="center">dotbraga</h1>
+
+<p align="center">
+  <a href="https://github.com/thiagobraga">@thiagobraga's</a> dotfiles<br>
+  <a href="https://raw.githubusercontent.com/thiagobraga/todoist-userstyles/master/theme.user.css"><img src="https://img.shields.io/badge/version-0.0.1-929faf.svg" align="center" alt="Version 0.0.1"></a>
+  <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=thibraga06%40gmail.com&item_name=Contribuir+para+o+desenvolvimento+de+projetos+open+source&currency_code=BRL&source=url" target="_blank" rel="nofollow noopener"><img src="https://img.shields.io/badge/donate-PayPal-526272.svg" align="center"></a>
+</p>
+
+<p align="center">
+  <img src="./public/screenshots/dotfiles-ubuntu-06-04-2020_00-18.png" width="600" />
+</p>
+
+## Features
+
+- Install [Oh My ZSH](https://ohmyz.sh)
+  * [Spaceship](https://denysdovhan.com/spaceship-prompt) theme
+  * [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) plugin
+  * [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) plugin
+- Install [VIM - Vi IMproved](https://www.vim.org) with settings
+- Symlinks for [.aliases](./.aliases), [.zshrc](./.zshrc) and more
+- Symlink settings for [Terminator](https://gnometerminator.blogspot.com/p/introduction.html), [Clementine](https://www.clementine-player.org/pt_BR/) and more
+- Shortcut "Restart to Windows" for Dual Boot systems
 
 ## Installation
 
@@ -23,15 +33,9 @@ cd dotfiles
 ./install
 ```
 
-## Contents
-
-- Terminator settings
-- Vi settings
-- zsh settings with Spaceship theme configured and zsh-autosuggestions
-- Hyper settings
-- Composer on PATH
-- npm on PATH
-- "Restart to Windows" shortcut for dual-boot systems
+<p align="center">
+  <img src="./public/screenshots/terminator_06-04-2020_00-21.png" width="420" />
+</p>
 
 ## Shortcuts
 
@@ -44,26 +48,49 @@ cd dotfiles
 - Split vertically: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd>
 - Split horizontally: <kbd>Ctrl</kbd> + <kbd>D</kbd>
 
-## Screenshots
-
-<table width="100%">
-  <tr>
-    <td width="33%">
-      <a href="https://imgur.com/cYvVT2o" target="_blank" rel="noopener noreferrer">
-        <img src="https://i.imgur.com/cYvVT2o.png" />
-      </a>
-    </td>
-    <td width="33%"></td>
-    <td width="33%"></td>
-  </tr>
-</table>
-
 ## TODO
 
-- [ ] Install Gnome extensions
-- [ ] Configure Gnome extensions
-- [ ] Configure Gnome behavior
-- [ ] KDE settings
-- [ ] Install Fira Code font
-- [ ] Install and configure Noto Emoji
-- [ ] Backup Gnome Keyboard Shortcuts
+- [ ] Global: Install Fira Code font
+- [ ] Ubuntu: Install Gnome extensions
+- [ ] Ubuntu: Configure Gnome extensions
+- [ ] Ubuntu: Configure Gnome behavior
+- [ ] Ubuntu: Version Gnome Keyboard Shortcuts
+- [ ] Ubuntu: Install and configure Noto Emoji
+- [ ] KDE: Version desktop settings
+
+### Temp
+
+- Compile `vim`:
+
+``` sh
+./configure \
+  --enable-256-color \
+  --enable-cscope \ 
+  --enable-gtk2-check \ 
+  --enable-gui=auto \ 
+  --enable-luainterp \ 
+  --enable-multibyte \
+  --enable-perlinterp \
+  --enable-python3interp \
+  --enable-rubyinterp \
+  --with-compiledby="j.jith" \ 
+  --with-features=huge \
+  --with-python3-config-dir=/usr/lib/python3.7/config-3.7m-x86_64-linux-gnu \
+  --with-x \ 
+  --prefix=${VIM_PREFIX}
+
+sudo sh -c "
+  update-alternatives --install /usr/bin/editor editor ${VIM_PREFIX}/bin/vim 1;
+  update-alternatives --set editor ${VIM_PREFIX}/bin/vim;
+  update-alternatives --install /usr/bin/vim vim ${VIM_PREFIX}/bin/vim 1;
+  update-alternatives --set vim ${VIM_PREFIX}/bin/vim;
+  update-alternatives --install /usr/bin/vi vi ${VIM_PREFIX}/bin/vim 1;
+  update-alternatives --set vi ${VIM_PREFIX}/bin/vim;
+  update-alternatives --install /usr/bin/gvim gvim ${VIM_PREFIX}/bin/gvim 1;
+  update-alternatives --set gvim ${VIM_PREFIX}/bin/gvim
+"
+```
+
+- Previous wallpapers  
+https://i.imgur.com/0K0LqAI.png  
+🖥️ http://wallpaperswide.com/ghost_nebula-wallpapers.html

@@ -12,23 +12,23 @@
   suppress_multiple_term_dialog = True
   always_split_with_profile = True
 [keybindings]
-  new_tab = <Control>t
-  new_terminator = <Control>n
-  split_horiz = <Control>d
-  split_vert = <Control><Shift>d
   close_term = <Control>w
   copy = <Control>c
-  paste = <Control>v
   hide_window = None
+  new_tab = <Control>t
+  new_terminator = <Control>n
+  paste = <Control>v
+  split_horiz = <Control>d
+  split_vert = <Control><Shift>d
 [profiles]
   [[default]]
     icon_bell = False
     background_color = "#2e3440"
-    background_darkness = 0.93
+    background_darkness = 0.9
     background_type = transparent
     cursor_shape = ibeam
     cursor_color = "#d8dee9"
-    font = Fira Code 9
+    font = Fira Code weight=453 9
     foreground_color = "#d8dee9"
     show_titlebar = False
     scrollback_lines = 5000
@@ -43,7 +43,6 @@
       maximised = False
       order = 0
       parent = ""
-      size = 720, 500
       type = Window
     [[[terminal1]]]
       order = 0

@@ -1,171 +1,300 @@
 #!/bin/zsh
 
-# Installation file
+# Dotfiles install
 #
 # Usage:
-# ./install
-#
-# This script automatic install:
-# - Oh My ZSH
-#   - Spaceship theme
-#   - ZSH Syntax Highlighting
-#   - ZSH Autosuggestions
-# - Create symbolic links for configurations
+#   ./install
+#   ./install ohmyzsh
 
-NO_COLOR='\e[0m'
-BLACK='\e[0;30m'
-GRAY='\e[37m'
-RED='\e[0;31m'
-GREEN='\e[0;32m'
-YELLOW='\e[0;33m'
-BLUE='\e[0;34m'
-PURPLE='\e[0;35m'
-CYAN='\e[0;36m'
-WHITE='\e[0;37m'
-BOLD_BLACK='\e[1;30m'
-BOLD_RED='\e[1;31m'
-BOLD_GREEN='\e[1;32m'
-BOLD_YELLOW='\e[1;33m'
-BOLD_BLUE='\e[1;34m'
-BOLD_PURPLE='\e[1;35m'
-BOLD_CYAN='\e[1;36m'
-BOLD_WHITE='\e[1;37m'
-
-INFO="${BLUE}[!]${NO_COLOR}"
-SUCCESS="${GREEN}[✓]${NO_COLOR}"
-ERROR="${GREEN}[✘]${NO_COLOR}"
-DONE="${BOLD_GREEN}[✓] Done${NO_COLOR}\n"
+# Define current version
+VERSION='0.0.1'
 
 # Define project path
-# =========================================================
-PROJECT_PATH=`dirname "$(readlink -f "$0")"`
+PROJECT_PATH=$(pwd)
 
-# Version
-# =========================================================
-VERSION="${GRAY}v0.0.1${NO_COLOR}"
+# Line feed variable
+LF='\n'
 
-# Header
-# =========================================================
-echo "${BOLD_WHITE}@thiagobraga's dotfiles${NO_COLOR} ${VERSION}\n"
+# Global constants
+APT_PARAMS='-yqqq'
+LN_OPTS='-sfn'
 
+# Import color constants
+. ./scripts/colors
+
+# Install the components of dotfiles
+# =====================================================
 install() {
+
+  # Print the header
+  header() {
+    echo "${BWhite}dotfiles${Color_Off} ${Yellow}${VERSION}${Color_Off}"
+  }
+
+  # Bump version of the project
+  # Change README.md
+  # Change this script
+  # NEW_VERSION='0.1.0' && sed -E 's/version-(.*)-/version--/gmi' README.md | head -n 10
+  bump() {
+    CURRENT_VERSION=$(grep -o -P '(?<=Version ).*(?=">)' ./README.md)
+    title "Bump version${Color_Off} ${CURRENT_VERSION} to ${VERSION}"
+    ask 'Are you sure?' '[y/N]'
+  }
+
+  # Define title of each internal function
+  title() {
+    benchmark_start
+    echo "\n\n${BPurple}${1}${Color_Off}"
+  }
+
+  # Print steps information about installation
+  step() {
+    echo "${IBlack}${1}${Color_Off}" "${2}"
+  }
+
+  # Starts the benchmark time to show at the end of each function
+  benchmark_start() {
+    START=$(date +%s.%6N)
+  }
+
+  # Stops the benchmark and calculate the amount of time the function used
+  benchmark_stop() {
+    END=$(date +%s.%6N)
+    RUNTIME=$(date -d @"$((${END} - ${START}))" +%s.%2N)
+  }
+
+  # Ask question to the user capturing keyboard input.
+  ask() {
+    printf ${Yellow} && read "ANSWER?${1} ${2} " && printf ${Color_Off}
+    return ${ANSWER}
+  }
+
+  # Inform user about some action.
+  info() {
+    echo "${Blue}info${Color_Off}" "${1}"
+  }
+
+  # Print done message with duration
+  success() {
+    benchmark_stop
+    echo "${Green}success${Color_Off} ${1}"
+    echo "✨ Done in ${RUNTIME}s"
+  }
+
+  # Abort execution with message
+  abort() {
+    echo "${Red}abort${Color_Off} ${1}"
+  }
+
   # Install Oh My ZSH
-  # =========================================================
-  {
-    echo "🛠  ${BOLD_WHITE}Install Oh My ZSH"
-    if [[ ! -d "${ZSH}" ]]; then
-      echo "${INFO} Installing..."
-      sh -c \
-        $(curl -fsSL \
-          https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)
-    else
-      echo "${SUCCESS} Already installed."
-      echo "${INFO} Updating..."
-      cd ${ZSH} || exit
-      git pull origin master
-      cd -
-    fi
-    echo "${DONE}"
+  ohmyzsh() {
+    title 'Install Oh My ZSH'
+    step '[1/2]' '🔍 Check if installed...'
+
+    [[ ! -d "${HOME}/.oh-my-zsh" ]] && {
+      step '[2/2]' "💻 Installing...${IBlack}"
+      URL='https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh'
+      sh -c "$(curl -fsSL ${URL})"
+    } || {
+      step '[2/2]' "💾 Updating...${IBlack}"
+      cd ${HOME}/.oh-my-zsh || exit
+      git pull origin master && cd ${PROJECT_PATH}
+    }
+
+    success 'Oh My ZSH install finished.'
   }
 
-  # Install Spaceship theme
-  # =========================================================
-  {
-    echo "🛠  ${BOLD_WHITE}Install Spaceship theme"
-    THEME_PATH="${ZSH_CUSTOM:-${ZSH}/custom}/themes/spaceship-prompt"
-    if [[ ! -d "${THEME_PATH}" ]]; then
-      git clone \
-        https://github.com/denysdovhan/spaceship-prompt \
-        ${THEME_PATH}
-      ln -sf ${THEME_PATH}/spaceship.zsh-theme \
-        ${ZSH}/themes/spaceship.zsh-theme
-    else
-      echo "${SUCCESS} Already installed."
-      echo "${INFO} Updating..."
+  # Install Spaceship theme for Oh My ZSH
+  spaceship() {
+    title "Install Spaceship theme ${Purple}for Oh My ZSH${Color_Off}"
+    step '[1/3]' '🔍 Check if installed...'
+    OHMYZSH="${HOME}/.oh-my-zsh"
+    THEME_PATH="${OHMYZSH}/custom/themes/spaceship-prompt"
+
+    [[ ! -d "${THEME_PATH}" ]] && {
+      step '[2/3]' "💻 Installing...${IBlack}"
+      GITHUB_URL='https://github.com/denysdovhan/spaceship-prompt'
+      git clone ${GITHUB_URL} ${THEME_PATH}
+    } || {
+      step '[2/3]' "💾 Updating...${IBlack}"
       cd ${THEME_PATH} || exit
-      git pull origin master
-      cd -
-    fi
-    echo "${DONE}"
+      git pull origin master && cd ${PROJECT_PATH}
+    }
+
+    step '[3/3]' "🔗 Creating symlink...${IBlack}"
+    ln ${LN_OPTS} ${THEME_PATH}/spaceship.zsh-theme ${OHMYZSH}/themes/spaceship.zsh-theme
+
+    success 'Spaceship install finished.'
   }
 
-  # Install zsh-syntax-highlight plugin
-  # =========================================================
-  {
-    echo "🛠  ${BOLD_WHITE}Install zsh-syntax-highlight plugin"
-    PLUGIN_PATH="${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
-    if [[ ! -d "${PLUGIN_PATH}" ]]; then
-      git clone \
-        https://github.com/zsh-users/zsh-syntax-highlighting \
-        ${PLUGIN_PATH}
-    else
-      echo "${SUCCESS} Already installed."
-      echo "${INFO} Updating..."
+  # Install zsh-syntax-highlighting plugin for Oh My ZSH
+  zsh-syntax-highlighting() {
+    title "Install zsh-syntax-highlighting plugin ${Purple}for Oh My ZSH${Color_Off}"
+    step '[1/2]' '🔍 Check if installed...'
+    OHMYZSH="${HOME}/.oh-my-zsh"
+    PLUGIN_PATH="${OHMYZSH}/custom/plugins/zsh-syntax-highlighting"
+
+    [[ ! -d "${PLUGIN_PATH}" ]] && {
+      step '[2/3]' "💻 Installing...${IBlack}"
+      GITHUB_URL='https://github.com/zsh-users/zsh-syntax-highlighting'
+      git clone ${GITHUB_URL} ${PLUGIN_PATH}
+    } || {
+      step '[2/2]' "💾 Updating...${IBlack}"
       cd ${PLUGIN_PATH} || exit
-      git pull origin master
-      cd -
-    fi
-    echo "${DONE}"
+      git pull origin master && cd ${PROJECT_PATH}
+    }
+
+    success 'zsh-syntax-highlighting install finished.'
   }
 
-  # Install zsh-autosuggestions
-  # =========================================================
-  {
-    echo "🛠  ${BOLD_WHITE}Install zsh-autosuggestions"
-    PLUGIN_PATH="${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
-    if [[ ! -d "${PLUGIN_PATH}" ]]; then
-      git clone \
-        https://github.com/zsh-users/zsh-autosuggestions \
-        ${PLUGIN_PATH}
-    else
-      echo "${SUCCESS} Already installed."
-      echo "${INFO} Updating..."
+  # Install zsh-autosuggestions plugin for Oh My ZSH
+  zsh-autosuggestions() {
+    title "Install zsh-autosuggestions plugin ${Purple}for Oh My ZSH${Color_Off}"
+    step '[1/2]' '🔍 Check if installed...'
+    OHMYZSH="${HOME}/.oh-my-zsh"
+    PLUGIN_PATH="${OHMYZSH}/custom/plugins/zsh-autosuggestions"
+
+    [[ ! -d "${PLUGIN_PATH}" ]] && {
+      step '[2/3]' "💻 Installing...${IBlack}"
+      GITHUB_URL='https://github.com/zsh-users/zsh-autosuggestions'
+      git clone ${GITHUB_URL} ${PLUGIN_PATH}
+    } || {
+      step '[2/2]' "💾 Updating...${IBlack}"
       cd ${PLUGIN_PATH} || exit
-      git pull origin master
-      cd -
-    fi
-    echo "${DONE}"
+      git pull origin master && cd ${PROJECT_PATH}
+    }
+
+    success 'zsh-autosuggestions install finished.'
   }
 
-  # Create symbolic links for configurations
-  # =========================================================
-  {
-    echo "🛠  ${BOLD_WHITE}Create symbolic links"
+  # Shortcut "Restart to Windows" for Dual Boot systems
+  # TODO: Attach to favorites.
+  shortcuts() {
+    title "Shortcut 'Restart to Windows' ${Purple}for Dual Boot systems${Color_Off}"
+    step '[1/1]' "💻 Installing...${IBlack}"
 
-    FILES=(
-      .aliases
-      .gitconfig
-      .hushlogin
-      .hyper.js
-      .sudo_as_admin_successful
-      .vimrc
-      .zshrc
-    )
-
-    for FILE in ${FILES}; do
-      ln -sfn ${PROJECT_PATH}/${FILE} ${HOME}
-    done
-
-    mkdir -p ${HOME}/{.config/{terminator,fontconfig/conf.d},.vim}
-
-    ln -sfn ${PROJECT_PATH}/.vim/{basics,colors,keybindings,plugins}.vim ${HOME}/.vim/
-    ln -sfn ${PROJECT_PATH}/config/fontconfig/01-emoji.conf ${HOME}/.config/fontconfig/conf.d/01-emoji.conf
-    ln -sfn ${PROJECT_PATH}/config/qt5ct/qt5ct.conf ${HOME}/.config/qt5ct/qt5ct.conf
-    ln -sfn ${PROJECT_PATH}/config/terminator/config ${HOME}/.config/terminator/config
-
-    echo "${DONE}"
-  }
-
-  # Shortcuts for Dual Boot
-  # =========================================================
-  {
-    echo "🛠  ${BOLD_WHITE}Shortcuts for Dual Boot"
-
-    sudo ln -sfn ${PROJECT_PATH}/shortcuts/windows.{desktop,png,sh} \
+    sudo ln ${LN_OPTS} \
+      ${PROJECT_PATH}/config/shortcuts/windows.{desktop,png,sh} \
       /usr/share/applications
 
-    echo "${DONE}"
+    success "'Restart to Windows' created successfuly."
   }
+
+  # Create symbolic links for settings
+  symlinks() {
+    title "Create symbolic links ${Purple}for settings${Color_Off}"
+
+    step '[1/8]' "🔗 Linking .aliases in \$HOME...${IBlack}"
+    ln ${LN_OPTS} -t ${HOME} ${PROJECT_PATH}/config/.aliases
+
+    step '[2/8]' "🔗 Linking .zshrc in \$HOME...${IBlack}"
+    ln ${LN_OPTS} -t ${HOME} ${PROJECT_PATH}/config/.zshrc
+
+    step '[3/8]' "🔗 Linking .gitconfig in \$HOME...${IBlack}"
+    ln ${LN_OPTS} -t ${HOME} ${PROJECT_PATH}/config/.gitconfig
+
+    step '[4/8]' "🔗 Linking .sudo_as_admin_successful in \$HOME...${IBlack}"
+    ln ${LN_OPTS} -t ${HOME} ${PROJECT_PATH}/scripts/misc/.sudo_as_admin_successful
+
+    step '[5/8]' "🔗 Linking .hushlogin in \$HOME...${IBlack}"
+    ln ${LN_OPTS} -t ${HOME} ${PROJECT_PATH}/scripts/misc/.hushlogin
+
+    step '[6/8]' "🔗 Linking terminator config...${IBlack}"
+    TARGET="${HOME}/.config/terminator/" && mkdir -p ${TARGET}
+    ln ${LN_OPTS} -t ${TARGET} ${PROJECT_PATH}/config/terminator/config
+
+    step '[7/8]' "🔗 Linking fontconfig settings...${IBlack}"
+    TARGET="${HOME}/.config/fontconfig/conf.d/" && mkdir -p ${TARGET}
+    ln ${LN_OPTS} -t ${TARGET} ${PROJECT_PATH}/config/fontconfig/01-emoji.conf
+
+    step '[8/8]' "🔗 Linking Qt5 settings...${IBlack}"
+    TARGET="${HOME}/.config/qt5ct/" && mkdir -p ${TARGET}
+    ln ${LN_OPTS} -t ${TARGET} ${PROJECT_PATH}/config/qt5ct/qt5ct.conf
+
+    success 'Symlinks created!'
+  }
+
+  # Install VIM - Vi IMproved with settings
+  vimrc() {
+    title "Install VIM ${Purple}- Vi IMproved with settings${Color_Off}"
+    step '[1/3]' '🔍 Check if VIM is installed...'
+    VIM_FILE="${HOME}/.vimrc"
+    VIM_FOLDER="${HOME}/.vim/"
+
+    # Test only
+    rm -rf $VIM_FILE $VIM_FOLDER
+
+    [[ ! $(command -v vim) ]] && {
+      step '[2/3]' "💻 Installing vim...${IBlack}"
+      sudo apt install ${APT_PARAMS} vim
+    } || {
+      step '[2/3]' "💾 Updating...${IBlack}"
+      sudo apt upgrade ${APT_PARAMS} vim
+    }
+
+    step '[3/3]' '💻 Installing vim plugins and settings...'
+    [[ "$FORCE" == true ]] &&
+      ANSWER='yes' ||
+      ask 'This command will override ~/.vimrc file. Are you sure?' '[y/N]'
+
+    [[ "$ANSWER" =~ ^([yY][eE][sS]|[yY])$ ]] && {
+      printf ${IBlack}
+      mkdir -p ${VIM_FOLDER}
+      ln ${LN_OPTS} -t ${HOME} ${PROJECT_PATH}/config/vim/.vimrc
+      ln ${LN_OPTS} -t ${VIM_FOLDER} ${PROJECT_PATH}/config/vim/basics.vim
+      ln ${LN_OPTS} -t ${VIM_FOLDER} ${PROJECT_PATH}/config/vim/colors.vim
+      ln ${LN_OPTS} -t ${VIM_FOLDER} ${PROJECT_PATH}/config/vim/keybindings.vim
+      ln ${LN_OPTS} -t ${VIM_FOLDER} ${PROJECT_PATH}/config/vim/plugins.vim
+      vim -E -s -u "${HOME}/.vimrc" +PlugInstall +qall >/dev/null
+      success 'VIM installed and configured'
+    } || {
+      abort 'User terminated the script.'
+    }
+  }
+
+  # Call the install script without parameters
+  all() {
+    ohmyzsh
+    spaceship
+    zsh-syntax-highlighting
+    zsh-autosuggestions
+    shortcuts
+    symlinks
+    vimrc
+  }
+
+  # Call the header of the application
+  header
+
+  # Detect execution modes
+  for i in "$@"; do
+    if [[ $i == "-v" ]] || [[ $i == "--verbose" ]]; then
+      VERBOSE=true
+      [[ "$VERBOSE" == true ]] && APT_PARAMS='-y' && LN_OPTS='-sfvn'
+      info 'Verbose mode activated'
+    fi
+
+    if [[ $i == "-f" ]] || [[ $i == "--force" ]]; then
+      FORCE=true
+      info 'Run without confirmation activated'
+    fi
+
+    shift
+  done
+
+  case $1 in
+  ohmyzsh) ohmyzsh ;;
+  spaceship) spaceship ;;
+  zsh-syntax-highlighting) zsh-syntax-highlighting ;;
+  zsh-autosuggestions) zsh-autosuggestions ;;
+  shortcuts) shortcuts ;;
+  -l | --link | symlinks) symlinks $@ ;;
+  vim | vimrc) vimrc ;;
+  bump) bump $@ ;;
+  "") all ;;
+  *) exit ;;
+  esac
 }
 
-install
+# Call the script
+install $@

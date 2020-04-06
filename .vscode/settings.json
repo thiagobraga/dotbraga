@@ -1,0 +1,18 @@
+{
+  "editor.rulers": [
+    { "column": 55, "color": "#434c5e44" },
+    { "column": 80, "color": "#434c5e88" }
+  ],
+  "files.associations": {
+    "**/config/terminator/config": "toml",
+    "**/config/fontconfig/*": "xml",
+    "**/install": "shellscript",
+    "**/scripts/**/*": "shellscript",
+    "**/misc/.hushlogin": "shellscript",
+    "**/misc/.sudo_*": "shellscript",
+    "**/.aliases": "shellscript",
+    "**/.zshrc": "shellscript",
+    "**/*.ismp": "xml",
+    "**/misc/.leptonrc": "json"
+  }
+}

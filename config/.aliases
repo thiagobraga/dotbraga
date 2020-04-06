@@ -1,13 +1,15 @@
-#!/bin/bash
+#!/bin/zsh
 
 alias apt='sudo apt'
 alias apt-get='sudo apt-get'
 alias aptitude='sudo aptitude'
 alias dpkg='sudo dpkg'
 
-alias l='LC_COLLATE=C ls -alh --color=tty --group-directories-first'
-alias ls='LC_COLLATE=C ls -h --color=tty --group-directories-first'
-alias ll='LC_COLLATE=C ls -lh --color=tty --group-directories-first'
+LS_OPTIONS='--color=tty --group-directories-first'
+alias l="LC_COLLATE=C ls -alh ${LS_OPTIONS}"
+alias ls="LC_COLLATE=C ls -h ${LS_OPTIONS}"
+alias ll="LC_COLLATE=C ls -lh ${LS_OPTIONS}"
+
 alias rm='/bin/rm -v'
 
 # Brew
@@ -45,6 +47,8 @@ alias dcdn='docker-compose down'
 
 # Git
 # ---------------------------------------------------
+alias gb='git --no-pager branch'
+alias gfp='git fetch --all --prune'
 alias gmn='git merge --no-ff --no-edit'
 alias gpf='git push -f'
 
