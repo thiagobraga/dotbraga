@@ -4,7 +4,11 @@
 #
 # Usage:
 #   ./install
-#   ./install ohmyzsh
+#   ./install -f        # Run scripts without confirmation
+#   ./install -v        # Verbose mode
+#   ./install ohmyzsh   # Install only Oh My ZSH
+#   ./install vimrc     # Install Vim and its settings
+#   ./install --all     # Install everything
 
 # Define current version
 VERSION='0.0.1'
