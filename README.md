@@ -50,13 +50,15 @@ cd dotfiles
 
 ## TODO
 
-- [ ] Global: Install Fira Code font
-- [ ] Ubuntu: Install Gnome extensions
-- [ ] Ubuntu: Configure Gnome extensions
-- [ ] Ubuntu: Configure Gnome behavior
-- [ ] Ubuntu: Version Gnome Keyboard Shortcuts
-- [ ] Ubuntu: Install and configure Noto Emoji
-- [ ] KDE: Version desktop settings
+- [ ] 🐛 Docs: Reduce image sizes
+- [ ] ✨ Global: Install Fira Code font
+- [ ] ✨ Ubuntu: Install Gnome extensions
+- [ ] ✨ Ubuntu: Configure Gnome extensions
+- [ ] ✨ Ubuntu: Configure Gnome behavior
+- [ ] ✨ Ubuntu: Version Gnome Keyboard Shortcuts
+- [ ] ✨ Ubuntu: Install and configure Noto Emoji
+- [ ] ✨ KDE: Version desktop settings
+- [ ] ⚙ Vim: Create method to compile vim as below 
 
 ### Temp
 
