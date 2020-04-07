@@ -33,9 +33,7 @@ cd dotfiles
 ./install
 ```
 
-<p align="center">
-  <img src="./public/screenshots/terminator_06-04-2020_00-21.png" width="420" />
-</p>
+<img src="./public/screenshots/terminator_06-04-2020_00-21.png" width="420" />
 
 ## Shortcuts
 
