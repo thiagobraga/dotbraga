@@ -240,8 +240,6 @@ function install() {
     VIM_FILE="${HOME}/.vimrc"
     VIM_FOLDER="${HOME}/.vim"
 
-    rm -rf $VIM_FOLDER $VIM_FILE
-
     [[ ! $(command -v vim) ]] &&
       step '[2/3]' '💻 Installing vim...'${IBlack} ||
       step '[2/3]' '💾 Updating...'${IBlack}
