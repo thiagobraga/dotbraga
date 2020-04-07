@@ -16,9 +16,6 @@ VERSION='0.0.1'
 # Define project path
 PROJECT_PATH=$(pwd)
 
-# Line feed variable
-LF='\n'
-
 # Global constants
 APT_PARAMS='-yqqq'
 LN_OPTS='-sfn'
@@ -26,77 +23,89 @@ LN_OPTS='-sfn'
 # Import color constants
 . ./scripts/colors
 
+# Test colors in the script above
+# print_colors && exit
+
 # Install the components of dotfiles
 # =====================================================
-install() {
+function install() {
 
   # Print the header
-  header() {
-    echo "${BWhite}dotfiles${Color_Off} ${Yellow}${VERSION}${Color_Off}"
+  function header() {
+    echo ${BWhite}dotfiles${Color_Off} ${Yellow}${VERSION}${Color_Off}
   }
 
   # (WIP) Bump version of the project
   # Change README.md
   # Change this script
   # NEW_VERSION='0.1.0' && sed -E 's/version-(.*)-/version--/gmi' README.md | head -n 10
-  bump() {
+  function bump() {
+    $1
+    echo $1
+    echo $2
+    [[ $2 == "" ]] && abort 'Define new version to bump. Exit'
     CURRENT_VERSION=$(grep -o -P '(?<=Version ).*(?=">)' ./README.md)
-    title "Bump version${Color_Off} ${CURRENT_VERSION} to ${VERSION}"
-    ask 'Are you sure?' '[y/N]'
+    title "Bump version${Color_Off} ${CURRENT_VERSION} to ${2}"
+    # ask 'Are you sure?' '[y/N]'
   }
 
   # Define title of each internal function
-  title() {
+  function title() {
     benchmark_start
-    echo "\n${BPurple}${1}${Color_Off}"
+    echo ${BPurple}"\n${1}"${Color_Off}
   }
 
   # Print steps information about installation
-  step() {
+  function step() {
     echo "${IBlack}${1}${Color_Off}" "${2}"
   }
 
   # Starts the benchmark time to show at the end of each function
-  benchmark_start() {
+  function benchmark_start() {
     START=$(date +%s.%6N)
   }
 
   # Stops the benchmark and calculate the amount of time the function used
-  benchmark_stop() {
+  function benchmark_stop() {
     END=$(date +%s.%6N)
     RUNTIME=$(date -d @"$((${END} - ${START}))" +%s.%2N)
   }
 
   # Ask question to the user capturing keyboard input.
-  ask() {
+  function ask() {
     printf ${Yellow} && read "ANSWER?${1} ${2} " && printf ${Color_Off}
     return ${ANSWER}
   }
 
   # Inform user about some action.
-  info() {
-    echo "${Blue}info${Color_Off}" "${1}"
+  function info() {
+    echo ${Blue}'info'${Color_Off} "${1}"
+  }
+
+  # Debug some information.
+  function debug() {
+    echo ${IYellow}'debug'${Color_Off} $@
   }
 
   # Print done message with duration
-  success() {
+  function success() {
     benchmark_stop
     echo "${Green}success${Color_Off} ${1}"
     echo "✨ Done in ${RUNTIME}s"
   }
 
   # Abort execution with message
-  abort() {
+  function abort() {
     echo "${Red}abort${Color_Off} ${1}"
   }
 
   # Install Oh My ZSH
-  ohmyzsh() {
+  function ohmyzsh() {
     title 'Install Oh My ZSH'
     step '[1/2]' '🔍 Check if installed...'
 
-    [[ ! -d "${HOME}/.oh-my-zsh" ]] && {
-      step '[2/2]' "💻 Installing...${IBlack}"
+    [[ ! -d "$HOME/.oh-my-zsh" ]] && {
+      step '[2/2]' "💻 Installing..."${IBlack}
       URL='https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh'
       sh -c "$(curl -fsSL ${URL})"
     } || {
@@ -109,7 +118,7 @@ install() {
   }
 
   # Install Spaceship theme for Oh My ZSH
-  spaceship() {
+  function spaceship() {
     title "Install Spaceship theme ${Purple}for Oh My ZSH${Color_Off}"
     step '[1/3]' '🔍 Check if installed...'
     OHMYZSH="${HOME}/.oh-my-zsh"
@@ -132,7 +141,7 @@ install() {
   }
 
   # Install zsh-syntax-highlighting plugin for Oh My ZSH
-  zsh-syntax-highlighting() {
+  function zsh-syntax-highlighting() {
     title "Install zsh-syntax-highlighting plugin ${Purple}for Oh My ZSH${Color_Off}"
     step '[1/2]' '🔍 Check if installed...'
     OHMYZSH="${HOME}/.oh-my-zsh"
@@ -152,7 +161,7 @@ install() {
   }
 
   # Install zsh-autosuggestions plugin for Oh My ZSH
-  zsh-autosuggestions() {
+  function zsh-autosuggestions() {
     title "Install zsh-autosuggestions plugin ${Purple}for Oh My ZSH${Color_Off}"
     step '[1/2]' '🔍 Check if installed...'
     OHMYZSH="${HOME}/.oh-my-zsh"
@@ -173,7 +182,7 @@ install() {
 
   # Shortcut "Restart to Windows" for Dual Boot systems
   # TODO: Attach to favorites.
-  shortcuts() {
+  function shortcuts() {
     title "Shortcut 'Restart to Windows' ${Purple}for Dual Boot systems${Color_Off}"
     step '[1/1]' "💻 Installing...${IBlack}"
 
@@ -185,7 +194,7 @@ install() {
   }
 
   # Create symbolic links for settings
-  symlinks() {
+  function symlinks() {
     title "Create symbolic links ${Purple}for settings${Color_Off}"
 
     step '[1/10]' "🔗 Linking .aliases in \$HOME...${IBlack}"
@@ -225,17 +234,19 @@ install() {
   }
 
   # Install VIM - Vi IMproved with settings
-  vimrc() {
+  function vimrc() {
     title "Install VIM ${Purple}- Vi IMproved with settings${Color_Off}"
     step '[1/3]' '🔍 Check if VIM is installed...'
     VIM_FILE="${HOME}/.vimrc"
     VIM_FOLDER="${HOME}/.vim"
 
-    [[ ! $(command -v vim) ]] &&
-      step '[2/3]' "💻 Installing vim...${IBlack}" ||
-      step '[2/3]' "💾 Updating...${IBlack}"
+    rm -rf $VIM_FOLDER $VIM_FILE
 
-    sudo apt install ${APT_PARAMS} vim
+    [[ ! $(command -v vim) ]] &&
+      step '[2/3]' '💻 Installing vim...'${IBlack} ||
+      step '[2/3]' '💾 Updating...'${IBlack}
+
+    sudo apt install $APT_PARAMS vim
 
     step '[3/3]' '💻 Installing vim plugins and settings...'
     [[ "$FORCE" == true ]] &&
@@ -245,8 +256,8 @@ install() {
     [[ "$ANSWER" =~ ^([yY][eE][sS]|[yY])$ ]] && {
       printf ${IBlack}
       ln ${LN_OPTS} ${PROJECT_PATH}/config/vim/.vimrc ${HOME}/.vimrc
-      ln ${LN_OPTS} -T ${PROJECT_PATH}/config/vim ${VIM_FOLDER}
-      vim -E -s -u "${HOME}/.vimrc" +PlugInstall +qall >/dev/null
+      ln ${LN_OPTS} ${PROJECT_PATH}/config/vim ${VIM_FOLDER}
+      vim -E -s -u $HOME/.vimrc +PlugInstall +qall >/dev/null
       success 'VIM installed and configured'
     } || {
       abort 'User terminated the script.'
@@ -254,13 +265,14 @@ install() {
   }
 
   # Call the install script without parameters.
-  all() {
-    ohmyzsh
-    spaceship
-    zsh-syntax-highlighting
-    zsh-autosuggestions
-    shortcuts
-    symlinks
+  function all() {
+    echo esse aqui memo fera
+    # ohmyzsh
+    # spaceship
+    # zsh-syntax-highlighting
+    # zsh-autosuggestions
+    # shortcuts
+    # symlinks
     vimrc
   }
 
@@ -268,22 +280,33 @@ install() {
   header
 
   # Detect execution modes.
-  params=($@)
-  for param in ${params}; do
-    if [[ $param == "-v" ]] || [[ $param == "--verbose" ]]; then
+  ARGS=($@)
+
+  for arg in $ARGS; do
+    if [[ $arg == "-v" ]] || [[ $arg == "--verbose" ]]; then
       VERBOSE=true && APT_PARAMS='-y' && LN_OPTS='-sfvn'
       info 'Verbose mode activated'
+      delete=($arg)
+      ARGS=("${ARGS[@]/$delete/}")
     fi
 
-    if [[ $param == "-f" ]] || [[ $param == "--force" ]]; then
+    if [[ $arg == "-f" ]] || [[ $arg == "--force" ]]; then
       FORCE=true
       info 'Run without confirmation activated'
+      delete=($arg)
+      ARGS=("${ARGS[@]/$delete/}")
     fi
   done
 
+  # TODO: Test without params
+  echo 'ta aonde'
+  [ -z "$ARGS" ] && echo true && ARGS=('') || echo false
+  echo "args = '$ARGS'"
+
   # Detect the function to run after define modes above.
-  for param in ${params}; do
-    case $param in
+  for arg in $ARGS; do
+    echo "arg = '$ARGS'"
+    case $arg in
     ohmyzsh) ohmyzsh ;;
     spaceship) spaceship ;;
     zsh-syntax-highlighting) zsh-syntax-highlighting ;;
@@ -292,7 +315,7 @@ install() {
     -l | --link | symlinks) symlinks $@ ;;
     vim | vimrc) vimrc ;;
     bump) bump $@ ;;
-    "" | -f | -v | --force | --verbose) all ;;
+    "") all ;;
     *) exit ;;
     esac
   done

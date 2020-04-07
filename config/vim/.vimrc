@@ -1,7 +1,7 @@
 " Vimrc
 " ===============================================
 
-source ~/.vim/plugins.vim
-source ~/.vim/basics.vim
-source ~/.vim/keybindings.vim
-source ~/.vim/colors.vim
+source ~/.vim/settings/plugins.vim
+source ~/.vim/settings/basics.vim
+source ~/.vim/settings/keybindings.vim
+source ~/.vim/settings/colors.vim
