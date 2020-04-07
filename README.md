@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <img src="./public/screenshots/dotfiles-ubuntu-06-04-2020_00-18.png" width="600" />
+  <img src="./public/screenshots/dotbraga_ubuntu_2020-04-06_00.18.png" width="600" />
 </p>
 
 ## Features
@@ -33,7 +33,15 @@ cd dotfiles
 ./install
 ```
 
-<img src="./public/screenshots/terminator_06-04-2020_00-21.png" width="420" />
+<img src="./public/screenshots/dotbraga_terminator_2020-04-06_00.21.png" width="420" />
+
+## More screenshots
+
+### Mac OS
+
+<p align="center">
+  <img src="./public/screenshots/dotbraga_macos_2020-04-07_13.53.png" width="600" /> 
+</p>
 
 ## Shortcuts
 
@@ -48,7 +56,7 @@ cd dotfiles
 
 ## TODO
 
-- [ ] 🐛 Docs: Reduce image sizes
+- [x] 🐛 Docs: Reduce image sizes
 - [ ] ✨ Global: Install Fira Code font
 - [ ] ✨ Ubuntu: Install Gnome extensions
 - [ ] ✨ Ubuntu: Configure Gnome extensions
