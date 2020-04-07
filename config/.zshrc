@@ -43,6 +43,14 @@ pastefinish() {
 zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
 
+eval 'dircolors ~/.dircolors' > /dev/null
+
+if [[ -f ~/.dircolors ]]; then
+  eval $(dircolors -b ~/.dircolors)
+elif [[ -f /etc/DIR_COLORS ]]; then
+  eval $(dircolors -b /etc/DIR_COLORS)
+fi
+
 if [ -e "$HOME/.env" ]; then . "$HOME/.env"; fi
 if [ -e "$HOME/.profile" ]; then . "$HOME/.profile"; fi
 if [ -e "$HOME/.aliases" ]; then . "$HOME/.aliases"; fi
