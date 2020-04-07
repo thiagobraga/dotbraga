@@ -266,14 +266,16 @@ function install() {
 
   # Call the install script without parameters.
   function all() {
-    echo esse aqui memo fera
-    # ohmyzsh
-    # spaceship
-    # zsh-syntax-highlighting
-    # zsh-autosuggestions
-    # shortcuts
-    # symlinks
+    ohmyzsh
+    spaceship
+    zsh-syntax-highlighting
+    zsh-autosuggestions
+    shortcuts
+    symlinks
     vimrc
+
+    echo
+    info Finished
   }
 
   # Call the header of the application.
@@ -298,14 +300,14 @@ function install() {
     fi
   done
 
-  # TODO: Test without params
-  echo 'ta aonde'
-  [ -z "$ARGS" ] && echo true && ARGS=('') || echo false
-  echo "args = '$ARGS'"
+  # Trim args after detecting modes
+  ARGS=$(echo $ARGS)
 
-  # Detect the function to run after define modes above.
+  # If empty ARGS, run all methods with defined modes...
+  [[ "$ARGS" == '' ]] && all
+
+  # ...or detect the function to run.
   for arg in $ARGS; do
-    echo "arg = '$ARGS'"
     case $arg in
     ohmyzsh) ohmyzsh ;;
     spaceship) spaceship ;;
@@ -315,7 +317,7 @@ function install() {
     -l | --link | symlinks) symlinks $@ ;;
     vim | vimrc) vimrc ;;
     bump) bump $@ ;;
-    "") all ;;
+    "" | all) all ;;
     *) exit ;;
     esac
   done
