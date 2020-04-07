@@ -65,14 +65,16 @@ alias mw='make watch'
 # ---------------------------------------------------
 alias y='yarn'
 alias ya='yarn add'
+alias yau='yarn audit'
 alias yb='yarn browsersync'
 alias yd='yarn dev'
 alias yp='yarn prod'
 alias yr='yarn release'
 alias ys='yarn start'
-alias yys='yarn; yarn start'
 alias yt='yarn task'
 alias yw='yarn watch'
+alias yyau='yarn; yarn audit'
+alias yys='yarn; yarn start'
 
 # Vessel
 # ---------------------------------------------------
