@@ -31,4 +31,5 @@ call plug#end()
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 let mapleader = ","
 
+source ~/.vim/plugins/airline.vim
 source ~/.vim/plugins/nerdtree.vim

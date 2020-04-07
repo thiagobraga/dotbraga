@@ -48,7 +48,7 @@ install() {
   # Define title of each internal function
   title() {
     benchmark_start
-    echo "\n\n${BPurple}${1}${Color_Off}"
+    echo "\n${BPurple}${1}${Color_Off}"
   }
 
   # Print steps information about installation
@@ -188,33 +188,36 @@ install() {
   symlinks() {
     title "Create symbolic links ${Purple}for settings${Color_Off}"
 
-    step '[1/8]' "🔗 Linking .aliases in \$HOME...${IBlack}"
+    step '[1/10]' "🔗 Linking .aliases in \$HOME...${IBlack}"
     ln ${LN_OPTS} -t ${HOME} ${PROJECT_PATH}/config/.aliases
 
-    step '[2/8]' "🔗 Linking .zshrc in \$HOME...${IBlack}"
+    step '[2/10]' "🔗 Linking .zshrc in \$HOME...${IBlack}"
     ln ${LN_OPTS} -t ${HOME} ${PROJECT_PATH}/config/.zshrc
 
-    step '[2/8]' "🔗 Linking .profile in \$HOME...${IBlack}"
+    step '[3/10]' "🔗 Linking .profile in \$HOME...${IBlack}"
     ln ${LN_OPTS} -t ${HOME} ${PROJECT_PATH}/linux/.profile
 
-    step '[3/8]' "🔗 Linking .gitconfig in \$HOME...${IBlack}"
+    step '[4/10]' "🔗 Linking .gitconfig in \$HOME...${IBlack}"
     ln ${LN_OPTS} -t ${HOME} ${PROJECT_PATH}/config/.gitconfig
 
-    step '[4/8]' "🔗 Linking .sudo_as_admin_successful in \$HOME...${IBlack}"
+    step '[5/10]' "🔗 Linking .sudo_as_admin_successful in \$HOME...${IBlack}"
     ln ${LN_OPTS} -t ${HOME} ${PROJECT_PATH}/scripts/misc/.sudo_as_admin_successful
 
-    step '[5/8]' "🔗 Linking .hushlogin in \$HOME...${IBlack}"
+    step '[6/10]' "🔗 Linking .hushlogin in \$HOME...${IBlack}"
     ln ${LN_OPTS} -t ${HOME} ${PROJECT_PATH}/scripts/misc/.hushlogin
 
-    step '[6/8]' "🔗 Linking terminator config...${IBlack}"
+    step '[7/10]' "🔗 Linking .hyper.js in \$HOME...${IBlack}"
+    ln ${LN_OPTS} -t ${HOME} ${PROJECT_PATH}/scripts/misc/.hyper.js
+
+    step '[8/10]' "🔗 Linking terminator config...${IBlack}"
     TARGET="${HOME}/.config/terminator/" && mkdir -p ${TARGET}
     ln ${LN_OPTS} -t ${TARGET} ${PROJECT_PATH}/config/terminator/config
 
-    step '[7/8]' "🔗 Linking fontconfig settings...${IBlack}"
+    step '[9/10]' "🔗 Linking fontconfig settings...${IBlack}"
     TARGET="${HOME}/.config/fontconfig/conf.d/" && mkdir -p ${TARGET}
     ln ${LN_OPTS} -t ${TARGET} ${PROJECT_PATH}/config/fontconfig/01-emoji.conf
 
-    step '[8/8]' "🔗 Linking Qt5 settings...${IBlack}"
+    step '[10/10]' "🔗 Linking Qt5 settings...${IBlack}"
     TARGET="${HOME}/.config/qt5ct/" && mkdir -p ${TARGET}
     ln ${LN_OPTS} -t ${TARGET} ${PROJECT_PATH}/linux/qt5ct/qt5ct.conf
 
@@ -226,15 +229,13 @@ install() {
     title "Install VIM ${Purple}- Vi IMproved with settings${Color_Off}"
     step '[1/3]' '🔍 Check if VIM is installed...'
     VIM_FILE="${HOME}/.vimrc"
-    VIM_FOLDER="${HOME}/.vim/"
+    VIM_FOLDER="${HOME}/.vim"
 
-    [[ ! $(command -v vim) ]] && {
-      step '[2/3]' "💻 Installing vim...${IBlack}"
-      sudo apt install ${APT_PARAMS} vim
-    } || {
+    [[ ! $(command -v vim) ]] &&
+      step '[2/3]' "💻 Installing vim...${IBlack}" ||
       step '[2/3]' "💾 Updating...${IBlack}"
-      sudo apt upgrade ${APT_PARAMS} vim
-    }
+
+    sudo apt install ${APT_PARAMS} vim
 
     step '[3/3]' '💻 Installing vim plugins and settings...'
     [[ "$FORCE" == true ]] &&
@@ -243,13 +244,8 @@ install() {
 
     [[ "$ANSWER" =~ ^([yY][eE][sS]|[yY])$ ]] && {
       printf ${IBlack}
-      mkdir -p ${VIM_FOLDER}/plugins/
-      ln ${LN_OPTS} -t ${HOME} ${PROJECT_PATH}/config/vim/.vimrc
-      ln ${LN_OPTS} -t ${VIM_FOLDER} ${PROJECT_PATH}/config/vim/basics.vim
-      ln ${LN_OPTS} -t ${VIM_FOLDER} ${PROJECT_PATH}/config/vim/colors.vim
-      ln ${LN_OPTS} -t ${VIM_FOLDER} ${PROJECT_PATH}/config/vim/keybindings.vim
-      ln ${LN_OPTS} -t ${VIM_FOLDER} ${PROJECT_PATH}/config/vim/plugins.vim
-      ln ${LN_OPTS} -t ${VIM_FOLDER}/plugins/ ${PROJECT_PATH}/config/vim/plugins/nerdtree.vim
+      ln ${LN_OPTS} ${PROJECT_PATH}/config/vim/.vimrc ${HOME}/.vimrc
+      ln ${LN_OPTS} -T ${PROJECT_PATH}/config/vim ${VIM_FOLDER}
       vim -E -s -u "${HOME}/.vimrc" +PlugInstall +qall >/dev/null
       success 'VIM installed and configured'
     } || {
@@ -272,22 +268,22 @@ install() {
   header
 
   # Detect execution modes.
-  for i in "$@"; do
-    if [[ $i == "-v" ]] || [[ $i == "--verbose" ]]; then
-      VERBOSE=true
-      [[ "$VERBOSE" == true ]] && APT_PARAMS='-y' && LN_OPTS='-sfvn'
+  params=($@)
+  for param in ${params}; do
+    if [[ $param == "-v" ]] || [[ $param == "--verbose" ]]; then
+      VERBOSE=true && APT_PARAMS='-y' && LN_OPTS='-sfvn'
       info 'Verbose mode activated'
     fi
 
-    if [[ $i == "-f" ]] || [[ $i == "--force" ]]; then
+    if [[ $param == "-f" ]] || [[ $param == "--force" ]]; then
       FORCE=true
       info 'Run without confirmation activated'
     fi
   done
 
   # Detect the function to run after define modes above.
-  for i in "$@"; do
-    case $i in
+  for param in ${params}; do
+    case $param in
     ohmyzsh) ohmyzsh ;;
     spaceship) spaceship ;;
     zsh-syntax-highlighting) zsh-syntax-highlighting ;;
