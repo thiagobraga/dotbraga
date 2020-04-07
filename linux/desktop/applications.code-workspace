@@ -2,7 +2,7 @@
 	"folders": [
 		{
 			"name": "~/.local/share/applications",
-			"path": "$home/.local/share/applications"
+			"path": "/home/thiago/.local/share/applications"
 		},
 		{
 			"name": "/usr/share/applications",
