@@ -62,6 +62,7 @@ cd dotfiles
 - [ ] ✨ Ubuntu: Configure Gnome extensions
 - [ ] ✨ Ubuntu: Configure Gnome behavior
 - [ ] ✨ Ubuntu: Version Gnome Keyboard Shortcuts
+  - Added <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd> for open Emoji Keyboard shortcut Chrome extension (exported as app)
 - [ ] ✨ Ubuntu: Install and configure Noto Emoji
 - [ ] ✨ KDE: Version desktop settings
 - [ ] ⚙ Vim: Create method to compile vim as below 
