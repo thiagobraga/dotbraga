@@ -49,6 +49,7 @@ alias dcdn='docker-compose down'
 # ---------------------------------------------------
 alias gb='git --no-pager branch'
 alias gfp='git fetch --all --prune'
+alias ggc='git gc'
 alias gmn='git merge --no-ff --no-edit'
 alias gpf='git push -f'
 
