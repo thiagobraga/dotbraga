@@ -2,7 +2,8 @@
   undo = reset --soft HEAD~1
 [core]
   editor = code --wait
-	autocrlf = true
+  autocrlf = false
+  eol = lf
   fileMode = false
 [diff]
   tool = default-difftool
