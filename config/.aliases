@@ -48,6 +48,7 @@ alias dcdn='docker-compose down'
 # Git
 # ---------------------------------------------------
 alias gb='git --no-pager branch'
+alias gba='git --no-pager branch -a'
 alias gfp='git fetch --all --prune'
 alias ggc='git gc'
 alias gmn='git merge --no-ff --no-edit'
@@ -62,6 +63,10 @@ alias mi='make install'
 alias mr='make release'
 alias mw='make watch'
 
+# Python
+# ---------------------------------------------------
+alias py='python3'
+
 # Yarn
 # ---------------------------------------------------
 alias y='yarn'
@@ -72,7 +77,7 @@ alias yd='yarn dev'
 alias yp='yarn prod'
 alias yr='yarn release'
 alias ys='yarn start'
-alias yt='yarn task'
+alias yt='yarn test'
 alias yw='yarn watch'
 alias yyau='yarn; yarn audit'
 alias yys='yarn; yarn start'
