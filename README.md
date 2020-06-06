@@ -71,21 +71,23 @@ cd dotfiles
 
 - Compile `vim`:
 
-``` sh
+``` bash
+VIM_PREFIX="$HOME"/www/oss/bin/vim
+
 ./configure \
   --enable-256-color \
-  --enable-cscope \ 
-  --enable-gtk2-check \ 
-  --enable-gui=auto \ 
-  --enable-luainterp \ 
+  --enable-cscope \
+  --enable-gtk2-check \
+  --enable-gui=auto \
+  --enable-luainterp \
   --enable-multibyte \
   --enable-perlinterp \
   --enable-python3interp \
   --enable-rubyinterp \
-  --with-compiledby="j.jith" \ 
+  --with-compiledby="j.jith" \
   --with-features=huge \
   --with-python3-config-dir=/usr/lib/python3.7/config-3.7m-x86_64-linux-gnu \
-  --with-x \ 
+  --with-x \
   --prefix=${VIM_PREFIX}
 
 sudo sh -c "
@@ -101,5 +103,5 @@ sudo sh -c "
 ```
 
 - Previous wallpapers  
-https://i.imgur.com/0K0LqAI.png  
+🖥️ https://i.imgur.com/0K0LqAI.png  
 🖥️ http://wallpaperswide.com/ghost_nebula-wallpapers.html
