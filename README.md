@@ -100,6 +100,11 @@ sudo sh -c "
   update-alternatives --install /usr/bin/gvim gvim ${VIM_PREFIX}/bin/gvim 1;
   update-alternatives --set gvim ${VIM_PREFIX}/bin/gvim
 "
+
+# For Ubuntu 20.04
+sudo ln -sf \
+  /lib/x86_64-linux-gnu/libperl.so.5.30 \
+  /lib/x86_64-linux-gnu/libperl.so.5.28
 ```
 
 - Previous wallpapers  
