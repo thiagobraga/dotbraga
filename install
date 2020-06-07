@@ -197,38 +197,35 @@ function install() {
   function symlinks() {
     title "Create symbolic links ${Purple}for settings${Color_Off}"
 
-    step '[1/10]' "🔗 Linking .aliases in \$HOME...${IBlack}"
+    step '[1/9]' "🔗 Linking .aliases in \$HOME...${IBlack}"
     ln ${LN_OPTS} -t ${HOME} ${PROJECT_PATH}/config/.aliases
 
-    step '[2/10]' "🔗 Linking .zshrc in \$HOME...${IBlack}"
+    step '[2/9]' "🔗 Linking .zshrc in \$HOME...${IBlack}"
     ln ${LN_OPTS} -t ${HOME} ${PROJECT_PATH}/config/.zshrc
 
-    step '[3/10]' "🔗 Linking .profile in \$HOME...${IBlack}"
+    step '[3/9]' "🔗 Linking .profile in \$HOME...${IBlack}"
     ln ${LN_OPTS} -t ${HOME} ${PROJECT_PATH}/linux/.profile
 
-    step '[4/10]' "🔗 Linking .gitconfig in \$HOME...${IBlack}"
+    step '[4/9]' "🔗 Linking .gitconfig in \$HOME...${IBlack}"
     ln ${LN_OPTS} -t ${HOME} ${PROJECT_PATH}/config/.gitconfig
 
-    step '[5/10]' "🔗 Linking .sudo_as_admin_successful in \$HOME...${IBlack}"
-    ln ${LN_OPTS} -t ${HOME} ${PROJECT_PATH}/scripts/misc/.sudo_as_admin_successful
-
-    step '[6/10]' "🔗 Linking .hushlogin in \$HOME...${IBlack}"
-    ln ${LN_OPTS} -t ${HOME} ${PROJECT_PATH}/scripts/misc/.hushlogin
-
-    step '[7/10]' "🔗 Linking .hyper.js in \$HOME...${IBlack}"
-    ln ${LN_OPTS} -t ${HOME} ${PROJECT_PATH}/scripts/misc/.hyper.js
-
-    step '[8/10]' "🔗 Linking terminator config...${IBlack}"
+    step '[5/9]' "🔗 Linking terminator config...${IBlack}"
     TARGET="${HOME}/.config/terminator/" && mkdir -p ${TARGET}
     ln ${LN_OPTS} -t ${TARGET} ${PROJECT_PATH}/config/terminator/config
 
-    step '[9/10]' "🔗 Linking fontconfig settings...${IBlack}"
+    step '[6/9]' "🔗 Linking fontconfig settings...${IBlack}"
     TARGET="${HOME}/.config/fontconfig/conf.d/" && mkdir -p ${TARGET}
     ln ${LN_OPTS} -t ${TARGET} ${PROJECT_PATH}/config/fontconfig/01-emoji.conf
 
-    step '[10/10]' "🔗 Linking Qt5 settings...${IBlack}"
+    step '[7/9]' "🔗 Linking Qt5 settings...${IBlack}"
     TARGET="${HOME}/.config/qt5ct/" && mkdir -p ${TARGET}
     ln ${LN_OPTS} -t ${TARGET} ${PROJECT_PATH}/linux/qt5ct/qt5ct.conf
+
+    step '[8/9]' "🔗 Touching .sudo_as_admin_successful in \$HOME...${IBlack}"
+    touch ${HOME}/.sudo_as_admin_successful
+
+    step '[9/9]' "🔗 Touching .hushlogin in \$HOME...${IBlack}"
+    touch ${HOME}/.hushlogin
 
     success 'Symlinks created!'
   }
