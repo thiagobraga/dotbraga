@@ -67,46 +67,11 @@ cd dotfiles
 - [ ] ✨ KDE: Version desktop settings
 - [ ] ⚙ Vim: Create method to compile vim as below 
 
-### Temp
+### Wiki
 
-- Compile `vim`:
+- [Vim config](./docs/vim.md)
 
-``` bash
-VIM_PREFIX="$HOME"/www/oss/bin/vim
+### Previous wallpapers
 
-./configure \
-  --enable-256-color \
-  --enable-cscope \
-  --enable-gtk2-check \
-  --enable-gui=auto \
-  --enable-luainterp \
-  --enable-multibyte \
-  --enable-perlinterp \
-  --enable-python3interp \
-  --enable-rubyinterp \
-  --with-compiledby="j.jith" \
-  --with-features=huge \
-  --with-python3-config-dir=/usr/lib/python3.7/config-3.7m-x86_64-linux-gnu \
-  --with-x \
-  --prefix=${VIM_PREFIX}
-
-sudo sh -c "
-  update-alternatives --install /usr/bin/editor editor ${VIM_PREFIX}/bin/vim 1;
-  update-alternatives --set editor ${VIM_PREFIX}/bin/vim;
-  update-alternatives --install /usr/bin/vim vim ${VIM_PREFIX}/bin/vim 1;
-  update-alternatives --set vim ${VIM_PREFIX}/bin/vim;
-  update-alternatives --install /usr/bin/vi vi ${VIM_PREFIX}/bin/vim 1;
-  update-alternatives --set vi ${VIM_PREFIX}/bin/vim;
-  update-alternatives --install /usr/bin/gvim gvim ${VIM_PREFIX}/bin/gvim 1;
-  update-alternatives --set gvim ${VIM_PREFIX}/bin/gvim
-"
-
-# For Ubuntu 20.04
-sudo ln -sf \
-  /lib/x86_64-linux-gnu/libperl.so.5.30 \
-  /lib/x86_64-linux-gnu/libperl.so.5.28
-```
-
-- Previous wallpapers  
 🖥️ https://i.imgur.com/0K0LqAI.png  
 🖥️ http://wallpaperswide.com/ghost_nebula-wallpapers.html
