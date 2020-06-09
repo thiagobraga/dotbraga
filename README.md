@@ -6,8 +6,15 @@
 
 <p align="center">
   <a href="https://github.com/thiagobraga">@thiagobraga's</a> dotfiles<br>
-  <a href="https://raw.githubusercontent.com/thiagobraga/todoist-userstyles/master/theme.user.css"><img src="https://img.shields.io/badge/version-0.0.1-929faf.svg" align="center" alt="Version 0.0.1"></a>
+  <a href="https://raw.githubusercontent.com/thiagobraga/todoist-userstyles/master/theme.user.css"><img src="https://img.shields.io/badge/version-0.0.5-929faf.svg" align="center" alt="Version 0.0.5"></a>
   <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=thibraga06%40gmail.com&item_name=Contribuir+para+o+desenvolvimento+de+projetos+open+source&currency_code=BRL&source=url" target="_blank" rel="nofollow noopener"><img src="https://img.shields.io/badge/donate-PayPal-526272.svg" align="center"></a>
+</p>
+
+<p align="center">
+  <b><a href="#features">Features</a></b> • 
+  <b><a href="#installation">Installation</a></b> • 
+  <b><a href="#screenshots">Screenshots</a></b> • 
+  <b><a href="#wiki">Wiki</a></b>
 </p>
 
 <p align="center">
@@ -35,7 +42,7 @@ cd dotfiles
 
 <img src="./public/screenshots/dotbraga_terminator_2020-04-06_00.21.png" width="420" />
 
-## More screenshots
+## Screenshots
 
 ### Mac OS
 
@@ -43,7 +50,9 @@ cd dotfiles
   <img src="./public/screenshots/dotbraga_macos_2020-04-07_13.53.png" width="600" /> 
 </p>
 
-## Shortcuts
+## Wiki
+
+- [Vim config](./docs/vim.md)
 
 ### Terminator
 
@@ -56,22 +65,17 @@ cd dotfiles
 
 ## TODO
 
-- [x] 🐛 Docs: Reduce image sizes
 - [ ] ✨ Global: Install Fira Code font
 - [ ] ✨ Ubuntu: Install Gnome extensions
 - [ ] ✨ Ubuntu: Configure Gnome extensions
 - [ ] ✨ Ubuntu: Configure Gnome behavior
-- [ ] ✨ Ubuntu: Version Gnome Keyboard Shortcuts
-  - Added <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd> for open Emoji Keyboard shortcut Chrome extension (exported as app)
 - [ ] ✨ Ubuntu: Install and configure Noto Emoji
-- [ ] ✨ KDE: Version desktop settings
-- [ ] ⚙ Vim: Create method to compile vim as below 
+- [ ] ✨ Ubuntu: Version Gnome Keyboard Shortcuts  
+  Added <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd> for open Emoji Keyboard shortcut Chrome extension (exported as app)
+- [x] ⚙ Vim: Create method to compile vim as below 
+- [x] 🐛 Docs: Reduce image sizes
 
-### Wiki
-
-- [Vim config](./docs/vim.md)
-
-### Previous wallpapers
+## Previous wallpapers
 
 🖥️ https://i.imgur.com/0K0LqAI.png  
 🖥️ http://wallpaperswide.com/ghost_nebula-wallpapers.html
