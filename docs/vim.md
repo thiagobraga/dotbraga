@@ -25,10 +25,16 @@ ${HOME}
 ## Compile ViM
 
 ``` bash
-VIM_PREFIX="$HOME"/www/oss/bin/vim
+VIM_PREFIX="$HOME"/www/oss/bin
+VIM_SRC="$HOME"/www/oss/vim
+
+mkdir -p "$VIM_PREFIX"
+
+cd "$VIM_SRC"
+
+sudo make distclean
 
 ./configure \
-  --enable-256-color \
   --enable-cscope \
   --enable-gtk2-check \
   --enable-gui=auto \
@@ -39,19 +45,22 @@ VIM_PREFIX="$HOME"/www/oss/bin/vim
   --enable-rubyinterp \
   --with-compiledby="j.jith" \
   --with-features=huge \
-  --with-python3-config-dir=/usr/lib/python3.8/config-3.8m-x86_64-linux-gnu \
+  --with-python3-config-dir=$(python3-config --configdir) \
   --with-x \
   --prefix=${VIM_PREFIX}
 
+make
+sudo make install
+
 sudo sh -c "
-  update-alternatives --install /usr/bin/editor editor ${VIM_PREFIX}/bin/vim 1;
-  update-alternatives --set editor ${VIM_PREFIX}/bin/vim;
-  update-alternatives --install /usr/bin/vim vim ${VIM_PREFIX}/bin/vim 1;
-  update-alternatives --set vim ${VIM_PREFIX}/bin/vim;
-  update-alternatives --install /usr/bin/vi vi ${VIM_PREFIX}/bin/vim 1;
-  update-alternatives --set vi ${VIM_PREFIX}/bin/vim;
-  update-alternatives --install /usr/bin/gvim gvim ${VIM_PREFIX}/bin/gvim 1;
-  update-alternatives --set gvim ${VIM_PREFIX}/bin/gvim
+  update-alternatives --install /usr/bin/editor editor ${VIM_PREFIX}/vim 1;
+  update-alternatives --set editor ${VIM_PREFIX}/vim;
+  update-alternatives --install /usr/bin/vim vim ${VIM_PREFIX}/vim 1;
+  update-alternatives --set vim ${VIM_PREFIX}/vim;
+  update-alternatives --install /usr/bin/vi vi ${VIM_PREFIX}/vim 1;
+  update-alternatives --set vi ${VIM_PREFIX}/vim;
+  update-alternatives --install /usr/bin/gvim gvim ${VIM_PREFIX}/gvim 1;
+  update-alternatives --set gvim ${VIM_PREFIX}/gvim
 "
 ```
 
