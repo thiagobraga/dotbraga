@@ -1,0 +1,21 @@
+#!/bin/bash
+
+function git-update() {
+
+  function all() {
+    echo 'all'
+  }
+
+  ARGS=("$@")
+  for arg in "${ARGS[@]}"; do
+    [[ "$arg" = "" ]] && echo "Selecione uma opção"
+  done
+
+  for arg in "${ARGS[@]}"; do
+    case $arg in
+    all) all ;;
+    proxy) proxy "$@" ;;
+    esac
+  done
+
+}
