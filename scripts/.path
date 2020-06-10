@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Define PATH environment variable in a more organized way.
+# ------------------------------------------------------------------------------
+PATHS=(
+  '/usr/local/sbin'
+  '/usr/local/bin'
+  '/usr/sbin'
+  '/usr/bin'
+  '/sbin'
+  '/bin'
+  '/snap/bin'
+  '/opt/sublime_text'
+  "$HOME/.config/composer/vendor/bin"
+  "$HOME/.gem/ruby/2.5.0/bin"
+  "$HOME/.local/bin"
+  "$HOME/n/bin"
+)
+
+export PATH=$(join : $PATHS[@])
+
+export VIM_PREFIX="$HOME/www/oss/vim"

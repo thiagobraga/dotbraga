@@ -1,0 +1,22 @@
+{
+  "theme": "dark",
+  "snippet": {
+    "expanded": true,
+    "newSnippetPrivate": true,
+    "sorting": "updated_at",
+    "sortingReverse": true
+  },
+  "editor": {
+    "tabSize": 2
+  },
+  "userPanel": {
+    "hideProfilePhoto": true
+  },
+  "logger": {
+    "level": "debug"
+  },
+  "proxy": {
+    "enable": false,
+    "address": "socks://localhost:1080"
+  }
+}
