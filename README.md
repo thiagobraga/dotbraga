@@ -23,14 +23,22 @@
 
 ## Features
 
-- Install [Oh My ZSH](https://ohmyz.sh)
-  * [Spaceship](https://denysdovhan.com/spaceship-prompt) theme
-  * [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) plugin
-  * [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) plugin
-- Install [VIM - Vi IMproved](https://www.vim.org) with settings
-- Symlinks for [.aliases](./.aliases), [.zshrc](./.zshrc) and more
-- Symlink settings for [Terminator](https://gnometerminator.blogspot.com/p/introduction.html), [Clementine](https://www.clementine-player.org/pt_BR/) and more
-- Shortcut "Restart to Windows" for Dual Boot systems
+• [**Oh My ZSH**](https://ohmyz.sh)  
+<sup>[**Spaceship**](https://denysdovhan.com/spaceship-prompt) theme, [**zsh-syntax-highlighting**](https://github.com/zsh-users/zsh-syntax-highlighting) and [**zsh-autosuggestions**](https://github.com/zsh-users/zsh-autosuggestions) plugins</sup>  
+
+• [**VIM - Vi IMproved**](https://www.vim.org)  
+<sup>One Dark theme, compile (soon...) and install settings for ViM. Onedark theme, vim-airline, CtrlP</sup>  
+
+• **Aliases** for git, docker, yarn, apt, dpkg and more...  
+<sup>Many of them inspired on Oh My ZSH aliases.</sup>  
+
+• [**Terminator**](https://gnometerminator.blogspot.com/p/introduction.html) customization  
+<sup>Beautiful semi-transparent Nord theme with some improved keyboard shortcuts</sup>  
+
+• **"Restart to Windows"** for Dual Boot systems  
+<sup>Detects the Windows ID on GRUB list and restart system to that detected OS</sup>
+
+...and more  
 
 ## Installation
 
@@ -52,16 +60,8 @@ cd dotfiles
 
 ## Wiki
 
-- [Vim config](./docs/vim.md)
-
-### Terminator
-
-- Copy: <kbd>Ctrl</kbd> + <kbd>C</kbd>
-- Paste: <kbd>Ctrl</kbd> + <kbd>V</kbd>
-- New tab: <kbd>Ctrl</kbd> + <kbd>T</kbd>
-- Close tab: <kbd>Ctrl</kbd> + <kbd>W</kbd>
-- Split vertically: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd>
-- Split horizontally: <kbd>Ctrl</kbd> + <kbd>D</kbd>
+- [**ViM**](./docs/vim.md)
+- [**Terminator**](./docs/terminator.md)
 
 ## TODO
 

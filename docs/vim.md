@@ -1,10 +1,17 @@
-# dotbraga • ViM
+<h1 align="center">dotbraga • ViM</h1>
 
-Open `vi` to first install the plugins, then restart vi and all the configurations will be applied. After that, the folders `autoload` and `plugged` will be created, containing cached files for loaded plugins.
+<p align="center">
+  <b><a href="#features">Features</a></b> • 
+  <b><a href="#installation">Installation</a></b> • 
+  <b><a href="#screenshots">Screenshots</a></b> • 
+  <b><a href="#wiki">Wiki</a></b>
+</p>
+
+This doc explains the installation process of Vim and plugins. After the installation process, the folders `autoload` and `plugged` will be created, containing cached files for loaded plugins.
 
 ## Installation
 
-``` sh
+``` bash
 ./install vimrc
 ```
 
@@ -12,7 +19,7 @@ Open `vi` to first install the plugins, then restart vi and all the configuratio
 
 The [install](../../install) script will create the symlinks with this structure:
 
-``` sh
+``` bash
 ${HOME}
 ├── .vim
 │   ├── basics.vim
@@ -64,7 +71,7 @@ sudo sh -c "
 "
 ```
 
-For Ubuntu 20.04:
+Fix for **Ubuntu 20.04**:
 ``` bash
 sudo ln -sf \
   /lib/x86_64-linux-gnu/libperl.so.5.30 \
