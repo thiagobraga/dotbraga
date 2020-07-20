@@ -87,3 +87,7 @@ alias yys='yarn; yarn start'
 # Vessel
 # ---------------------------------------------------
 alias v='./vessel'
+alias vup='v start'
+alias vstart='v start'
+alias vdn='v down'
+alias vdown='v down'
