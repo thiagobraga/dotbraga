@@ -53,6 +53,7 @@ alias gfp='git fetch --all --prune'
 alias ggc='git gc'
 alias gmn='git merge --no-ff --no-edit'
 alias gpf='git push -f'
+alias gcs='git checkout stage'
 
 # Make
 # ---------------------------------------------------
