@@ -1,7 +1,7 @@
 #!/bin/bash
 
 alias apt='sudo apt'
-alias apt-get='sudo apt-get'
+alias aptu='apt update && apt upgrade -V && apt autoclean && apt autoremove -V'
 alias aptitude='sudo aptitude'
 alias dpkg='sudo dpkg'
 
