@@ -9,7 +9,7 @@ silent! syntax enable
 set t_Co=256
 let g:onedark_hide_endofbuffer=1
 let g:onedark_termcolors=256
-let g:airline_theme='onedark_braga'
+let g:airline_theme='onedark'
 silent! colorscheme onedark
 
 highlight CursorLineNr ctermfg=red
