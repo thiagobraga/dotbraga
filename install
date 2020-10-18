@@ -1,322 +1,291 @@
-#!/bin/zsh
+#!/bin/bash
 
 # Dotfiles install
+# ------------------------------------------------------------------------------
 #
 # Usage:
-#   ./install
-#   ./install -f        # Run scripts without confirmation
-#   ./install -v        # Verbose mode
-#   ./install ohmyzsh   # Install only Oh My ZSH
-#   ./install vimrc     # Install Vim and its settings
+#   ./install           # Install everything
 #   ./install --all     # Install everything
+#   ./install ohmyzsh   # Install only Oh My ZSH
+#   ./install vim       # Install Vim and its settings
 
-# Define current version
-VERSION='0.0.1'
+source src/scripts/colors
 
-# Define project path
+VERSION='1.0.0'
 PROJECT_PATH=$(pwd)
-
-# Global constants
 APT_PARAMS='-yqqq'
 LN_OPTS='-sfn'
 
-# Import color constants
-. ./scripts/colors
-
-# Test colors in the script above
-# print_colors && exit
-
 # Install the components of dotfiles
-# =====================================================
-function install() {
+# ------------------------------------------------------------------------------
+install() {
 
-  # Print the header
-  function header() {
-    echo ${BWhite}dotfiles${Color_Off} ${Yellow}${VERSION}${Color_Off}
+  # Starts the benchmark time to show at the end of each function
+  benchmark_start() {
+    return
+    # START=$(date +%s.%6N)
   }
 
-  # (WIP) Bump version of the project
-  # Change README.md
-  # Change this script
-  # NEW_VERSION='0.1.0' && sed -E 's/version-(.*)-/version--/gmi' README.md | head -n 10
-  function bump() {
-    $1
-    echo $1
-    echo $2
-    [[ $2 == "" ]] && abort 'Define new version to bump. Exit'
-    CURRENT_VERSION=$(grep -o -P '(?<=Version ).*(?=">)' ./README.md)
-    title "Bump version${Color_Off} ${CURRENT_VERSION} to ${2}"
-    # ask 'Are you sure?' '[y/N]'
+  # Stops the benchmark and calculate the amount of time the used
+  benchmark_stop() {
+    return
+    # END=$(date +%s.%6N)
+    # RUNTIME=$(date -d @$(echo "$END - $START" | bc) +%s.%2N)
+  }
+
+  # Print the header
+  header() {
+    printf "${BWhite}%s${Color_Off} ${Yellow}%s${Color_Off}\n" 'dotfiles' ${VERSION}
   }
 
   # Define title of each internal function
-  function title() {
-    benchmark_start
-    echo ${BPurple}"\n${1}"${Color_Off}
+  title() {
+    printf "\n${BPurple}%s${Color_Off}\n" "${1}"
   }
 
   # Print steps information about installation
-  function step() {
-    echo "${IBlack}${1}${Color_Off}" "${2}"
-  }
-
-  # Starts the benchmark time to show at the end of each function
-  function benchmark_start() {
-    START=$(date +%s.%6N)
-  }
-
-  # Stops the benchmark and calculate the amount of time the function used
-  function benchmark_stop() {
-    END=$(date +%s.%6N)
-    RUNTIME=$(date -d @"$((${END} - ${START}))" +%s.%2N)
+  step() {
+    printf "${IBlack}%s${Color_Off} %s${IBlack}\n" "${1}" "${2}"
   }
 
   # Ask question to the user capturing keyboard input.
-  function ask() {
-    printf ${Yellow} && read "ANSWER?${1} ${2} " && printf ${Color_Off}
-    return ${ANSWER}
+  ask() {
+    printf '%s' "${Yellow}" &&
+      read -r "ANSWER?${1} ${2} " &&
+      printf '%s' "${Color_Off}"
+
+    return "${ANSWER}"
   }
 
   # Inform user about some action.
-  function info() {
-    echo ${Blue}'info'${Color_Off} "${1}"
+  info() {
+    printf "${Blue}"'info'"${Color_Off} %s\n" "${1}"
   }
 
   # Debug some information.
-  function debug() {
-    echo ${IYellow}'debug'${Color_Off} $@
+  debug() {
+    printf "${IYellow}"'debug'"${Color_Off} %s\n" "${*}"
   }
 
   # Print done message with duration
-  function success() {
-    benchmark_stop
-    echo "${Green}success${Color_Off} ${1}"
-    echo "✨ Done in ${RUNTIME}s"
+  success() {
+    # benchmark_stop
+    printf "${Green}success${Color_Off} %s\n\n" "${1}"
+    # echo "✨ Done in ${RUNTIME}s"
   }
 
   # Abort execution with message
-  function abort() {
-    echo "${Red}abort${Color_Off} ${1}"
+  abort() {
+    printf "${Red}abort${Color_Off} %s\n" "${1}"
   }
 
   # Install Oh My ZSH
-  function ohmyzsh() {
+  _ohmyzsh() {
     title 'Install Oh My ZSH'
     step '[1/2]' '🔍 Check if installed...'
 
-    [[ ! -d "$HOME/.oh-my-zsh" ]] && {
-      step '[2/2]' "💻 Installing..."${IBlack}
+    if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
+      step '[2/2]' '💻 Installing...'
       URL='https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh'
       sh -c "$(curl -fsSL ${URL})"
-    } || {
-      step '[2/2]' "💾 Updating...${IBlack}"
-      cd ${HOME}/.oh-my-zsh || exit
-      git pull origin master && cd ${PROJECT_PATH}
-    }
+    else
+      step '[2/2]' '💾 Updating...'
+      cd "${HOME}"/.oh-my-zsh || exit
+      git pull origin master && cd "${PROJECT_PATH}" || exit
+    fi
 
     success 'Oh My ZSH install finished.'
   }
 
   # Install Spaceship theme for Oh My ZSH
-  function spaceship() {
-    title "Install Spaceship theme ${Purple}for Oh My ZSH${Color_Off}"
+  _spaceship() {
+    title "Install Spaceship theme for Oh My ZSH"
     step '[1/3]' '🔍 Check if installed...'
     OHMYZSH="${HOME}/.oh-my-zsh"
     THEME_PATH="${OHMYZSH}/custom/themes/spaceship-prompt"
 
-    [[ ! -d "${THEME_PATH}" ]] && {
-      step '[2/3]' "💻 Installing...${IBlack}"
+    if [[ ! -d "${THEME_PATH}" ]]; then
+      step '[2/3]' '💻 Installing...'
       GITHUB_URL='https://github.com/denysdovhan/spaceship-prompt'
-      git clone ${GITHUB_URL} ${THEME_PATH}
-    } || {
-      step '[2/3]' "💾 Updating...${IBlack}"
-      cd ${THEME_PATH} || exit
-      git pull origin master && cd ${PROJECT_PATH}
-    }
+      git clone ${GITHUB_URL} "${THEME_PATH}"
+    else
+      step '[2/3]' '💾 Updating...'
+      cd "${THEME_PATH}" || exit
+      git pull origin master && cd "${PROJECT_PATH}" || exit
+    fi
 
-    step '[3/3]' "🔗 Creating symlink...${IBlack}"
-    ln ${LN_OPTS} ${THEME_PATH}/spaceship.zsh-theme ${OHMYZSH}/themes/spaceship.zsh-theme
+    step '[3/3]' '🔗 Creating symlink...'
+    ln ${LN_OPTS} "${THEME_PATH}/spaceship.zsh-theme" "${OHMYZSH}/themes/spaceship.zsh-theme"
 
     success 'Spaceship install finished.'
   }
 
   # Install zsh-syntax-highlighting plugin for Oh My ZSH
-  function zsh-syntax-highlighting() {
-    title "Install zsh-syntax-highlighting plugin ${Purple}for Oh My ZSH${Color_Off}"
+  _zsh_syntax_highlighting() {
+    title "Install zsh-syntax-highlighting plugin"
     step '[1/2]' '🔍 Check if installed...'
     OHMYZSH="${HOME}/.oh-my-zsh"
     PLUGIN_PATH="${OHMYZSH}/custom/plugins/zsh-syntax-highlighting"
 
-    [[ ! -d "${PLUGIN_PATH}" ]] && {
-      step '[2/3]' "💻 Installing...${IBlack}"
+    if [[ ! -d "${PLUGIN_PATH}" ]]; then
+      step '[2/3]' '💻 Installing...'
       GITHUB_URL='https://github.com/zsh-users/zsh-syntax-highlighting'
-      git clone ${GITHUB_URL} ${PLUGIN_PATH}
-    } || {
-      step '[2/2]' "💾 Updating...${IBlack}"
-      cd ${PLUGIN_PATH} || exit
-      git pull origin master && cd ${PROJECT_PATH}
-    }
+      git clone ${GITHUB_URL} "${PLUGIN_PATH}"
+    else
+      step '[2/2]' '💾 Updating...'
+      cd "${PLUGIN_PATH}" || exit
+      git pull origin master && cd "${PROJECT_PATH}" || exit
+    fi
 
     success 'zsh-syntax-highlighting install finished.'
   }
 
   # Install zsh-autosuggestions plugin for Oh My ZSH
-  function zsh-autosuggestions() {
-    title "Install zsh-autosuggestions plugin ${Purple}for Oh My ZSH${Color_Off}"
+  _zsh_autosuggestions() {
+    title "Install zsh-autosuggestions plugin"
     step '[1/2]' '🔍 Check if installed...'
     OHMYZSH="${HOME}/.oh-my-zsh"
     PLUGIN_PATH="${OHMYZSH}/custom/plugins/zsh-autosuggestions"
 
-    [[ ! -d "${PLUGIN_PATH}" ]] && {
-      step '[2/3]' "💻 Installing...${IBlack}"
+    if [[ ! -d "${PLUGIN_PATH}" ]]; then
+      step '[2/3]' '💻 Installing...'
       GITHUB_URL='https://github.com/zsh-users/zsh-autosuggestions'
-      git clone ${GITHUB_URL} ${PLUGIN_PATH}
-    } || {
-      step '[2/2]' "💾 Updating...${IBlack}"
-      cd ${PLUGIN_PATH} || exit
-      git pull origin master && cd ${PROJECT_PATH}
-    }
+      git clone ${GITHUB_URL} "${PLUGIN_PATH}"
+    else
+      step '[2/2]' '💾 Updating...'
+      cd "${PLUGIN_PATH}" || exit
+      git pull origin master && cd "${PROJECT_PATH}" || exit
+    fi
 
     success 'zsh-autosuggestions install finished.'
   }
 
   # Shortcut "Restart to Windows" for Dual Boot systems
-  # TODO: Attach to favorites.
-  function shortcuts() {
-    title "Shortcut 'Restart to Windows' ${Purple}for Dual Boot systems${Color_Off}"
-    step '[1/1]' "💻 Installing...${IBlack}"
+  _shortcuts() {
+    title "Shortcut 'Restart to Windows' for Dual Boot systems"
+    step '[1/1]' '💻 Installing...'
 
     sudo ln ${LN_OPTS} \
-      ${PROJECT_PATH}/config/shortcuts/windows.{desktop,png,sh} \
+      "${PROJECT_PATH}/src/shortcuts/windows.{desktop,png,sh}" \
       /usr/share/applications
 
     success "'Restart to Windows' created successfuly."
   }
 
   # Create symbolic links for settings
-  function symlinks() {
-    title "Create symbolic links ${Purple}for settings${Color_Off}"
+  _symlinks() {
+    title "Create symbolic links for settings"
 
-    step '[1/9]' "🔗 Linking .aliases in \$HOME...${IBlack}"
-    ln ${LN_OPTS} -t ${HOME} ${PROJECT_PATH}/config/.aliases
+    step '[1]' "🔗 Linking .zshrc in \$HOME..." && ln ${LN_OPTS} -t "${HOME}" "${PROJECT_PATH}/src/.zshrc"
+    step '[2]' "🔗 Linking .aliases in \$HOME..." && ln ${LN_OPTS} -t "${HOME}" "${PROJECT_PATH}/src/.aliases"
+    step '[3]' "🔗 Linking .profile in \$HOME..." && ln ${LN_OPTS} -t "${HOME}" "${PROJECT_PATH}/src/.profile"
+    step '[4]' "🔗 Linking .gitconfig in \$HOME..." && ln ${LN_OPTS} -t "${HOME}" "${PROJECT_PATH}/src/.gitconfig"
 
-    step '[2/9]' "🔗 Linking .zshrc in \$HOME...${IBlack}"
-    ln ${LN_OPTS} -t ${HOME} ${PROJECT_PATH}/config/.zshrc
+    step '[5]' '🔗 Linking terminator config...'
+    TARGET="${HOME}/.config/terminator" && mkdir -p "${TARGET}"
+    ln ${LN_OPTS} -t "${TARGET}" "${PROJECT_PATH}/src/terminator/config"
 
-    step '[3/9]' "🔗 Linking .profile in \$HOME...${IBlack}"
-    ln ${LN_OPTS} -t ${HOME} ${PROJECT_PATH}/linux/.profile
+    step '[6]' '🔗 Linking fontconfig settings...'
+    TARGET="${HOME}/.config/fontconfig/conf.d" && mkdir -p "${TARGET}"
+    ln ${LN_OPTS} -t "${TARGET}" "${PROJECT_PATH}/src/fontconfig/01-emoji.conf"
 
-    step '[4/9]' "🔗 Linking .gitconfig in \$HOME...${IBlack}"
-    ln ${LN_OPTS} -t ${HOME} ${PROJECT_PATH}/config/.gitconfig
+    step '[7]' '🔗 Linking Qt5 settings...'
+    TARGET="${HOME}/.config/qt5ct" && mkdir -p "${TARGET}"
+    ln ${LN_OPTS} -t "${TARGET}" "${PROJECT_PATH}/src/qt5ct/qt5ct.conf"
 
-    step '[5/9]' "🔗 Linking terminator config...${IBlack}"
-    TARGET="${HOME}/.config/terminator/" && mkdir -p ${TARGET}
-    ln ${LN_OPTS} -t ${TARGET} ${PROJECT_PATH}/config/terminator/config
+    step '[8]' '🔗 Linking dotbraga scripts...'
+    TARGET="${HOME}/scripts" && mkdir -p "${TARGET}/custom"
+    # TODO: Make it dynamic
+    ln ${LN_OPTS} -t "${TARGET}" "${PROJECT_PATH}/src/scripts/colors"
+    ln ${LN_OPTS} -t "${TARGET}/custom" "${PROJECT_PATH}/src/scripts/custom/index"
+    ln ${LN_OPTS} -t "${TARGET}/custom" "${PROJECT_PATH}/src/scripts/custom/path"
 
-    step '[6/9]' "🔗 Linking fontconfig settings...${IBlack}"
-    TARGET="${HOME}/.config/fontconfig/conf.d/" && mkdir -p ${TARGET}
-    ln ${LN_OPTS} -t ${TARGET} ${PROJECT_PATH}/config/fontconfig/01-emoji.conf
-
-    step '[7/9]' "🔗 Linking Qt5 settings...${IBlack}"
-    TARGET="${HOME}/.config/qt5ct/" && mkdir -p ${TARGET}
-    ln ${LN_OPTS} -t ${TARGET} ${PROJECT_PATH}/linux/qt5ct/qt5ct.conf
-
-    step '[8/9]' "🔗 Touching .sudo_as_admin_successful in \$HOME...${IBlack}"
-    touch ${HOME}/.sudo_as_admin_successful
-
-    step '[9/9]' "🔗 Touching .hushlogin in \$HOME...${IBlack}"
-    touch ${HOME}/.hushlogin
+    step '[9]' "🔗 Touching .hushlogin in \$HOME..." && touch "${HOME}/.hushlogin"
+    step '[10]' "🔗 Touching .sudo_as_admin_successful in \$HOME..." && touch "${HOME}/.sudo_as_admin_successful"
 
     success 'Symlinks created!'
   }
 
+  _test_symlinks() {
+    title "Test created symbolic links"
+
+    ls -lah --color=tty \
+      "${HOME}/.zshrc" \
+      "${HOME}/.aliases" \
+      "${HOME}/.profile" \
+      "${HOME}/.gitconfig" \
+      "${HOME}/.config/terminator/config" \
+      "${HOME}/.config/qt5ct/qt5ct.conf" \
+      "${HOME}/scripts/colors" \
+      "${HOME}/scripts/custom/index" \
+      "${HOME}/scripts/custom/path"
+
+    ls -lah --color=tty \
+      "${HOME}/.hushlogin" \
+      "${HOME}/.sudo_as_admin_successful"
+  }
+
   # Install VIM - Vi IMproved with settings
-  function vimrc() {
-    title "Install VIM ${Purple}- Vi IMproved with settings${Color_Off}"
+  _vim() {
+    title "Install VIM - Vi IMproved with settings"
     step '[1/3]' '🔍 Check if VIM is installed...'
     VIM_FILE="${HOME}/.vimrc"
     VIM_FOLDER="${HOME}/.vim"
 
-    [[ ! $(command -v vim) ]] &&
-      step '[2/3]' '💻 Installing vim...'${IBlack} ||
-      step '[2/3]' '💾 Updating...'${IBlack}
+    if [[ ! $(command -v vim) ]]; then
+      step '[2/3]' '💻 Installing vim...'
+    else
+      step '[2/3]' '💾 Updating vim...'
+    fi
 
     sudo apt install $APT_PARAMS vim
 
     step '[3/3]' '💻 Installing vim plugins and settings...'
-    [[ "$FORCE" == true ]] &&
-      ANSWER='yes' ||
-      ask 'This command will override ~/.vimrc file. Are you sure?' '[y/N]'
+    ln ${LN_OPTS} "${PROJECT_PATH}"/src/vim/.vimrc "${VIM_FILE}"
+    ln ${LN_OPTS} "${PROJECT_PATH}"/src/vim "${VIM_FOLDER}"
+    vim -E -s -u "${VIM_FILE}" +PlugInstall +qall >/dev/null
 
-    [[ "$ANSWER" =~ ^([yY][eE][sS]|[yY])$ ]] && {
-      printf ${IBlack}
-      ln ${LN_OPTS} ${PROJECT_PATH}/config/vim/.vimrc ${HOME}/.vimrc
-      ln ${LN_OPTS} ${PROJECT_PATH}/config/vim ${VIM_FOLDER}
-      vim -E -s -u $HOME/.vimrc +PlugInstall +qall >/dev/null
-      success 'VIM installed and configured'
-    } || {
-      abort 'User terminated the script.'
-    }
+    success 'VIM installed and configured'
   }
 
-  # Call the install script without parameters.
-  function all() {
-    ohmyzsh
-    spaceship
-    zsh-syntax-highlighting
-    zsh-autosuggestions
-    shortcuts
-    symlinks
-    vimrc
+  # Call the install script without parameters
+  # or passing -a / --all parameter
+  all() {
+    _ohmyzsh
+    _spaceship
+    _zsh_syntax_highlighting
+    _zsh_autosuggestions
+    _shortcuts
+    _symlinks
+    _vim
 
     echo
-    info Finished
+    info 'Finished'
   }
 
-  # Call the header of the application.
+  # benchmark_start
   header
+  args=("$@")
 
-  # Detect execution modes.
-  ARGS=($@)
-
-  for arg in $ARGS; do
-    if [[ $arg == "-v" ]] || [[ $arg == "--verbose" ]]; then
-      VERBOSE=true && APT_PARAMS='-y' && LN_OPTS='-sfvn'
-      info 'Verbose mode activated'
-      delete=($arg)
-      ARGS=("${ARGS[@]/$delete/}")
-    fi
-
-    if [[ $arg == "-f" ]] || [[ $arg == "--force" ]]; then
-      FORCE=true
-      info 'Run without confirmation activated'
-      delete=($arg)
-      ARGS=("${ARGS[@]/$delete/}")
-    fi
-  done
-
-  # Trim args after detecting modes
-  ARGS=$(echo $ARGS)
-
-  # If empty ARGS, run all methods with defined modes...
-  [[ "$ARGS" == '' ]] && all
+  # If empty ARGS, run everything...
+  [[ "${args[*]}" == '' ]] && all
 
   # ...or detect the function to run.
-  for arg in $ARGS; do
+  for arg in "${args[@]}"; do
     case $arg in
-    ohmyzsh) ohmyzsh ;;
-    spaceship) spaceship ;;
-    zsh-syntax-highlighting) zsh-syntax-highlighting ;;
-    zsh-autosuggestions) zsh-autosuggestions ;;
-    shortcuts) shortcuts ;;
-    -l | --link | symlinks) symlinks $@ ;;
-    vim | vimrc) vimrc ;;
-    bump) bump $@ ;;
-    "" | all) all ;;
+    vim) _vim ;;
+    ohmyzsh) _ohmyzsh ;;
+    spaceship) _spaceship ;;
+    shortcuts) _shortcuts ;;
+    "" | -a | --all | all) _all ;;
+    -l | --link | symlinks) _symlinks "$@" ;;
+    --test-symlinks) _test_symlinks "$@" ;;
+    zsh-autosuggestions) _zsh_autosuggestions ;;
+    zsh-syntax-highlighting) _zsh_syntax_highlighting ;;
     *) exit ;;
     esac
   done
 }
 
 # Call the script
-install $@
+install "$@"

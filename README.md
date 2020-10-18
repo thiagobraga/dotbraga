@@ -1,81 +1,87 @@
 <p align="center">
-  <img src="./public/icons/config-icon.png" width="128" />
+  <img src="./src/images/icons/config-icon.png" width="128" />
 </p>
 
 <h1 align="center">dotbraga</h1>
 
 <p align="center">
   <a href="https://github.com/thiagobraga">@thiagobraga's</a> dotfiles<br>
-  <a href="https://raw.githubusercontent.com/thiagobraga/todoist-userstyles/master/theme.user.css"><img src="https://img.shields.io/badge/version-0.0.5-929faf.svg" align="center" alt="Version 0.0.5"></a>
-  <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=thibraga06%40gmail.com&item_name=Contribuir+para+o+desenvolvimento+de+projetos+open+source&currency_code=BRL&source=url" target="_blank" rel="nofollow noopener"><img src="https://img.shields.io/badge/donate-PayPal-526272.svg" align="center"></a>
+  <a href="https://raw.githubusercontent.com/thiagobraga/todoist-userstyles/master/theme.user.css"><img src="https://img.shields.io/badge/version-1.0.0-929faf.svg" align="center" alt="Version 1.0.0"></a>
+  <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=thibraga06%40gmail.com&item_name=Contribute+to+development+of+open+source+projects&currency_code=USD&source=url" target="_blank" rel="nofollow noopener"><img src="https://img.shields.io/badge/donate-PayPal-526272.svg" align="center"></a>
 </p>
 
 <p align="center">
   <b><a href="#features">Features</a></b> • 
   <b><a href="#installation">Installation</a></b> • 
-  <b><a href="#screenshots">Screenshots</a></b> • 
-  <b><a href="#wiki">Wiki</a></b>
+  <b><a href="#docs">Docs</a></b> • 
+  <b><a href="#screenshots">Screenshots</a></b>
 </p>
 
 <p align="center">
-  <img src="./public/screenshots/dotbraga_ubuntu_2020-04-06_00.18.png" width="600" />
+  <img src="./src/images/screenshots/dotbraga_ubuntu_2020-04-06_00.18.png" width="600" />
 </p>
 
 ## Features
 
-• [**Oh My ZSH**](https://ohmyz.sh)  
-<sup>[**Spaceship**](https://denysdovhan.com/spaceship-prompt) theme, [**zsh-syntax-highlighting**](https://github.com/zsh-users/zsh-syntax-highlighting) and [**zsh-autosuggestions**](https://github.com/zsh-users/zsh-autosuggestions) plugins</sup>  
+### [Oh My ZSH](https://ohmyz.sh)  
+<sup>✨ [Spaceship Theme](https://denysdovhan.com/spaceship-prompt)</sup>  
+<sup>✨ [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)</sup>  
+<sup>✨ [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)</sup>
 
-• [**VIM - Vi IMproved**](https://www.vim.org)  
-<sup>One Dark theme, compile (soon...) and install settings for ViM. Onedark theme, vim-airline, CtrlP</sup>  
+### [VIM · Vi IMproved](https://www.vim.org)  
+<sup>✨ [CtrlP](https://kien.github.io/ctrlp.vim)</sup>  
+<sup>✨ [NERDtree](https://github.com/preservim/nerdtree)</sup>  
+<sup>✨ [vim-airline](https://github.com/vim-airline/vim-airline)</sup>  
+<sup>💻 _One Dark theme [wip]_</sup>  
+<sup>💻 _Compiled from latest version on Github [wip]_</sup>  
 
-• **Aliases** for git, docker, yarn, apt, dpkg and more...  
-<sup>Many of them inspired on Oh My ZSH aliases.</sup>  
+### [Fira Code]()   
+<sup>For beautiful coding and font ligatures</sup>  
+<sup>💻 _Automatic install via script [wip]_</sup>
 
-• [**Terminator**](https://gnometerminator.blogspot.com/p/introduction.html) customization  
-<sup>Beautiful semi-transparent Nord theme with some improved keyboard shortcuts</sup>  
+### [Aliases](./docs/aliases.md)  
+<sup>Many of them inspired on Oh My ZSH aliases</sup>  
+<sup>✨ [git](./docs/aliases.md#git)</sup>  
+<sup>✨ [docker](./docs/aliases.md#docker)</sup>  
+<sup>✨ [docker-compose](./docs/aliases.md#docker-compose)</sup>  
+<sup>✨ [yarn](./docs/aliases.md#yarn)</sup>  
+<sup>✨ [apt](./docs/aliases.md#apt)</sup>  
 
-• **"Restart to Windows"** for Dual Boot systems  
-<sup>Detects the Windows ID on GRUB list and restart system to that detected OS</sup>
+### [Terminator](./docs/terminator.md)  
+<sup>✨ Beautiful semi-transparent [Nord](https://www.nordtheme.com) theme. See [**screenshots**](#screenshots) 📷</sup>  
+<sup>✨ [Improved keyboard shortcuts](./docs/terminator.md#color-palette)</sup>
 
-...and more  
+### ["Restart to Windows" shortcut](./src/dual-boot/windows.sh)
+<sup>Automates the restart process for Dual Boot systems</sup>  
+<sup>✨ Detects the Windows ID on GRUB list</sup>  
+<sup>✨ Restart system to that detected OS</sup>  
+<sup>✨ Shows confirmation dialog using Zenity from Ubuntu [option]</sup>
 
 ## Installation
 
 ``` sh
-git clone https://github.com/thiagobraga/dotfiles
-cd dotfiles
+git clone https://github.com/thiagobraga/dotbraga
+cd dotbraga
 ./install
 ```
 
-<img src="./public/screenshots/dotbraga_terminator_2020-04-06_00.21.png" width="420" />
+The install script accepts some params. Here's a overview of the usage:
+
+``` sh
+./install           # Install everything
+./install --all     # Install everything
+./install ohmyzsh   # Install only Oh My ZSH
+./install vimrc     # Install Vim and its settings
+```
+
+See the [install](./install) script to see all the possibilities. You can hit `./install -h` or `./install --help` to get help from the script.
+
+## Docs
+
+- [**Aliases**](./docs/aliases.md)
+- [**Terminator**](./docs/terminator.md)
+- [**ViM**](./docs/vim.md)
 
 ## Screenshots
 
-### Mac OS
-
-<p align="center">
-  <img src="./public/screenshots/dotbraga_macos_2020-04-07_13.53.png" width="600" /> 
-</p>
-
-## Wiki
-
-- [**ViM**](./docs/vim.md)
-- [**Terminator**](./docs/terminator.md)
-
-## TODO
-
-- [ ] ✨ Global: Install Fira Code font
-- [ ] ✨ Ubuntu: Install Gnome extensions
-- [ ] ✨ Ubuntu: Configure Gnome extensions
-- [ ] ✨ Ubuntu: Configure Gnome behavior
-- [ ] ✨ Ubuntu: Install and configure Noto Emoji
-- [ ] ✨ Ubuntu: Version Gnome Keyboard Shortcuts  
-  Added <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd> for open Emoji Keyboard shortcut Chrome extension (exported as app)
-- [x] ⚙ Vim: Create method to compile vim as below 
-- [x] 🐛 Docs: Reduce image sizes
-
-## Previous wallpapers
-
-🖥️ https://i.imgur.com/0K0LqAI.png  
-🖥️ http://wallpaperswide.com/ghost_nebula-wallpapers.html
+<img src="./src/images/screenshots/dotbraga_terminator_2020-04-06_00.21.png" width="420" />

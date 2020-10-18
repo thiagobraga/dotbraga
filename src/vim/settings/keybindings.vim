@@ -8,8 +8,8 @@ nmap <S-TAB> gT
 " Enable visual block mode with vv
 nnoremap vv <C-v>
 
-" Change quit to quit all
-nnoremap :q :qa
+" " Change quit to quit all
+" nnoremap :q :qa
 
 " Ctrl + S to save files
 nmap <c-s> :w<CR>
