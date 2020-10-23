@@ -166,7 +166,7 @@ install() {
     step '[1/1]' '💻 Installing...'
 
     sudo ln ${LN_OPTS} \
-      "${PROJECT_PATH}/src/shortcuts/windows.{desktop,png,sh}" \
+      "${PROJECT_PATH}/src/dual-boot/windows.{desktop,png,sh}" \
       /usr/share/applications
 
     success "'Restart to Windows' created successfuly."
