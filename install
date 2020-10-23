@@ -164,10 +164,14 @@ install() {
   _shortcuts() {
     title "Shortcut 'Restart to Windows' for Dual Boot systems"
     step '[1/1]' '💻 Installing...'
+    target='/usr/share/applications'
+    extensions=(desktop png sh)
 
-    sudo ln ${LN_OPTS} \
-      "${PROJECT_PATH}/src/dual-boot/windows.{desktop,png,sh}" \
-      /usr/share/applications
+    for extension in "${extensions[@]}"; do
+      sudo ln ${LN_OPTS} \
+        "${PROJECT_PATH}/src/dual-boot/windows.${extension}" \
+        "${target}"
+    done
 
     success "'Restart to Windows' created successfuly."
   }
