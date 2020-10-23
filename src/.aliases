@@ -5,10 +5,9 @@ alias aptu='apt update && apt upgrade -V && apt autoclean && apt autoremove -V'
 alias aptitude='sudo aptitude'
 alias dpkg='sudo dpkg'
 
-LS_OPTIONS='--color=tty --group-directories-first'
-alias l="LC_COLLATE=C ls -alh ${LS_OPTIONS}"
-alias ls="LC_COLLATE=C ls -h ${LS_OPTIONS}"
-alias ll="LC_COLLATE=C ls -lh ${LS_OPTIONS}"
+alias l="LC_COLLATE=C ls -alh --color=tty --group-directories-first"
+alias ls="LC_COLLATE=C ls -a --color=tty --group-directories-first"
+alias ll="LC_COLLATE=C ls -lh --color=tty --group-directories-first"
 
 alias rm='/bin/rm -v'
 
