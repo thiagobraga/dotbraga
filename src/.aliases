@@ -1,16 +1,5 @@
 #!/bin/bash
 
-alias apt='sudo apt'
-alias aptu='apt update && apt upgrade -V && apt autoclean && apt autoremove -V'
-alias aptitude='sudo aptitude'
-alias dpkg='sudo dpkg'
-
-alias l="LC_COLLATE=C ls -alh --color=tty --group-directories-first"
-alias ls="LC_COLLATE=C ls -a --color=tty --group-directories-first"
-alias ll="LC_COLLATE=C ls -lh --color=tty --group-directories-first"
-
-alias rm='/bin/rm -v'
-
 # Brew
 # ---------------------------------------------------
 alias b='brew'
@@ -27,9 +16,10 @@ alias dstop='docker stop'
 alias dr='docker run'
 alias drm='docker rm'
 alias drma='docker rm $(docker ps -q -a)'
+alias drmi='docker rmi $(docker images -q)'
 alias di='docker inspect'
 alias dim='docker images'
-alias drmi='docker rmi $(docker images -q)'
+alias dn='docker network'
 
 # Docker Compose
 # ---------------------------------------------------
@@ -49,11 +39,11 @@ alias dcdn='docker-compose down'
 # ---------------------------------------------------
 alias gb='git --no-pager branch'
 alias gba='git --no-pager branch -a'
-alias gfp='git fetch --all --prune'
-alias ggc='git gc'
 alias gmn='git merge --no-ff --no-edit'
-alias gpf='git push -f'
+alias gfp='git fetch --all --prune'
 alias gcs='git checkout stage'
+alias gpf='git push -f'
+alias ggc='git gc'
 
 # Make
 # ---------------------------------------------------
@@ -63,6 +53,19 @@ alias mc='make clean'
 alias mi='make install'
 alias mr='make release'
 alias mw='make watch'
+
+# Misc
+# ---------------------------------------------------
+alias apt='sudo apt'
+alias aptu='apt update && apt upgrade -V && apt autoclean && apt autoremove -V'
+alias aptitude='sudo aptitude'
+alias dpkg='sudo dpkg'
+
+alias l="LC_COLLATE=C ls -alh --color=tty --group-directories-first"
+alias ls="LC_COLLATE=C ls -a --color=tty --group-directories-first"
+alias ll="LC_COLLATE=C ls -lh --color=tty --group-directories-first"
+
+alias rm='/bin/rm -v'
 
 # Yarn
 # ---------------------------------------------------

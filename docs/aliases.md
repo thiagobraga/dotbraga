@@ -4,26 +4,32 @@
 
 I've created some useful aliases to work together with Oh My ZSH aliases. Some of them override the behavior from Oh My ZSH, like `gb` for example, that adds a `--no-pager` flag.
 
+<br/>
+
 <!-- TOC -->
 
-- [Git](#git)
+- [Brew](#brew)
 - [Docker](#docker)
 - [Docker Compose](#docker-compose)
+- [Git](#git)
 - [Make](#make)
-- [Brew](#brew)
+- [Misc](#misc)
+- [Vessel](#vessel)
+- [Yarn](#yarn)
 
 <!-- /TOC -->
 
-### Git
+<br/>
 
-| Alias     | Command                       |
-|-----------|-------------------------------|
-| **`gb`**  | `git --no-pager branch`       |
-| **`gba`** | `git --no-pager branch -a`    |
-| **`gmn`** | `git merge --no-ff --no-edit` |
-| **`gfp`** | `git fetch --all --prune`     |
-| **`gpf`** | `git push -f`                 |
-| **`ggc`** | `git gc`                      |
+### Brew
+
+| Alias     | Command                 |
+|-----------|-------------------------|
+| **`b`**   | `brew`                  |
+| **`bs`**  | `brew services`         |
+| **`bsl`** | `brew services list`    |
+| **`bsr`** | `brew services restart` |
+| **`bss`** | `brew services stop`    |
 
 ### Docker
 
@@ -36,7 +42,9 @@ I've created some useful aliases to work together with Oh My ZSH aliases. Some o
 | **`drm`**   | `docker rm`                      |
 | **`drma`**  | `docker rm $(docker ps -q -a)`   |
 | **`drmi`**  | `docker rmi $(docker images -q)` |
-| **`di`**    | `docker images`                  |
+| **`di`**    | `docker inspect`                 |
+| **`dim`**   | `docker images`                  |
+| **`dn`**    | `docker network`                 |
 
 ### Docker Compose
 
@@ -54,6 +62,18 @@ I've created some useful aliases to work together with Oh My ZSH aliases. Some o
 | **`dcupd`** | `docker-compose up -d`                        |
 | **`dcdn`**  | `docker-compose down`                         |
 
+### Git
+
+| Alias     | Command                       |
+|-----------|-------------------------------|
+| **`gb`**  | `git --no-pager branch`       |
+| **`gba`** | `git --no-pager branch -a`    |
+| **`gmn`** | `git merge --no-ff --no-edit` |
+| **`gfp`** | `git fetch --all --prune`     |
+| **`gcs`** | `git checkout stage`          |
+| **`gpf`** | `git push -f`                 |
+| **`ggc`** | `git gc`                      |
+
 ### Make
 
 | Alias    | Command        |
@@ -65,12 +85,46 @@ I've created some useful aliases to work together with Oh My ZSH aliases. Some o
 | **`mr`** | `make release` |
 | **`mw`** | `make watch`   |
 
-### Brew
+### Misc
 
-| Alias     | Command                 |
-|-----------|-------------------------|
-| **`b`**   | `brew`                  |
-| **`bs`**  | `brew services`         |
-| **`bsl`** | `brew services list`    |
-| **`bsr`** | `brew services restart` |
-| **`bss`** | `brew services stop`    |
+| Alias          | Command                                                                |
+|----------------|------------------------------------------------------------------------|
+| **`apt`**      | `sudo apt`                                                             |
+| **`aptu`**     | `apt update && apt upgrade -V && apt autoclean && apt autoremove -V`   |
+| **`apty`**     | `apt update && apt upgrade -yV && apt autoclean && apt autoremove -yV` |
+| **`aptitude`** | `sudo aptitude`                                                        |
+| **`dpkg`**     | `sudo dpkg`                                                            |
+| **`l`**        | `LC_COLLATE=C ls -alh --color=tty --group-directories-first`           |
+| **`ls`**       | `LC_COLLATE=C ls -a --color=tty --group-directories-first`             |
+| **`ll`**       | `LC_COLLATE=C ls -lh --color=tty --group-directories-first`            |
+
+### Vessel
+
+| Alias        | Command    |
+|--------------|------------|
+| **`v`**      | `./vessel` |
+| **`vup`**    | `v start`  |
+| **`vst`**    | `v start`  |
+| **`vstart`** | `v start`  |
+| **`vdn`**    | `v down`   |
+| **`vdown`**  | `v down`   |
+
+### Yarn
+
+| Alias      | Command            |
+|------------|--------------------|
+| **`y`**    | `yarn`             |
+| **`ya`**   | `yarn add`         |
+| **`yau`**  | `yarn audit`       |
+| **`yb`**   | `yarn build`       |
+| **`yc`**   | `yarn create`      |
+| **`yd`**   | `yarn dev`         |
+| **`yp`**   | `yarn prod`        |
+| **`yr`**   | `yarn release`     |
+| **`yrm`**  | `yarn remove`      |
+| **`ys`**   | `yarn start`       |
+| **`yt`**   | `yarn test`        |
+| **`yw`**   | `yarn watch`       |
+| **`yyau`** | `yarn; yarn audit` |
+| **`yys`**  | `yarn; yarn start` |
+| **`yyw`**  | `yarn; yarn watch` |
