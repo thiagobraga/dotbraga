@@ -6,3 +6,6 @@ export N_PREFIX="$HOME/n"
 
 # Brew
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# Disable Caps Lock
+# setxkbmap -option caps:none
