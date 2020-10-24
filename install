@@ -11,7 +11,7 @@
 
 source src/scripts/colors
 
-VERSION='1.0.0'
+VERSION='1.0.1'
 PROJECT_PATH=$(pwd)
 APT_PARAMS='-yqqq'
 LN_OPTS='-sfn'

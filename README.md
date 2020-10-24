@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="https://github.com/thiagobraga">@thiagobraga's</a> dotfiles<br>
-  <a href="https://raw.githubusercontent.com/thiagobraga/todoist-userstyles/master/theme.user.css"><img src="https://img.shields.io/badge/version-1.0.0-929faf.svg" align="center" alt="Version 1.0.0"></a>
+  <a href="https://raw.githubusercontent.com/thiagobraga/todoist-userstyles/master/theme.user.css"><img src="https://img.shields.io/badge/version-1.0.1-929faf.svg" align="center" alt="Version 1.0.1"></a>
   <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=thibraga06%40gmail.com&item_name=Contribute+to+development+of+open+source+projects&currency_code=USD&source=url" target="_blank" rel="nofollow noopener"><img src="https://img.shields.io/badge/donate-PayPal-526272.svg" align="center"></a>
 </p>
 
