@@ -70,7 +70,7 @@ install() {
   # Print done message with duration
   success() {
     # benchmark_stop
-    printf "${Green}success${Color_Off} %s\n\n" "${1}"
+    printf "${Green}success${Color_Off} %s\n" "${1}"
     # echo "✨ Done in ${RUNTIME}s"
   }
 
@@ -263,7 +263,7 @@ install() {
     _symlinks
     _vim
 
-    echo
+		echo
     info 'Finished'
   }
 
