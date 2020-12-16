@@ -92,4 +92,6 @@ Fix for **Ubuntu 20.04**:
 sudo ln -sf \
   /lib/x86_64-linux-gnu/libperl.so.5.30 \
   /lib/x86_64-linux-gnu/libperl.so.5.28
+
+sudo apt install -y libruby2.7 liblua5.2-0
 ```
