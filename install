@@ -197,15 +197,19 @@ install() {
     TARGET="${HOME}/.config/qt5ct" && mkdir -p "${TARGET}"
     ln ${LN_OPTS} -t "${TARGET}" "${PROJECT_PATH}/src/qt5ct/qt5ct.conf"
 
-    step '[8]' '🔗 Linking dotbraga scripts...'
+    step '[8]' '🔗 Linking profile scripts...'
+    TARGET="/etc/profile.d/" && mkdir -p "${TARGET}"
+    sudo find "${PROJECT_PATH}/src/profile/" -type f -exec ln ${LN_OPTS} -t "${TARGET}" {} \;
+
+    step '[9]' '🔗 Linking dotbraga scripts...'
     TARGET="${HOME}/scripts" && mkdir -p "${TARGET}/custom"
     # TODO: Make it dynamic
     ln ${LN_OPTS} -t "${TARGET}" "${PROJECT_PATH}/src/scripts/colors"
     ln ${LN_OPTS} -t "${TARGET}/custom" "${PROJECT_PATH}/src/scripts/custom/index"
     ln ${LN_OPTS} -t "${TARGET}/custom" "${PROJECT_PATH}/src/scripts/custom/path"
 
-    step '[9]' "🔗 Touching .hushlogin in \$HOME..." && touch "${HOME}/.hushlogin"
-    step '[10]' "🔗 Touching .sudo_as_admin_successful in \$HOME..." && touch "${HOME}/.sudo_as_admin_successful"
+    step '[10]' "🔗 Touching .hushlogin in \$HOME..." && touch "${HOME}/.hushlogin"
+    step '[11]' "🔗 Touching .sudo_as_admin_successful in \$HOME..." && touch "${HOME}/.sudo_as_admin_successful"
 
     success 'Symlinks created!'
   }
