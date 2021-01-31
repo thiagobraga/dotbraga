@@ -39,3 +39,5 @@ if [ -e "$HOME/.env" ]; then source "$HOME/.env"; fi
 if [ -e "$HOME/.profile" ]; then source "$HOME/.profile"; fi
 if [ -e "$HOME/.aliases" ]; then source "$HOME/.aliases"; fi
 if [ -e "$HOME/scripts/custom/index" ]; then source "$HOME/scripts/custom/index"; fi
+
+export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
