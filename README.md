@@ -23,22 +23,24 @@
 
 ## Features
 
+<br>
+
 ### [Oh My ZSH](https://ohmyz.sh)  
 <sup>✨ [Spaceship Theme](https://denysdovhan.com/spaceship-prompt)</sup>  
 <sup>✨ [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)</sup>  
-<sup>✨ [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)</sup>
-
+<sup>✨ [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)</sup>  
+<br>
 ### [VIM · Vi IMproved](https://www.vim.org)  
 <sup>✨ [CtrlP](https://kien.github.io/ctrlp.vim)</sup>  
 <sup>✨ [NERDtree](https://github.com/preservim/nerdtree)</sup>  
 <sup>✨ [vim-airline](https://github.com/vim-airline/vim-airline)</sup>  
 <sup>💻 _One Dark theme [wip]_</sup>  
 <sup>💻 _Compiled from latest version on Github [wip]_</sup>  
-
-### [Fira Code]()   
+<br>
+### [Fira Code]()  
 <sup>For beautiful coding and font ligatures</sup>  
-<sup>💻 _Automatic install via script [wip]_</sup>
-
+<sup>💻 _Automatic install via script [wip]_</sup>  
+<br>
 ### [Aliases](./docs/aliases.md)  
 <sup>Many of them inspired on Oh My ZSH aliases</sup>  
 <sup>✨ [git](./docs/aliases.md#git)</sup>  
@@ -46,7 +48,7 @@
 <sup>✨ [docker-compose](./docs/aliases.md#docker-compose)</sup>  
 <sup>✨ [yarn](./docs/aliases.md#yarn)</sup>  
 <sup>✨ [apt](./docs/aliases.md#apt)</sup>  
-
+<br>
 ### [Terminator](./docs/terminator.md)  
 <sup>✨ Beautiful semi-transparent [Nord](https://www.nordtheme.com) theme. See [**screenshots**](#screenshots) 📷</sup>  
 <sup>✨ [Improved keyboard shortcuts](./docs/terminator.md#color-palette)</sup>
@@ -57,7 +59,11 @@
 <sup>✨ Restart system to that detected OS</sup>  
 <sup>✨ Shows confirmation dialog using Zenity from Ubuntu [option]</sup>
 
+<br>
+
 ## Installation
+
+<br>
 
 ``` sh
 git clone https://github.com/thiagobraga/dotbraga
@@ -76,12 +82,20 @@ The install script accepts some params. Here's a overview of the usage:
 
 See the [install](./install) script to see all the possibilities. You can hit `./install -h` or `./install --help` to get help from the script.
 
+<br>
+
 ## Docs
+
+<br>
 
 - [**Aliases**](./docs/aliases.md)
 - [**Terminator**](./docs/terminator.md)
 - [**ViM**](./docs/vim.md)
 
+<br>
+
 ## Screenshots
+
+<br>
 
 <img src="./src/images/screenshots/dotbraga_terminator_2020-04-06_00.21.png" width="420" />
