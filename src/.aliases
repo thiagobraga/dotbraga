@@ -82,9 +82,9 @@ alias yrm='yarn remove'
 alias ys='yarn start'
 alias yt='yarn test'
 alias yw='yarn watch'
-alias yyau='yarn; yarn audit'
-alias yys='yarn; yarn start'
-alias yyw='yarn; yarn watch'
+alias yyau='yarn && yarn audit'
+alias yys='yarn && yarn start'
+alias yyw='yarn && yarn watch'
 
 # Vessel
 # ---------------------------------------------------
