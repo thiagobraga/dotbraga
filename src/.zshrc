@@ -22,16 +22,16 @@ export SPACESHIP_GIT_STATUS_SHOW=true
 export SPACESHIP_GIT_STATUS_COLOR='blue'
 export SPACESHIP_PROMPT_ORDER=(dir host git venv line_sep jobs char)
 
+setopt EXTENDED_HISTORY
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_FIND_NO_DUPS
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_BEEP
+
 source "$ZSH"/oh-my-zsh.sh
-
-# Configure color overrides for terminal
-# -----------------------------------------------------
-# # TODO: Incluir .dircolors no install
-# eval 'dircolors ~/.dircolors' &>/dev/null
-
-# if [[ -f ~/.dircolors ]]; then
-#   eval "$(dircolors -b ~/.dircolors)"
-# fi
 
 # Other imports
 # -----------------------------------------------------
@@ -40,4 +40,15 @@ if [ -e "$HOME/.profile" ]; then source "$HOME/.profile"; fi
 if [ -e "$HOME/.aliases" ]; then source "$HOME/.aliases"; fi
 if [ -e "$HOME/scripts/custom/index" ]; then source "$HOME/scripts/custom/index"; fi
 
-export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+export N_PREFIX="$HOME/n"
+
+# Eval section
+# -----------------------------------------------------
+
+# Ruby
+eval "$(rbenv init -)" &>/dev/null
+
+# Configure color overrides for terminal
+if [[ -f ~/.dircolors ]]; then
+  eval "$(dircolors -b ~/.dircolors)" &>/dev/null
+fi
