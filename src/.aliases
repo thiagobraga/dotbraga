@@ -45,6 +45,19 @@ alias gcs='git checkout stage'
 alias gpf='git push -f'
 alias ggc='git gc'
 
+# Kool
+# ---------------------------------------------------
+alias k='kool'
+alias ke='kool exec'
+alias ka='kool exec app'
+alias kr='kool run'
+alias kc='kool run composer'
+alias kcd='kool run composer dump-autoload'
+alias kra='kool run artisan'
+alias km='kool run artisan migrate'
+alias ks='kool start'
+alias kstp='kool stop'
+
 # Make
 # ---------------------------------------------------
 alias m='make'
@@ -61,12 +74,27 @@ alias aptu='apt update && apt upgrade -V && apt autoclean && apt autoremove -V'
 alias aptitude='sudo aptitude'
 alias dpkg='sudo dpkg'
 alias snap='sudo snap'
-
-alias l="LC_COLLATE=C ls -alh --color=tty --group-directories-first"
-alias ls="LC_COLLATE=C ls -a --color=tty --group-directories-first"
-alias ll="LC_COLLATE=C ls -lh --color=tty --group-directories-first"
-
 alias rm='/bin/rm -v'
+alias l="LC_COLLATE=C ls -alh --color=tty --group-directories-first"
+alias ll="LC_COLLATE=C ls -lh --color=tty --group-directories-first"
+alias ls="LC_COLLATE=C ls -a --color=tty --group-directories-first"
+
+# PHP
+# ---------------------------------------------------
+alias phpdoc='docker run --rm -v $(pwd):/data phpdoc/phpdoc:3'
+
+# Vessel
+# ---------------------------------------------------
+alias v='./vessel'
+alias vup='v start'
+alias vst='v start'
+alias vstart='v start'
+alias vdn='v down'
+alias vdown='v down'
+
+# Vim
+# ---------------------------------------------------
+alias sv='sudo vi'
 
 # Yarn
 # ---------------------------------------------------
@@ -85,12 +113,3 @@ alias yw='yarn watch'
 alias yyau='yarn && yarn audit'
 alias yys='yarn && yarn start'
 alias yyw='yarn && yarn watch'
-
-# Vessel
-# ---------------------------------------------------
-alias v='./vessel'
-alias vup='v start'
-alias vst='v start'
-alias vstart='v start'
-alias vdn='v down'
-alias vdown='v down'
