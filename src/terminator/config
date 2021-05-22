@@ -28,7 +28,7 @@
     background_type = transparent
     cursor_shape = ibeam
     cursor_color = "#d8dee9"
-    font = Fira Code weight=453 9
+    font = Monaco 9
     foreground_color = "#d8dee9"
     show_titlebar = False
     scrollback_lines = 5000
