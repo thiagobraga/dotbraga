@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./src/images/icons/config-icon.png" width="128" />
+  <img src="./images/icons/config-icon.png" width="128" />
 </p>
 
 <h1 align="center">dotbraga</h1>
@@ -18,7 +18,7 @@
 </p>
 
 <p align="center">
-  <img src="./src/images/screenshots/dotbraga_ubuntu_2020-04-06_00.18.png" width="600" />
+  <img src="./images/screenshots/dotbraga_ubuntu_2020-04-06_00.18.png" width="600" />
 </p>
 
 ## Features
@@ -98,4 +98,4 @@ See the [install](./install) script to see all the possibilities. You can hit `.
 
 <br>
 
-<img src="./src/images/screenshots/dotbraga_terminator_2020-04-06_00.21.png" width="420" />
+<img src="./images/screenshots/dotbraga_terminator_2020-04-06_00.21.png" width="420" />
