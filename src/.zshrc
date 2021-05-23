@@ -1,6 +1,16 @@
 #!/bin/bash
 
 export ZSH="$HOME/.oh-my-zsh"
+export ZSH_THEME='spaceship'
+export ZSH_DISABLE_COMPFIX=true
+export DISABLE_AUTO_UPDATE=true
+export DISABLE_MAGIC_FUNCTIONS=true
+export SPACESHIP_CHAR_SYMBOL=''
+export SPACESHIP_DIR_SHOW=true
+export SPACESHIP_DIR_TRUNC=0
+export SPACESHIP_GIT_STATUS_SHOW=true
+export SPACESHIP_GIT_STATUS_COLOR='blue'
+export SPACESHIP_PROMPT_ORDER=(dir host git line_sep jobs char)
 
 export plugins=(
   git
@@ -10,26 +20,14 @@ export plugins=(
   zsh-syntax-highlighting
 )
 
-export ZSH_THEME='spaceship'
-export ZSH_DISABLE_COMPFIX=true
-export DISABLE_AUTO_UPDATE=true
-export DISABLE_MAGIC_FUNCTIONS=true
-
-export SPACESHIP_CHAR_SYMBOL=''
-export SPACESHIP_DIR_SHOW=true
-export SPACESHIP_DIR_TRUNC=0
-export SPACESHIP_GIT_STATUS_SHOW=true
-export SPACESHIP_GIT_STATUS_COLOR='blue'
-export SPACESHIP_PROMPT_ORDER=(dir host git venv line_sep jobs char)
-
 setopt EXTENDED_HISTORY
-setopt HIST_EXPIRE_DUPS_FIRST
-setopt HIST_IGNORE_DUPS
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_IGNORE_SPACE
-setopt HIST_FIND_NO_DUPS
-setopt HIST_SAVE_NO_DUPS
 setopt HIST_BEEP
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_SAVE_NO_DUPS
 
 source "$ZSH"/oh-my-zsh.sh
 
