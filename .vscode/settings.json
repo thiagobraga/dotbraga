@@ -4,12 +4,8 @@
     "**/config/fontconfig/*": "xml",
     "**/.shellcheckrc": "ini",
     "**/install": "shellscript",
-    "**/scripts/**/*!.git*": "shellscript",
-    "**/misc/.hushlogin": "shellscript",
-    "**/misc/.sudo_*": "shellscript",
+    "**/scripts/*": "shellscript",
     "**/.aliases": "shellscript",
-    "**/.zshrc": "shellscript",
-    "**/misc/.leptonrc": "json",
-    "**/*.ismp": "xml"
+    "**/.zshrc": "shellscript"
   }
 }
