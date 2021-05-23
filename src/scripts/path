@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# Define PATH environment variable in a more organized way.
+# ------------------------------------------------------------------------------
+PATHS=(
+  '/usr/local/sbin'
+  '/usr/local/bin'
+  '/usr/sbin'
+  '/usr/bin'
+  '/sbin'
+  '/bin'
+  '/snap/bin'
+  '/opt/sublime_text'
+  "$HOME/.config/composer/vendor/bin"
+  "$HOME/.gem/ruby/2.5.0/bin"
+  "$HOME/.cabal/bin"
+  "$HOME/.local/bin"
+  "$HOME/.rbenv/bin"
+  "$HOME/n/bin"
+)
+
+# Join array elements with delimiter
+# @see https://zaiste.net/how_to_join_elements_of_an_array_in_bash/
+# ------------------------------------------------------------------------------
+join() {
+  local IFS="$1"
+  shift
+  echo "$*"
+}
+
+PATH=$(join : "${PATHS[@]}")
+
+export PATH
+export N_PREFIX="$HOME/n"
+export VIM_PREFIX="$HOME/www/oss/vim"
