@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Kill all chat apps
+
+# Array of chat apps to close
+APPS=(
+	# Discord
+	DiscordCanary
+  Mattermost
+  # Slack
+  Telegram
+)
+
+for APP in ${APPS[*]}; do
+  PGREP_RESULT=$(pgrep -i "${APP}")
+  echo "${APP}"
+  if [ -n "${PGREP_RESULT}" ]; then
+    echo 'Closing...'
+    pgrep -i "${APP}" | xargs kill -9
+  fi
+done

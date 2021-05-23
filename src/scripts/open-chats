@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Open all chat apps
+
+# Array of chat apps to open
+APPS=(
+	# Discord
+	DiscordCanary
+  Mattermost
+  # Slack
+  Telegram
+)
+
+COMMANDS=(
+	# '/usr/bin/discord'               # Discord
+	'/usr/bin/discord-canary'          # Discord Canary
+  '/usr/bin/mattermost-desktop'      # Mattermost
+  # '/usr/bin/slack'                 # Slack
+  '/opt/telegram/telegram -noupdate' # Telegram
+)
+
+for APP in ${!APPS[*]}; do
+  echo "${APPS[$APP]}"
+  setsid "${COMMANDS[$APP]}" &>/dev/null &
+done
+
+# TODO: Insert "start minimized" parameters
