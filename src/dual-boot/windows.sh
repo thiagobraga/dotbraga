@@ -1,14 +1,11 @@
 #!/bin/bash
 
-# Grub will change temporary the default option
+# Grub will temporary change the default boot option
 # and restore to the original after reboot.
-SO='windows'
-ID=$(
+sudo grub-reboot "$(
   grep -e '^menuentry' /boot/grub/grub.cfg |
-    grep -e '--class os' |
     nl -v 0 |
-    grep -i $SO |
+    grep -e '--class windows' |
     awk '{ print $1 }'
-)
-sudo grub-reboot "$ID"
+)"
 sudo reboot
