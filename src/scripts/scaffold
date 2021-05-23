@@ -1,0 +1,17 @@
+#!/bin/bash
+
+alias scf='scaff'
+alias scfe='scaff exec'
+alias scfn='scaff exec npm'
+alias scfni='scaff exec npm i'
+alias scfp='scaff exec php'
+alias scfa='scaff exec php artisan'
+alias scft='scaff exec php artisan tinker'
+alias scfat='scaff exec php artisan tinker'
+alias scfup='scaff up'
+alias scfdn='scaff down'
+
+alias scaffold='cd "${HOME}"/www/scaffold'
+alias scfdock='cd "${HOME}"/www/scaffold/scfdock'
+alias platform='cd "${HOME}"/www/scaffold/platform'
+alias platform-api='cd "${HOME}"/www/scaffold/platform-api'
