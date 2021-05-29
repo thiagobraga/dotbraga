@@ -1,0 +1,12 @@
+#!/bin/bash
+# [wip]
+backup() {
+  files=(
+    .config
+    .gnome
+    .local
+    .mozilla
+  )
+
+  echo $files
+}

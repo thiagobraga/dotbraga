@@ -20,6 +20,8 @@ export plugins=(
   zsh-syntax-highlighting
 )
 
+source "$ZSH"/oh-my-zsh.sh
+
 setopt EXTENDED_HISTORY
 setopt HIST_BEEP
 setopt HIST_EXPIRE_DUPS_FIRST
@@ -29,22 +31,17 @@ setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_SAVE_NO_DUPS
 
-source "$ZSH"/oh-my-zsh.sh
-
-# Other imports
-# -----------------------------------------------------
+# Import .env, .aliases and some useful scripts
+# ------------------------------------------------------------------------------
 if [ -e "$HOME/.env" ]; then source "$HOME/.env"; fi
-if [ -e "$HOME/.profile" ]; then source "$HOME/.profile"; fi
 if [ -e "$HOME/.aliases" ]; then source "$HOME/.aliases"; fi
-if [ -e "$HOME/scripts/custom/index" ]; then source "$HOME/scripts/custom/index"; fi
+if [ -e "$HOME/.profile" ]; then source "$HOME/.profile"; fi
 
-export N_PREFIX="$HOME/n"
+scripts=($(find "$HOME/scripts" -type l))
+for script in "$scripts[@]"; do source $script; done
 
 # Eval section
 # -----------------------------------------------------
-
-# Ruby
-eval "$(rbenv init -)" &>/dev/null
 
 # Configure color overrides for terminal
 if [[ -f ~/.dircolors ]]; then

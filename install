@@ -11,7 +11,7 @@
 
 source src/scripts/colors
 
-VERSION='1.0.1'
+VERSION='1.0.2'
 PROJECT_PATH=$(pwd)
 APT_ARGS='-yqqq'
 GIT_ARGS='-c color.ui=false'
@@ -113,13 +113,33 @@ install() {
     success "'Restart to Windows' created successfuly."
   }
 
+  # Delete all symlinks created with symlinks method
+  clean_symlinks() {
+    title 'Clean symbolic links created with dotbraga'
+
+    /bin/rm -rfv \
+      "${HOME}/.zshrc" \
+      "${HOME}/.aliases" \
+      "${HOME}/.gitconfig" \
+      "${HOME}/.config/terminator/config" \
+      "${HOME}/.config/fontconfig/conf.d/01-emoji.conf" \
+      "${HOME}/.config/qt5ct/qt5ct.conf" \
+      "${HOME}/scripts" \
+      "${HOME}/.hushlogin" \
+      "${HOME}/.sudo_as_admin_successful"
+
+    sudo find "/etc/profile.d" -type l -exec /bin/rm -v {} \;
+
+    success 'Symlinks removed! 🗑️'
+  }
+
   # Create symbolic links for settings
   symlinks() {
+    clean_symlinks
     title 'Create symbolic links for settings'
 
     step "🔗 Linking .zshrc in \$HOME..." && ln ${LN_ARGS} -t "${HOME}" "${PROJECT_PATH}/src/.zshrc"
     step "🔗 Linking .aliases in \$HOME..." && ln ${LN_ARGS} -t "${HOME}" "${PROJECT_PATH}/src/.aliases"
-    step "🔗 Linking .profile in \$HOME..." && ln ${LN_ARGS} -t "${HOME}" "${PROJECT_PATH}/src/.profile"
     step "🔗 Linking .gitconfig in \$HOME..." && ln ${LN_ARGS} -t "${HOME}" "${PROJECT_PATH}/src/.gitconfig"
 
     step '🔗 Linking terminator config...'
@@ -136,15 +156,13 @@ install() {
 
     step '🔗 Linking profile scripts...'
     TARGET="/etc/profile.d/" && mkdir -p "${TARGET}"
-    sudo find "${PROJECT_PATH}/src/profile/" -type f -exec ln ${LN_ARGS} -t "${TARGET}" {} \;
+    sudo find "${PROJECT_PATH}/src/profile" -type f -exec ln ${LN_ARGS} -t "${TARGET}" {} \;
+
+    ln -sfn "${PROJECT_PATH}/src/profile/chats.sh" "${PROJECT_PATH}/src/scripts/chats"
 
     step '🔗 Linking dotbraga scripts...'
-    TARGET="${HOME}/scripts" && mkdir -p "${TARGET}/custom"
-
-    # TODO: Make it dynamic
-    ln ${LN_ARGS} -t "${TARGET}" "${PROJECT_PATH}/src/scripts/colors"
-    ln ${LN_ARGS} -t "${TARGET}/custom" "${PROJECT_PATH}/src/scripts/custom/index"
-    ln ${LN_ARGS} -t "${TARGET}/custom" "${PROJECT_PATH}/src/scripts/custom/path"
+    TARGET="${HOME}/scripts" && mkdir -p "${TARGET}"
+    find "${PROJECT_PATH}/src/scripts" -type f,l -exec ln ${LN_ARGS} -t "${TARGET}" {} \;
 
     step "🔗 Touching .hushlogin in \$HOME..." && touch "${HOME}/.hushlogin"
     step "🔗 Touching .sudo_as_admin_successful in \$HOME..." && touch "${HOME}/.sudo_as_admin_successful"
@@ -214,46 +232,46 @@ install() {
 
   # Print the header
   header() {
-    printf "${BWhite}%s${Color_Off} ${Yellow}%s${Color_Off}\n" 'dotfiles' ${VERSION}
+    printf "${BWhite}%s${ColorOff} ${Yellow}%s${ColorOff}\n" 'dotfiles' ${VERSION}
   }
 
   # Define title of each internal function
   title() {
-    printf "\n${BPurple}%s${Color_Off}\n" "${1}"
+    printf "\n${BPurple}%s${ColorOff}\n" "${1}"
   }
 
   # Print steps information about installation
   step() {
-    printf "${Color_Off}%s${IBlack}\n" "${1}"
+    printf "${ColorOff}%s${IBlack}\n" "${1}"
   }
 
   # Asks the user a question and captures the answer
   ask() {
     printf '%s' "${Yellow}" &&
       read -r "ANSWER?${1} ${2} " &&
-      printf '%s' "${Color_Off}"
+      printf '%s' "${ColorOff}"
 
     return "${ANSWER}"
   }
 
   # Inform user about some action.
   info() {
-    printf "${Blue}"'info'"${Color_Off} %s\n" "${1}"
+    printf "${Blue}"'info'"${ColorOff} %s\n" "${1}"
   }
 
   # Debug some information.
   debug() {
-    printf "${IYellow}"'debug'"${Color_Off} %s\n" "${*}"
+    printf "${IYellow}"'debug'"${ColorOff} %s\n" "${*}"
   }
 
   # Print done message
   success() {
-    printf "${Green}success${Color_Off} %s\n" "${1}"
+    printf "${Green}success${ColorOff} %s\n" "${1}"
   }
 
   # Abort execution with message
   abort() {
-    printf "${Red}abort${Color_Off} %s\n" "${1}"
+    printf "${Red}abort${ColorOff} %s\n" "${1}"
   }
 
   # Update plugin or theme using git pull

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+user_symlinks() {
+  rm -rf ~/Música && ln -sfn /media/Dados/Music ~ && mv ~/Music ~/Música
+  rm -rf ~/Vídeos && ln -sfn /media/Dados/Videos ~ && mv ~/Music ~/Música
+  rm -rf ~/Imagens && ln -sfn /media/Dados/Pictures ~ && mv ~/Pictures ~/Imagens
+  rm -rf ~/Documentos && ln -sfn /media/Dados/Documents ~ && mv ~/Documents ~/Documentos
+}

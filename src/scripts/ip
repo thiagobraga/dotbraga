@@ -1,0 +1,15 @@
+#!/bin/bash
+
+export NET_INTERFACE
+export IP_ADDRESS
+
+NET_INTERFACE=$(nmcli --terse \
+  --fields DEVICE,TYPE,STATE \
+  device status | \
+  grep '\(wifi\|ethernet\):connected' | \
+  cut -f1 -d':')
+
+IP_ADDRESS=$(ip addr show "${NET_INTERFACE}" | \
+  grep --regexp='inet\s' | \
+  awk '{ print $2 }' | \
+  cut -d'/' -f1)
