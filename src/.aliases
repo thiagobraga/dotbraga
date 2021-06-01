@@ -1,4 +1,5 @@
 #!/bin/bash
+# shellcheck disable=SC2139
 
 # Brew
 # ---------------------------------------------------
@@ -113,3 +114,8 @@ alias yw='yarn watch'
 alias yyau='yarn && yarn audit'
 alias yys='yarn && yarn start'
 alias yyw='yarn && yarn watch'
+
+# Dotbraga
+# ---------------------------------------------------
+alias dotbraga="$HOME/www/braga/dotbraga"
+alias dot="$HOME/www/braga/dotbraga/install"
