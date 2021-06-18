@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Open all chat apps
+# ------------------------------------------------------------------------------
+/snap/bin/mattermost-desktop &>/dev/null &
+/usr/bin/discord --start-minimized &>/dev/null &
+/opt/telegram/telegram -startintray &>/dev/null &
