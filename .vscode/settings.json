@@ -4,6 +4,7 @@
     "**/config/fontconfig/*": "xml",
     "**/.shellcheckrc": "ini",
     "**/install": "shellscript",
+    "**/bin/*": "shellscript",
     "**/scripts/*": "shellscript",
     "**/.aliases": "shellscript",
     "**/.zshrc": "shellscript"
