@@ -65,7 +65,7 @@ install() {
 
   # Install zsh-syntax-highlighting plugin for Oh My ZSH
   zsh-syntax-highlighting() {
-    title "Install zsh-syntax-highlighting plugin"
+    title 'Install zsh-syntax-highlighting plugin'
     step '🔍 Check if installed...'
     PLUGIN_PATH="${OHMYZSH_FOLDER}/custom/plugins/zsh-syntax-highlighting"
 
@@ -82,7 +82,7 @@ install() {
 
   # Install zsh-autosuggestions plugin for Oh My ZSH
   zsh-autosuggestions() {
-    title "Install zsh-autosuggestions plugin"
+    title 'Install zsh-autosuggestions plugin'
     step '🔍 Check if installed...'
     PLUGIN_PATH="${OHMYZSH_FOLDER}/custom/plugins/zsh-autosuggestions"
 
@@ -158,11 +158,12 @@ install() {
     TARGET="/etc/profile.d/" && mkdir -p "${TARGET}"
     sudo find "${PROJECT_PATH}/src/profile" -type f -exec ln ${LN_ARGS} -t "${TARGET}" {} \;
 
-    ln -sfn "${PROJECT_PATH}/src/profile/chats.sh" "${PROJECT_PATH}/src/scripts/chats"
-
     step '🔗 Linking dotbraga scripts...'
     TARGET="${HOME}/scripts" && mkdir -p "${TARGET}"
     find "${PROJECT_PATH}/src/scripts" -type f,l -exec ln ${LN_ARGS} -t "${TARGET}" {} \;
+
+    step '🔗 Linking some scripts to /usr/bin...'
+    find "${PROJECT_PATH}/src/bin" -type f,l -exec sudo ln ${LN_ARGS} -t /usr/bin {} \;
 
     step "🔗 Touching .hushlogin in \$HOME..." && touch "${HOME}/.hushlogin"
     step "🔗 Touching .sudo_as_admin_successful in \$HOME..." && touch "${HOME}/.sudo_as_admin_successful"
@@ -172,7 +173,7 @@ install() {
 
   # Test symlinks created
   test-symlinks() {
-    title "Test created symbolic links"
+    title 'Test created symbolic links'
 
     ls -lah --color=tty \
       "${HOME}/.zshrc" \
@@ -192,7 +193,7 @@ install() {
 
   # Install VIM - Vi IMproved with settings
   _vim() {
-    title "Install VIM - Vi IMproved with settings"
+    title 'Install VIM - Vi IMproved with settings'
     step '🔍 Check if VIM is installed...'
     VIM_FILE="${HOME}/.vimrc"
     VIM_FOLDER="${HOME}/.vim"
