@@ -11,7 +11,7 @@
 
 source src/scripts/colors
 
-VERSION='1.0.2'
+VERSION='1.1.0'
 PROJECT_PATH=$(pwd)
 APT_ARGS='-yqqq'
 GIT_ARGS='-c color.ui=false'
