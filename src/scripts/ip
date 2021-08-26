@@ -3,6 +3,8 @@
 export NET_INTERFACE
 export IP_ADDRESS
 
+command nmcli &>/dev/null || return
+
 NET_INTERFACE=$(nmcli --terse \
   --fields DEVICE,TYPE,STATE \
   device status | \
