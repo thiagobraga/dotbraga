@@ -14,7 +14,6 @@ source src/scripts/colors
 VERSION='1.1.0'
 PROJECT_PATH=$(pwd)
 APT_ARGS='-yqqq'
-GIT_ARGS='-c color.ui=false'
 LN_ARGS='-sfn'
 
 OHMYZSH_FOLDER="$HOME/.oh-my-zsh"
@@ -51,7 +50,7 @@ install() {
 
     if [[ ! -d "${THEME_PATH}" ]]; then
       step '💻 Installing...'
-      git "${GIT_ARGS}" clone ${SPACESHIP_PROMPT_URL} "${THEME_PATH}"
+      git clone ${SPACESHIP_PROMPT_URL} "${THEME_PATH}"
     else
       step '💾 Updating...'
       update "${THEME_PATH}"
@@ -71,7 +70,7 @@ install() {
 
     if [[ ! -d "${PLUGIN_PATH}" ]]; then
       step '💻 Installing...'
-      git "${GIT_ARGS}" clone ${ZSH_SYNTAX_HIGHLIGHTING_URL} "${PLUGIN_PATH}"
+      git clone ${ZSH_SYNTAX_HIGHLIGHTING_URL} "${PLUGIN_PATH}"
     else
       step '💾 Updating...'
       update "${PLUGIN_PATH}"
@@ -88,7 +87,7 @@ install() {
 
     if [[ ! -d "${PLUGIN_PATH}" ]]; then
       step '💻 Installing...'
-      git "${GIT_ARGS}" clone ${ZSH_AUTOSUGGESTIONS} "${PLUGIN_PATH}"
+      git clone ${ZSH_AUTOSUGGESTIONS} "${PLUGIN_PATH}"
     else
       step '💾 Updating...'
       update "${PLUGIN_PATH}"
@@ -279,7 +278,7 @@ install() {
   update() {
     {
       cd "${1}" &&
-        git -c color.ui=false pull origin master &&
+        git pull origin master &&
         cd "${PROJECT_PATH}" ||
         exit
     }
