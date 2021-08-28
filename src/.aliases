@@ -51,11 +51,15 @@ alias ggc='git gc'
 alias k='kool'
 alias ke='kool exec'
 alias ka='kool exec app'
+alias kea='kool exec app'
 alias kr='kool run'
 alias kc='kool run composer'
+alias krc='kool run composer'
 alias kcd='kool run composer dump-autoload'
+alias krcd='kool run composer dump-autoload'
 alias kra='kool run artisan'
 alias km='kool run artisan migrate'
+alias kram='kool run artisan migrate'
 alias ks='kool start'
 alias kstp='kool stop'
 
@@ -79,6 +83,7 @@ alias rm='/bin/rm -v'
 alias l="LC_COLLATE=C ls -alh --color=tty --group-directories-first"
 alias ll="LC_COLLATE=C ls -lh --color=tty --group-directories-first"
 alias ls="LC_COLLATE=C ls -a --color=tty --group-directories-first"
+alias www="cd ${HOME}/www"
 
 # PHP
 # ---------------------------------------------------
@@ -92,10 +97,6 @@ alias vst='v start'
 alias vstart='v start'
 alias vdn='v down'
 alias vdown='v down'
-
-# Vim
-# ---------------------------------------------------
-alias sv='sudo vi'
 
 # Yarn
 # ---------------------------------------------------
@@ -117,5 +118,5 @@ alias yyw='yarn && yarn watch'
 
 # Dotbraga
 # ---------------------------------------------------
-alias dotbraga="$HOME/www/braga/dotbraga"
-alias dot="$HOME/www/braga/dotbraga/install"
+alias dotbraga="${HOME}/www/braga/dotbraga"
+alias dot="${HOME}/www/braga/dotbraga/install"
