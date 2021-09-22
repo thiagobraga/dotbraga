@@ -40,6 +40,7 @@ alias dcdn='docker-compose down'
 # ---------------------------------------------------
 alias gb='git --no-pager branch'
 alias gba='git --no-pager branch -a'
+alias gstl='git --no-pager stash list'
 alias gmn='git merge --no-ff --no-edit'
 alias gfp='git fetch --all --prune'
 alias gcs='git checkout stage'
