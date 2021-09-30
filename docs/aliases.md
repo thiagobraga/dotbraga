@@ -1,5 +1,5 @@
 <h1>
-  <img src="../images/icons/config-icon.png" width="24" /> <a href="../README.md"><b>dotbraga</b></a> / aliases
+  <img src="../images/icons/config-icon.png" width="24" /> <a href="../README.md"><b>dotbraga</b></a> / <a href="../docs"><b>docs</b></a> / aliases
 </h1>
 
 I've created some useful aliases to work together with Oh My ZSH aliases. Some of them override the behavior from Oh My ZSH, like `gb` for example, that adds a `--no-pager` flag.

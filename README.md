@@ -10,9 +10,9 @@
 </p>
 
 <p align="center">
-  <b><a href="#features">Features</a></b> • 
-  <b><a href="#installation">Installation</a></b> • 
-  <b><a href="#docs">Docs</a></b> • 
+  <b><a href="#features">Features</a></b> ·
+  <b><a href="#installation">Installation</a></b> ·
+  <b><a href="#docs">Docs</a></b> ·
   <b><a href="#screenshots">Screenshots</a></b>
 </p>
 
