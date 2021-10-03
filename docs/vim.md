@@ -1,5 +1,5 @@
 <h1>
-  <img src="../src/images/icons/config-icon.png" width="24" /> <a href="../README.md"><b>dotbraga</b></a> / ViM
+  <img src="../images/icons/config-icon.png" width="24" /> <a href="../README.md"><b>dotbraga</b></a> / ViM
 </h1>
 
 This doc explains the installation process of Vim and plugins. After the installation process, the folders `autoload` and `plugged` will be created, containing cached files for loaded plugins.
