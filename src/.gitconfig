@@ -17,5 +17,7 @@
   commitBeforeMerge = false
   resolveConflict = false
   detachedHead = false
+[init]
+  defaultBranch = master
 [include]
   path = ~/www/.gitconfig
