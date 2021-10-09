@@ -1,0 +1,7 @@
+- hosts: localhost
+  tasks:
+    - name: Ensures that Gimp always calls Gimp
+      lineinfile:
+        path: /usr/share/applications/gimp.desktop
+        regexp: '^Name.*$'
+        line: 'Name=Gimp'
