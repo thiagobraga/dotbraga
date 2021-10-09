@@ -1,7 +1,7 @@
 {
   "files.associations": {
-    "**/config/terminator/config": "ini",
-    "**/config/fontconfig/*": "xml",
+    "**/src/terminator/config": "ini",
+    "**/src/fontconfig/*": "xml",
     "**/.shellcheckrc": "ini",
     "**/install": "shellscript",
     "**/bin/*": "shellscript",
