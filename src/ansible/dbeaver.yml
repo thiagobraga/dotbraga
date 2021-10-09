@@ -1,0 +1,7 @@
+- hosts: localhost
+  tasks:
+    - name: Ensures that DBeaver is using local icon
+      lineinfile:
+        path: /usr/share/applications/dbeaver-ce.desktop
+        regexp: '^Icon.*$'
+        line: 'Icon={{ ansible_env.HOME }}/Imagens/Ícones/DBeaver.png'
