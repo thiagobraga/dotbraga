@@ -18,6 +18,8 @@
   close_term = <Control>w
   copy = <Control>c
   paste = <Control>v
+  next_tab = <Ctrl>Tab
+  prev_tab = <Ctrl><Shift>Tab
   hide_window = None
   new_terminator = <Control>n
 [profiles]
