@@ -1,6 +1,11 @@
 #!/bin/bash
 # shellcheck disable=SC2139
 
+# Bat
+# ---------------------------------------------------
+alias bat='batcat --paging=never --style=plain'
+alias cat='bat'
+
 # Brew
 # ---------------------------------------------------
 alias b='brew'
@@ -21,6 +26,11 @@ alias drmi='docker rmi $(docker images -q)'
 alias di='docker inspect'
 alias dim='docker images'
 alias dn='docker network'
+
+# Docker applications
+# ---------------------------------------------------
+alias gitlab-runner='docker exec -it -w $PWD gitlab-runner gitlab-runner'
+alias phpdoc='docker run --rm -v $PWD:/data phpdoc/phpdoc:3'
 
 # Docker Compose
 # ---------------------------------------------------
@@ -93,10 +103,8 @@ alias l="LC_COLLATE=C ls -alh --color=tty --group-directories-first"
 alias ll="LC_COLLATE=C ls -lh --color=tty --group-directories-first"
 alias ls="LC_COLLATE=C ls -a --color=tty --group-directories-first"
 alias www="cd ${HOME}/www"
-
-# PHP
-# ---------------------------------------------------
-alias phpdoc='docker run --rm -v $(pwd):/data phpdoc/phpdoc:3'
+alias oss="cd ${HOME}/www/oss"
+alias r="busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("'"Restarting"'")'"
 
 # Vessel
 # ---------------------------------------------------
@@ -106,6 +114,10 @@ alias vst='v start'
 alias vstart='v start'
 alias vdn='v down'
 alias vdown='v down'
+
+# ViM
+# ---------------------------------------------------
+alias vi='vim'
 
 # Yarn
 # ---------------------------------------------------
