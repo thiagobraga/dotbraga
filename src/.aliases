@@ -141,3 +141,5 @@ alias yyw='yarn && yarn watch'
 # ---------------------------------------------------
 alias dotbraga="${HOME}/www/braga/dotbraga"
 alias dot="${HOME}/www/braga/dotbraga/install"
+
+export DOTBRAGA="${HOME}/www/braga/dotbraga"
