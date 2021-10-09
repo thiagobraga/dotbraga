@@ -45,53 +45,31 @@ ${HOME}
 
 ## Compile ViM from source
 
-``` bash
+```bash
 #!/bin/bash
 
-VIM_PREFIX="$HOME"/www/oss/bin
+# Install dependencies
+sudo apt install -y \
+  clang \
+  libgtk-3-dev \
+  libpython3-dev \
+  libtool-bin \
+  libxt-dev \
+  make
+
+# Get Vim latest version
 VIM_SRC="$HOME"/www/oss/vim
-
-mkdir -p "$VIM_PREFIX"
-
 cd "$VIM_SRC" || exit
+git pull origin master
 
-sudo make distclean
+# Enable Python 3 interpreter
+sed -i '/^#CONF_OPT_PYTHON3 = --enable-python3interp$/s/^#//g' src/Makefile
 
-./configure \
-  --enable-cscope \
-  --enable-gtk2-check \
-  --enable-gui=auto \
-  --enable-luainterp \
-  --enable-multibyte \
-  --enable-perlinterp \
-  --enable-python3interp \
-  --enable-rubyinterp \
-  --with-compiledby="j.jith" \
-  --with-features=huge \
-  --with-python3-config-dir="$(python3-config --configdir)" \
-  --with-x \
-  --prefix="${VIM_PREFIX}"
-
+# Install Vim
 make
+make test
 sudo make install
 
-sudo sh -c "
-  update-alternatives --install /usr/bin/editor editor ${VIM_PREFIX}/vim 1;
-  update-alternatives --set editor ${VIM_PREFIX}/vim;
-  update-alternatives --install /usr/bin/vim vim ${VIM_PREFIX}/vim 1;
-  update-alternatives --set vim ${VIM_PREFIX}/vim;
-  update-alternatives --install /usr/bin/vi vi ${VIM_PREFIX}/vim 1;
-  update-alternatives --set vi ${VIM_PREFIX}/vim;
-  update-alternatives --install /usr/bin/gvim gvim ${VIM_PREFIX}/gvim 1;
-  update-alternatives --set gvim ${VIM_PREFIX}/gvim
-"
-```
-
-Fix for **Ubuntu 20.04**:
-``` bash
-sudo ln -sf \
-  /lib/x86_64-linux-gnu/libperl.so.5.30 \
-  /lib/x86_64-linux-gnu/libperl.so.5.28
-
-sudo apt install -y libruby2.7 liblua5.2-0
+# Undo src/Makefile changes
+git checkout src/Makefile
 ```
