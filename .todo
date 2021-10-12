@@ -1,7 +1,0 @@
-dotbraga · TODO
-
-☐ Install: create method to install emoji easily
-  ☐ install noto emoji via apt
-  ☐ symlink 01-emoji.conf
-✔ Organize `install`, `profile` and `scripts` @done(21-08-28 11:52)
-  Maybe there's something redundant here.
