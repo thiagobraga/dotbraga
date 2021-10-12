@@ -97,7 +97,7 @@ install() {
   }
 
   # Shortcut "Restart to Windows" for Dual Boot systems
-  shortcuts() {
+  dualboot() {
     title "Shortcut 'Restart to Windows' for Dual Boot systems"
     step '💻 Installing...'
     target='/usr/share/applications'
@@ -244,7 +244,7 @@ install() {
     spaceship
     zsh-syntax-highlighting
     zsh-autosuggestions
-    shortcuts
+    dualboot
     symlinks
     _vim
 
@@ -324,7 +324,7 @@ install() {
     vim) _vim ;;
     ohmyzsh) ohmyzsh ;;
     spaceship) spaceship ;;
-    dual-boot | shortcuts) shortcuts ;;
+    dualboot) dualboot ;;
     autosuggestions | zsh-autosuggestions) zsh-autosuggestions ;;
     syntax-highlighting | zsh-syntax-highlighting) zsh-syntax-highlighting ;;
     -l | --link | symlinks) symlinks "$@" ;;
