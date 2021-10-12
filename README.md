@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="https://github.com/thiagobraga">@thiagobraga's</a> dotfiles<br>
-  <a href="https://raw.githubusercontent.com/thiagobraga/todoist-userstyles/master/theme.user.css"><img src="https://img.shields.io/badge/version-1.1.0-929faf.svg" align="center" alt="Version 1.1.0"></a>
+  <a href="https://raw.githubusercontent.com/thiagobraga/todoist-userstyles/master/theme.user.css"><img src="https://img.shields.io/badge/version-1.2.0-929faf.svg" align="center" alt="Version 1.2.0"></a>
 </p>
 
 <p align="center">

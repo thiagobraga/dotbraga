@@ -11,7 +11,7 @@
 
 source src/scripts/colors
 
-VERSION='1.1.0'
+VERSION='1.2.0'
 PROJECT_PATH=$(pwd)
 APT_ARGS='-yqqq'
 LN_ARGS='-sfn'
@@ -208,7 +208,6 @@ install() {
       # Install dependencies
       sudo apt install -y \
         clang \
-        libgtk-3-dev \
         libpython3-dev \
         libtool-bin \
         libxt-dev \
