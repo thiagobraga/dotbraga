@@ -1,6 +1,7 @@
 [global_config]
-  handle_size = 1
-  extra_styling = True
+  handle_size = 20
+  extra_styling = False
+  title_at_bottom = True
   title_hide_sizetext = True
   title_transmit_fg_color = "#2e3440"
   title_transmit_bg_color = "#88c0d0"
@@ -12,6 +13,7 @@
   enabled_plugins = ,
   suppress_multiple_term_dialog = True
   always_split_with_profile = True
+  line_height = 1.4
 [keybindings]
   new_tab = <Control>t
   split_horiz = <Control>d
