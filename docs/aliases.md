@@ -10,12 +10,16 @@ I've created some useful aliases to work together with Oh My ZSH aliases. Some o
 
 - [Brew](#brew)
 - [Docker](#docker)
+- [Docker applications](#docker-applications)
 - [Docker Compose](#docker-compose)
 - [Git](#git)
+- [Kool](#kool)
 - [Make](#make)
 - [Misc](#misc)
+- [PHP](#php)
 - [Vessel](#vessel)
 - [Yarn](#yarn)
+- [Dotbraga](#dotbraga)
 
 <!-- /TOC -->
 
@@ -37,18 +41,39 @@ I've created some useful aliases to work together with Oh My ZSH aliases. Some o
 
 ### Docker
 
-| Alias       | Command                          |
-|-------------|----------------------------------|
-| **`dps`**   | `docker ps`                      |
-| **`dpsa`**  | `docker ps -a`                   |
-| **`dstop`** | `docker stop`                    |
-| **`dr`**    | `docker run`                     |
-| **`drm`**   | `docker rm`                      |
-| **`drma`**  | `docker rm $(docker ps -q -a)`   |
-| **`drmi`**  | `docker rmi $(docker images -q)` |
-| **`di`**    | `docker inspect`                 |
-| **`dim`**   | `docker images`                  |
-| **`dn`**    | `docker network`                 |
+| Alias         | Command                             |
+|---------------|-------------------------------------|
+| **`dps`**     | `docker ps`                         |
+| **`dpsa`**    | `docker ps -a`                      |
+| **`dpsaq`**   | `docker ps -a -q`                   |
+| **`dpsq`**    | `docker ps -q`                      |
+| **`dstart`**  | `docker star`                       |
+| **`dstats`**  | `docker stats`                      |
+| **`dstop`**   | `docker stop`                       |
+| **`dr`**      | `docker run`                        |
+| **`drm`**     | `docker rm`                         |
+| **`drmf`**    | `docker rm -f`                      |
+| **`drma`**    | `docker rm $(docker ps -q -a)`      |
+| **`drmfa`**   | `docker rm -f $(docker ps -q -a)`   |
+| **`drmi`**    | `docker rmi`                        |
+| **`drmif`**   | `docker rmi -f`                     |
+| **`drmiq`**   | `docker rmi $(docker images -q)`    |
+| **`drmifq`**  | `docker rmi -f $(docker images -q)` |
+| **`drmimg`**  | `docker rmi $(docker images -q)`    |
+| **`drmfimg`** | `docker rmi -f $(docker images -q)` |
+| **`di`**      | `docker inspect`                    |
+| **`dim`**     | `docker images`                     |
+| **`dn`**      | `docker network`                    |
+
+<br>
+
+
+### Docker applications
+
+| Alias               | Command                                               |
+|---------------------|-------------------------------------------------------|
+| **`gitlab-runner`** | `docker exec -it -w $PWD gitlab-runner gitlab-runner` |
+| **`phpdoc`**        | `docker run --rm -v $PWD:/data phpdoc/phpdoc:3`       |
 
 <br>
 
