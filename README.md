@@ -25,38 +25,54 @@
 <br>
 
 ### [Oh My ZSH](https://ohmyz.sh)  
-<sup>✨ [Spaceship Theme](https://denysdovhan.com/spaceship-prompt)</sup>  
-<sup>✨ [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)</sup>  
-<sup>✨ [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)</sup>  
+
+✨ [Spaceship Theme](https://denysdovhan.com/spaceship-prompt)  
+✨ [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)  
+✨ [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)  
+
 <br>
+
 ### [VIM · Vi IMproved](https://www.vim.org)  
-<sup>✨ [CtrlP](https://kien.github.io/ctrlp.vim)</sup>  
-<sup>✨ [NERDtree](https://github.com/preservim/nerdtree)</sup>  
-<sup>✨ [vim-airline](https://github.com/vim-airline/vim-airline)</sup>  
-<sup>💻 _One Dark theme [wip]_</sup>  
-<sup>💻 _Compiled from latest version on Github [wip]_</sup>  
+
+✨ [CtrlP](https://kien.github.io/ctrlp.vim)  
+✨ [NERDtree](https://github.com/preservim/nerdtree)  
+✨ [vim-airline](https://github.com/vim-airline/vim-airline)  
+💻 _One Dark theme [wip]_  
+💻 _Compiled from latest version on Github [wip]_  
+
 <br>
+
 ### [Fira Code]()  
-<sup>For beautiful coding and font ligatures</sup>  
-<sup>💻 _Automatic install via script [wip]_</sup>  
+
+For beautiful coding and font ligatures  
+💻 _Automatic install via script [wip]_  
+
 <br>
+
 ### [Aliases](./docs/aliases.md)  
-<sup>Many of them inspired on Oh My ZSH aliases</sup>  
-<sup>✨ [git](./docs/aliases.md#git)</sup>  
-<sup>✨ [docker](./docs/aliases.md#docker)</sup>  
-<sup>✨ [docker-compose](./docs/aliases.md#docker-compose)</sup>  
-<sup>✨ [yarn](./docs/aliases.md#yarn)</sup>  
-<sup>✨ [apt](./docs/aliases.md#apt)</sup>  
+
+Many of them inspired on Oh My ZSH aliases  
+✨ [git](./docs/aliases.md#git)  
+✨ [docker](./docs/aliases.md#docker)  
+✨ [docker-compose](./docs/aliases.md#docker-compose)  
+✨ [yarn](./docs/aliases.md#yarn)  
+✨ [apt](./docs/aliases.md#apt)  
+
 <br>
+
 ### [Terminator](./docs/terminator.md)  
-<sup>✨ Beautiful semi-transparent [Nord](https://www.nordtheme.com) theme. See [**screenshots**](#screenshots) 📷</sup>  
-<sup>✨ [Improved keyboard shortcuts](./docs/terminator.md#color-palette)</sup>
+
+✨ Beautiful semi-transparent [Nord](https://www.nordtheme.com) theme. See [**screenshots**](#screenshots) 📷  
+✨ [Improved keyboard shortcuts](./docs/terminator.md#color-palette)
+
+<br>
 
 ### ["Restart to Windows" shortcut](./src/dual-boot/windows.sh)
-<sup>Automates the restart process for Dual Boot systems</sup>  
-<sup>✨ Detects the Windows ID on GRUB list</sup>  
-<sup>✨ Restart system to that detected OS</sup>  
-<sup>✨ Shows confirmation dialog using Zenity from Ubuntu [option]</sup>
+
+Automates the restart process for Dual Boot systems  
+✨ Detects the Windows ID on GRUB list  
+✨ Restart system to that detected OS  
+✨ Shows confirmation dialog using Zenity from Ubuntu [option]
 
 <br>
 
@@ -79,7 +95,7 @@ The install script accepts some params. Here's a overview of the usage:
 ./install vimrc     # Install Vim and its settings
 ```
 
-See the [install](./install) script to see all the possibilities. You can hit `./install -h` or `./install --help` to get help from the script.
+See the [install](./install) script to see all the possibilities. You can hit `./install -h` or `./install --help` to get help from the script. Actually, this modules are installed by default:
 
 <br>
 
