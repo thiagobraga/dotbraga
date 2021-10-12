@@ -20,6 +20,8 @@
   <img src="./images/screenshots/dotbraga_ubuntu_2020-04-06_00.18.png" width="600" />
 </p>
 
+<br>
+
 ## Features
 
 <br>
