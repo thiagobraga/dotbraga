@@ -96,7 +96,7 @@ The install script accepts some params. Here's a overview of the usage:
 ./install vimrc     # Install Vim and its settings
 ```
 
-See the [install](./install) script to see all the possibilities. You can hit `./install -h` or `./install --help` to get help from the script. Actually, this modules are installed by default:
+See the [install](./install) script to see all the possibilities. You can hit `./install -h` or `./install --help` to get help from the script.
 
 <br>
 
