@@ -11,6 +11,7 @@ export SPACESHIP_DIR_TRUNC=0
 export SPACESHIP_GIT_STATUS_SHOW=true
 export SPACESHIP_GIT_STATUS_COLOR='blue'
 export SPACESHIP_PROMPT_ORDER=(dir host git line_sep jobs char)
+export TERM=xterm-256color
 
 export plugins=(
   git
@@ -19,6 +20,11 @@ export plugins=(
   zsh-autosuggestions
   zsh-syntax-highlighting
 )
+
+# Configure color overrides for terminal
+if [[ -f ~/.dircolors ]]; then
+  eval "$(dircolors -b ~/.dircolors)" &>/dev/null
+fi
 
 source "$ZSH"/oh-my-zsh.sh
 
@@ -39,11 +45,3 @@ if [ -e "$HOME/.profile" ]; then source "$HOME/.profile"; fi
 
 scripts=($(find "$HOME/scripts" -type l))
 for script in "$scripts[@]"; do source $script; done
-
-# Eval section
-# -----------------------------------------------------
-
-# Configure color overrides for terminal
-if [[ -f ~/.dircolors ]]; then
-  eval "$(dircolors -b ~/.dircolors)" &>/dev/null
-fi
