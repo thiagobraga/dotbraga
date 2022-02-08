@@ -17,7 +17,7 @@ alias bss='brew services stop'
 # Docker
 # ---------------------------------------------------
 alias dps='docker ps'
-alias dpsa='docker ps -a'
+alias dpsa="docker ps -a --format='table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Command}}\t{{.Status}}'"
 alias dpsaq='docker ps -a -q'
 alias dpsq='docker ps -q'
 alias dstart='docker start'
@@ -39,6 +39,7 @@ alias dn='docker network'
 # ---------------------------------------------------
 alias gitlab-runner='docker exec -it -w $PWD gitlab-runner gitlab-runner'
 alias phpdoc='docker run --rm -v $PWD:/data phpdoc/phpdoc:3'
+alias phpqa='docker run --init -it --rm -v "$(pwd):/project" -v "$(pwd)/tmp-phpqa:/tmp" -w /project jakzal/phpqa:alpine'
 
 # Docker Compose
 # ---------------------------------------------------
@@ -114,6 +115,11 @@ alias www="cd ${HOME}/www"
 alias oss="cd ${HOME}/www/oss"
 alias r="busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("'"Restarting"'")'"
 
+# tcpdump
+# ---------------------------------------------------
+alias tcpdump='sudo tcpdump'
+alias tcp='tcpdump'
+
 # Vessel
 # ---------------------------------------------------
 alias v='./vessel'
@@ -122,10 +128,6 @@ alias vst='v start'
 alias vstart='v start'
 alias vdn='v down'
 alias vdown='v down'
-
-# ViM
-# ---------------------------------------------------
-alias vi='vim'
 
 # Yarn
 # ---------------------------------------------------
