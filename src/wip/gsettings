@@ -12,3 +12,6 @@ gsettings set org.gnome.desktop.session idle-delay 0
 
 # Disable screenlock
 gsettings set org.gnome.desktop.screensaver lock-enabled false
+
+# Enable GTK+ Inspector
+gsettings set org.gtk.Settings.Debug enable-inspector-keybinding true
