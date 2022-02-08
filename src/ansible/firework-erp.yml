@@ -1,0 +1,14 @@
+- hosts: localhost
+  tasks:
+    - name: Find Clockify CSV report in Downloads folder
+      find:
+        paths: /home/thiago/Downloads
+        patterns: 'Clockify_Time_Report_Detailed_*.csv'
+      register: output
+
+    - name: Change 'Scaffold' to 'Squads (FK/outros)' in Clockify report
+      replace:
+        path: '{{ item.path }}'
+        regexp: 'Scaffold'
+        replace: 'Squads (FK/outros)'
+      with_items: '{{ output.files }}'
