@@ -127,6 +127,7 @@ alias ls="LC_COLLATE=C ls -a --color=tty --group-directories-first"
 alias www="cd ${HOME}/www"
 alias oss="cd ${HOME}/www/oss"
 alias r="busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("'"Restarting"'")'"
+alias watch='watch -n 1 '
 
 # tcpdump
 # ---------------------------------------------------
