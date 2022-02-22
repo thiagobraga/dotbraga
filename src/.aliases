@@ -25,6 +25,7 @@ alias clo='clockify manual -i=0 -p Operacional -d'
 # ---------------------------------------------------
 alias dps='docker ps'
 alias dpsa="docker ps -a --format='table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Command}}\t{{.Status}}'"
+alias dpsag="dpsa | grep"
 alias dpsaq='docker ps -a -q'
 alias dpsq='docker ps -q'
 alias dstart='docker start'
@@ -38,9 +39,14 @@ alias drmfa='docker rm -f $(docker ps -q -a)'
 alias drmi='docker rmi'
 alias drmif='docker rmi -f'
 alias drmia='docker rmi $(docker images -q)'
+alias drmifa='docker rmi -f $(docker images -q)'
 alias di='docker inspect'
 alias dim='docker images'
 alias dn='docker network'
+alias ds='docker system'
+alias dsp='docker system prune'
+alias dspa='docker system prune -a'
+alias dspaf='docker system prune -a -f'
 
 # Docker applications
 # ---------------------------------------------------
