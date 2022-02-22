@@ -14,6 +14,13 @@ alias bsl='brew services list'
 alias bsr='brew services restart'
 alias bss='brew services stop'
 
+# Clockify CLI
+# ---------------------------------------------------
+alias cl='clockify manual -i=0'
+alias cls='clockify manual -i=0 -p Scaffold -d'
+alias clf='clockify manual -i=0 -p Financeiro -d'
+alias clo='clockify manual -i=0 -p Operacional -d'
+
 # Docker
 # ---------------------------------------------------
 alias dps='docker ps'
