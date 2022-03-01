@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# dotbraga 1.2.0
+# dotbraga 1.3.0
 # ==============================================================================
 #
 # Usage:
@@ -10,7 +10,7 @@
 #
 # After installation, the new `dotbraga` and `dot` aliases are available.
 # Also, the variable ${DOTBRAGA} is created to point to the installation folder.
-VERSION='1.2.0'
+VERSION='1.3.0'
 LN_ARGS='-sfn'
 OHMYZSH_FOLDER="$HOME/.oh-my-zsh"
 OHMYZSH_URL='https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh'
