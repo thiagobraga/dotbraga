@@ -1,121 +1,94 @@
 #!/bin/bash
 
-# Dotfiles install
-# ------------------------------------------------------------------------------
+# dotbraga 1.2.0
+# ==============================================================================
 #
 # Usage:
-#   ./install           # Install everything
-#   ./install --all     # Install everything
-#   ./install ohmyzsh   # Install only Oh My ZSH
-#   ./install vim       # Install Vim and its settings
-
-source src/scripts/colors
-
+#  ./install [--all]   Install everything
+#  ./install ohmyzsh   Install only Oh My ZSH. Other values: dualboot, symlinks,
+#                      ViM, autosuggestions, syntax-highlighting, spaceship.
+#
+# After installation, the new `dotbraga` and `dot` aliases are available.
+# Also, the variable ${DOTBRAGA} is created to point to the installation folder.
 VERSION='1.2.0'
-PROJECT_PATH=$(pwd)
-APT_ARGS='-yqqq'
 LN_ARGS='-sfn'
-
 OHMYZSH_FOLDER="$HOME/.oh-my-zsh"
 OHMYZSH_URL='https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh'
 SPACESHIP_PROMPT_URL='https://github.com/denysdovhan/spaceship-prompt'
+ZSH_AUTOSUGGESTIONS_URL='https://github.com/zsh-users/zsh-autosuggestions'
 ZSH_SYNTAX_HIGHLIGHTING_URL='https://github.com/zsh-users/zsh-syntax-highlighting'
-ZSH_AUTOSUGGESTIONS='https://github.com/zsh-users/zsh-autosuggestions'
+PROJECT_PATH=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 
-# Install the components of dotfiles
-# ------------------------------------------------------------------------------
+source "${PROJECT_PATH}"/src/scripts/colors
+
+# Install dotbraga components
+# ==============================================================================
 install() {
 
+
+  # PUBLIC METHODS
+  # ============================================================================
+
   # Install Oh My ZSH
+  # ----------------------------------------------------------------------------
   ohmyzsh() {
     title 'Install Oh My ZSH'
-    step '🔍 Check if installed...'
-
-    if [[ ! -d "$OHMYZSH_FOLDER" ]]; then
-      step '💻 Installing...'
-      sh -c "$(curl -fsSL ${OHMYZSH_URL})"
-    else
-      step '💾 Updating...'
-      update "${OHMYZSH_FOLDER}"
-    fi
-
-    success 'Oh My ZSH install finished.'
+    install_or_update "${OHMYZSH_FOLDER}" ${OHMYZSH_URL}
+    success '✅ Oh My ZSH install finished.'
   }
 
   # Install Spaceship theme for Oh My ZSH
+  # ----------------------------------------------------------------------------
   spaceship() {
     title 'Install Spaceship theme for Oh My ZSH'
-    step '🔍 Check if installed...'
-    THEME_PATH="${OHMYZSH_FOLDER}/custom/themes/spaceship-prompt"
-
-    if [[ ! -d "${THEME_PATH}" ]]; then
-      step '💻 Installing...'
-      git clone ${SPACESHIP_PROMPT_URL} "${THEME_PATH}"
-    else
-      step '💾 Updating...'
-      update "${THEME_PATH}"
-    fi
-
+    THEME_FOLDER="${OHMYZSH_FOLDER}/custom/themes/spaceship-prompt"
+    install_or_update "${THEME_FOLDER}" ${SPACESHIP_PROMPT_URL}
     step '🔗 Creating symlink...'
-    ln ${LN_ARGS} "${THEME_PATH}/spaceship.zsh-theme" "${OHMYZSH_FOLDER}/themes/spaceship.zsh-theme"
-
-    success 'Spaceship install finished.'
+    ln ${LN_ARGS} "${THEME_FOLDER}/spaceship.zsh-theme" "${OHMYZSH_FOLDER}/themes/spaceship.zsh-theme"
+    success '✅ Spaceship install finished.'
   }
 
   # Install zsh-syntax-highlighting plugin for Oh My ZSH
+  # ----------------------------------------------------------------------------
   zsh-syntax-highlighting() {
     title 'Install zsh-syntax-highlighting plugin'
-    step '🔍 Check if installed...'
     PLUGIN_PATH="${OHMYZSH_FOLDER}/custom/plugins/zsh-syntax-highlighting"
-
-    if [[ ! -d "${PLUGIN_PATH}" ]]; then
-      step '💻 Installing...'
-      git clone ${ZSH_SYNTAX_HIGHLIGHTING_URL} "${PLUGIN_PATH}"
-    else
-      step '💾 Updating...'
-      update "${PLUGIN_PATH}"
-    fi
-
-    success 'zsh-syntax-highlighting install finished.'
+    install_or_update "${PLUGIN_PATH}" ${ZSH_SYNTAX_HIGHLIGHTING_URL}
+    success '✅ zsh-syntax-highlighting install finished.'
   }
 
   # Install zsh-autosuggestions plugin for Oh My ZSH
+  # ----------------------------------------------------------------------------
   zsh-autosuggestions() {
     title 'Install zsh-autosuggestions plugin'
-    step '🔍 Check if installed...'
     PLUGIN_PATH="${OHMYZSH_FOLDER}/custom/plugins/zsh-autosuggestions"
-
-    if [[ ! -d "${PLUGIN_PATH}" ]]; then
-      step '💻 Installing...'
-      git clone ${ZSH_AUTOSUGGESTIONS} "${PLUGIN_PATH}"
-    else
-      step '💾 Updating...'
-      update "${PLUGIN_PATH}"
-    fi
-
-    success 'zsh-autosuggestions install finished.'
+    install_or_update "${PLUGIN_PATH}" ${ZSH_AUTOSUGGESTIONS_URL}
+    success '✅ zsh-autosuggestions install finished.'
   }
 
   # Shortcut "Restart to Windows" for Dual Boot systems
+  # ----------------------------------------------------------------------------
   dualboot() {
     title "Shortcut 'Restart to Windows' for Dual Boot systems"
     step '💻 Installing...'
-    target='/usr/share/applications'
-    extensions=(desktop png sh)
+    TARGET='/usr/share/applications'
+    EXTENSIONS=(desktop png sh)
 
-    for extension in "${extensions[@]}"; do
+    for EXTENSION in "${EXTENSIONS[@]}"; do
       sudo ln ${LN_ARGS} \
-        "${PROJECT_PATH}/src/dual-boot/windows.${extension}" \
-        "${target}"
+        "${PROJECT_PATH}/src/dual-boot/windows.${EXTENSION}" \
+        "${TARGET}"
     done
 
-    success "'Restart to Windows' created successfuly."
+    success "✅ 'Restart to Windows' created successfuly."
   }
 
   # Delete all symlinks created with symlinks method
+  # ----------------------------------------------------------------------------
+  # TODO: Create a backup of each file
   clean-symlinks() {
     title 'Clean symbolic links created with dotbraga'
-
+    sudo find "/etc/profile.d" -type l -exec /bin/rm -v {} \;
     /bin/rm -rfv \
       "${HOME}/.zshrc" \
       "${HOME}/.aliases" \
@@ -126,17 +99,17 @@ install() {
       "${HOME}/scripts" \
       "${HOME}/.hushlogin" \
       "${HOME}/.sudo_as_admin_successful"
-
-    sudo find "/etc/profile.d" -type l -exec /bin/rm -v {} \;
-
-    success 'Symlinks removed! 🗑️'
+    success '✅ Symlinks removed! 🗑️'
   }
 
   # Create symbolic links for settings
+  # ----------------------------------------------------------------------------
   symlinks() {
     clean-symlinks
     title 'Create symbolic links for settings'
 
+    step "🔗 Touching .hushlogin in \$HOME..." && touch "${HOME}/.hushlogin"
+    step "🔗 Touching .sudo_as_admin_successful in \$HOME..." && touch "${HOME}/.sudo_as_admin_successful"
     step "🔗 Linking .zshrc in \$HOME..." && ln ${LN_ARGS} -t "${HOME}" "${PROJECT_PATH}/src/.zshrc"
     step "🔗 Linking .aliases in \$HOME..." && ln ${LN_ARGS} -t "${HOME}" "${PROJECT_PATH}/src/.aliases"
     step "🔗 Linking .gitconfig in \$HOME..." && ln ${LN_ARGS} -t "${HOME}" "${PROJECT_PATH}/src/.gitconfig"
@@ -163,17 +136,13 @@ install() {
 
     step '🔗 Linking some scripts to /usr/bin...'
     find "${PROJECT_PATH}/src/bin" -type f,l -exec sudo ln ${LN_ARGS} -t /usr/bin {} \;
-
-    step "🔗 Touching .hushlogin in \$HOME..." && touch "${HOME}/.hushlogin"
-    step "🔗 Touching .sudo_as_admin_successful in \$HOME..." && touch "${HOME}/.sudo_as_admin_successful"
-
-    success 'Symlinks created!'
+    success '✅ Symlinks created!'
   }
 
   # Test symlinks created
+  # ----------------------------------------------------------------------------
   test-symlinks() {
     title 'Test created symbolic links'
-
     ls -lah --color=tty \
       "${HOME}/.zshrc" \
       "${HOME}/.aliases" \
@@ -184,14 +153,14 @@ install() {
       "${HOME}/scripts/colors" \
       "${HOME}/scripts/custom/index" \
       "${HOME}/scripts/custom/path"
-
     ls -lah --color=tty \
       "${HOME}/.hushlogin" \
       "${HOME}/.sudo_as_admin_successful"
   }
 
   # Install VIM - Vi IMproved with settings
-  _vim() {
+  # ----------------------------------------------------------------------------
+  ViM() {
     title 'Install VIM - Vi IMproved with settings'
     step '🔍 Check if VIM is installed...'
     VIM_FILE="${HOME}/.vimrc"
@@ -203,7 +172,6 @@ install() {
       step '💾 Updating vim...'
     fi
 
-    # sudo apt install $APT_ARGS vim
     {
       # Install dependencies
       sudo apt install -y \
@@ -214,9 +182,14 @@ install() {
         make
 
       # Get Vim latest version
-      VIM_SRC="$HOME"/www/oss/vim
-      cd "$VIM_SRC" || exit
-      git pull origin master
+      VIM_SRC=${PROJECT_PATH}/dist
+      if [[ ! -d ${VIM_SRC} ]]; then
+        git clone git@github.com:vim/vim "${VIM_SRC}"
+        cd "${VIM_SRC}" || exit
+      else
+        cd "${VIM_SRC}" || exit
+        git pull origin master
+      fi
 
       # Enable Python 3 interpreter
       sed -i '/^#CONF_OPT_PYTHON3 = --enable-python3interp$/s/^#//g' src/Makefile
@@ -234,11 +207,11 @@ install() {
     ln ${LN_ARGS} "${PROJECT_PATH}"/src/vim/.vimrc "${VIM_FILE}"
     ln ${LN_ARGS} "${PROJECT_PATH}"/src/vim "${VIM_FOLDER}"
     vim -E -s -u "${VIM_FILE}" +PlugInstall +qall >/dev/null
-
-    success 'VIM installed and configured'
+    success '✅ VIM installed and configured'
   }
 
   # Call the install script without parameters or passing -a / --all parameter
+  # ----------------------------------------------------------------------------
   all() {
     ohmyzsh
     spaceship
@@ -246,31 +219,56 @@ install() {
     zsh-autosuggestions
     dualboot
     symlinks
-    _vim
-
+    ViM
     echo
     info 'Finished'
   }
 
-  # Private methods
-  # ----------------------------------------------------------------------------
 
-  # Print the header
-  header() {
-    printf "${BWhite}%s${ColorOff} ${Yellow}%s${ColorOff}\n" 'dotfiles' ${VERSION}
+  # PRIVATE METHODS
+  # ============================================================================
+
+  # Abstract method to install or update components.
+  # ----------------------------------------------------------------------------
+  install_or_update() {
+    step '🔍 Check if installed...'
+    INSTALL_FOLDER=$1
+    INSTALL_URL=$2
+    CLONE=$3
+
+    if [[ ! -d "${INSTALL_FOLDER}" ]]; then
+      step '💻 Installing...'
+      if [[ ${CLONE} == 'true' ]]; then
+        git clone "${INSTALL_URL}" "${INSTALL_FOLDER}"
+      else
+        sh -c "$(curl -fsSL "${INSTALL_URL}")"
+      fi
+    else
+      step '💾 Updating...'
+      update "${INSTALL_FOLDER}"
+    fi
   }
 
-  # Define title of each internal function
+  # Print header.
+  # ----------------------------------------------------------------------------
+  header() {
+    printf "${BWhite}%s${ColorOff} ${Yellow}%s${ColorOff}\n" 'dotbraga' ${VERSION}
+  }
+
+  # Define title of each internal function.
+  # ----------------------------------------------------------------------------
   title() {
     printf "\n${BPurple}%s${ColorOff}\n" "${1}"
   }
 
-  # Print steps information about installation
+  # Print steps information about installation.
+  # ----------------------------------------------------------------------------
   step() {
     printf "${ColorOff}%s${IBlack}\n" "${1}"
   }
 
-  # Asks the user a question and captures the answer
+  # Asks the user a question and captures the answer.
+  # ----------------------------------------------------------------------------
   ask() {
     printf '%s' "${Yellow}" &&
       read -r "ANSWER?${1} ${2} " &&
@@ -280,37 +278,40 @@ install() {
   }
 
   # Inform user about some action.
+  # ----------------------------------------------------------------------------
   info() {
     printf "${Blue}"'info'"${ColorOff} %s\n" "${1}"
   }
 
   # Debug some information.
+  # ----------------------------------------------------------------------------
   debug() {
     printf "${IYellow}"'debug'"${ColorOff} %s\n" "${*}"
   }
 
   # Print done message
+  # ----------------------------------------------------------------------------
   success() {
     printf "${Green}success${ColorOff} %s\n" "${1}"
   }
 
   # Abort execution with message
+  # ----------------------------------------------------------------------------
   abort() {
     printf "${Red}abort${ColorOff} %s\n" "${1}"
   }
 
   # Update plugin or theme using git pull
+  # ----------------------------------------------------------------------------
   update() {
     {
-      cd "${1}" &&
-        git pull origin master &&
-        cd "${PROJECT_PATH}" ||
-        exit
+      cd "${1}" && git pull || exit
     }
   }
 
-  # Function call
-  # ----------------------------------------------------------------------------
+
+  # FUNCTION CALL
+  # ============================================================================
 
   header
   args=("$@")
@@ -321,7 +322,7 @@ install() {
   # ...or detect the function to run.
   for arg in "${args[@]}"; do
     case $arg in
-    vim) _vim ;;
+    vim) ViM ;;
     ohmyzsh) ohmyzsh ;;
     spaceship) spaceship ;;
     dualboot) dualboot ;;
