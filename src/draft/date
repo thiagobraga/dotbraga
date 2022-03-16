@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# TODO: Will it be useful?
+export TODAY=${date +%F}
+export YESTERDAY=${date -d 'yesterday' +%F}
