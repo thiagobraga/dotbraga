@@ -15,3 +15,6 @@ gsettings set org.gnome.desktop.screensaver lock-enabled false
 
 # Enable GTK+ Inspector
 gsettings set org.gtk.Settings.Debug enable-inspector-keybinding true
+
+# Disable animations
+gsettings set org.gnome.desktop.interface enable-animations false
