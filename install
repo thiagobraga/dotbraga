@@ -182,12 +182,12 @@ install() {
         make
 
       # Get Vim latest version
-      VIM_SRC=${PROJECT_PATH}/dist
-      if [[ ! -d ${VIM_SRC} ]]; then
-        git clone git@github.com:vim/vim "${VIM_SRC}"
-        cd "${VIM_SRC}" || exit
+      VIM_DIST=${PROJECT_PATH}/dist
+      if [[ ! -d ${VIM_DIST} ]]; then
+        git clone git@github.com:vim/vim "${VIM_DIST}"
+        cd "${VIM_DIST}" || exit
       else
-        cd "${VIM_SRC}" || exit
+        cd "${VIM_DIST}" || exit
         git pull origin master
       fi
 
