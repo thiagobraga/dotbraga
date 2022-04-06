@@ -6,7 +6,7 @@ win() {
   sudo grub-reboot "$(
     sudo grep -i '^menuentry.*Windows' /boot/grub/grub.cfg |
       head -n 1 |
-      cut -d"'" -f4
+      cut -d"'" -f2
   )"
   sudo reboot
 }
