@@ -113,6 +113,10 @@ alias mi='make install'
 alias mr='make release'
 alias mw='make watch'
 
+# Minikube
+# ---------------------------------------------------
+alias kubectl="minikube kubectl --"
+
 # Misc
 # ---------------------------------------------------
 alias apt='sudo apt'
