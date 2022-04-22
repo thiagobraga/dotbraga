@@ -47,7 +47,7 @@
       maximised = False
       order = 0
       parent = ""
-      size = 820, 500
+      size = 900, 570
       type = Window
     [[[terminal1]]]
       order = 0
