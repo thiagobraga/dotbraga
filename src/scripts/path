@@ -7,15 +7,10 @@ PATHS=(
   '/usr/local/bin'
   '/usr/sbin'
   '/usr/bin'
-  '/sbin'
-  '/bin'
   '/snap/bin'
-  '/opt/sublime_text'
   "$HOME/.config/composer/vendor/bin"
-  "$HOME/.gem/ruby/2.5.0/bin"
-  "$HOME/.cabal/bin"
+  "$HOME/.rbenv/versions/2.7.1/bin"
   "$HOME/.local/bin"
-  "$HOME/.rbenv/bin"
   "$HOME/n/bin"
 )
 
@@ -32,4 +27,3 @@ PATH=$(join : "${PATHS[@]}")
 
 export PATH
 export N_PREFIX="$HOME/n"
-export VIM_PREFIX="$HOME/www/oss/vim"
