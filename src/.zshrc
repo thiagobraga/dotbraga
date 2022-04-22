@@ -49,3 +49,4 @@ if [ -e "$HOME/.profile" ]; then source "$HOME/.profile"; fi
 
 scripts=($(find "$HOME/scripts" -type l))
 for script in "$scripts[@]"; do source $script; done
+eval "$(rbenv init -)"
