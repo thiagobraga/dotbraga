@@ -8,9 +8,9 @@
         patterns: 'Clockify_Time_Report_Detailed_*.csv'
       register: output
 
-    - name: Change 'Scaffold' to 'Infraestrutura - Cloud' in Clockify report
+    - name: Change 'Scaffold' to '[05.06] Infraestrutura - Cloud' in Clockify report
       replace:
         path: '{{ item.path }}'
         regexp: 'Scaffold'
-        replace: 'Infraestrutura - Cloud'
+        replace: '[05.06] Infraestrutura - Cloud'
       with_items: '{{ output.files }}'
