@@ -6,7 +6,7 @@ set ai
 set autochdir
 set autoread
 set backspace=indent,eol,start
-set cmdheight=2
+set cmdheight=1
 set complete-=i
 set cwh=20
 set display+=lastline
