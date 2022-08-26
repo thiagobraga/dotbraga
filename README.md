@@ -26,7 +26,7 @@
 
 <br>
 
-### [Oh My ZSH](https://ohmyz.sh)  
+### [Oh My Zsh](https://ohmyz.sh)  
 
 ✨ [Spaceship Theme](https://denysdovhan.com/spaceship-prompt)  
 ✨ [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)  
@@ -53,7 +53,7 @@ For beautiful coding and font ligatures
 
 ### [Aliases](./docs/aliases.md)  
 
-Many of them inspired on Oh My ZSH aliases  
+Many of them inspired on Oh My Zsh aliases  
 ✨ [git](./docs/aliases.md#git)  
 ✨ [docker](./docs/aliases.md#docker)  
 ✨ [docker-compose](./docs/aliases.md#docker-compose)  
@@ -92,7 +92,7 @@ The install script accepts some params. Here's a overview of the usage:
 ``` sh
 ./install           # Install everything
 ./install --all     # Install everything
-./install ohmyzsh   # Install only Oh My ZSH
+./install ohmyzsh   # Install only Oh My Zsh
 ./install vimrc     # Install Vim and its settings
 ```
 
