@@ -4,5 +4,5 @@
 # ------------------------------------------------------------------------------
 /usr/bin/mattermost-desktop &>/dev/null &
 /usr/bin/discord &>/dev/null &
-/usr/bin/slack &>/dev/null &
+/snap/bin/slack &>/dev/null &
 /opt/Telegram/Telegram &>/dev/null &
