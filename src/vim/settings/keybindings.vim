@@ -20,3 +20,5 @@ nmap <C-Q> :q<CR>
 imap <C-Q> <Esc>:q<CR>
 imap <C-Q> <Esc><C-Q>
 
+" Ctrl + B to toggle NERDTree easily
+nmap <C-B> :NERDTreeToggle<CR>
