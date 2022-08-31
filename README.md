@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="https://github.com/thiagobraga">@thiagobraga's</a> dotfiles<br>
-  <a href="https://raw.githubusercontent.com/thiagobraga/todoist-userstyles/master/theme.user.css"><img src="https://img.shields.io/badge/version-1.3.0-929faf.svg" align="center" alt="Version 1.3.0"></a>
+  <a href="https://raw.githubusercontent.com/thiagobraga/todoist-userstyles/master/theme.user.css"><img src="https://img.shields.io/badge/version-1.4.0-929faf.svg" align="center" alt="Version 1.4.0"></a>
 </p>
 
 <p align="center">
@@ -17,7 +17,7 @@
 </p>
 
 <p align="center">
-  <img src="./images/screenshots/dotbraga_ubuntu_2020-04-06_00.18.png" width="600" />
+  <img src="./images/screenshots/dotbraga_ubuntu_2022-08-31_00-30-57.png" width="600" />
 </p>
 
 <br>
@@ -28,9 +28,10 @@
 
 ### [Oh My Zsh](https://ohmyz.sh)  
 
-✨ [Spaceship Theme](https://denysdovhan.com/spaceship-prompt)  
 ✨ [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)  
 ✨ [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)  
+~~✨ [Spaceship Theme](https://denysdovhan.com/spaceship-prompt)~~  
+✨ Powerlevel10k  
 
 <br>
 
@@ -44,21 +45,14 @@
 
 <br>
 
-### [Fira Code]()  
-
-For beautiful coding and font ligatures  
-💻 _Automatic install via script [wip]_  
-
-<br>
-
 ### [Aliases](./docs/aliases.md)  
 
 Many of them inspired on Oh My Zsh aliases  
-✨ [git](./docs/aliases.md#git)  
+✨ [apt](./docs/aliases.md#apt)  
 ✨ [docker](./docs/aliases.md#docker)  
 ✨ [docker-compose](./docs/aliases.md#docker-compose)  
+✨ [git](./docs/aliases.md#git)  
 ✨ [yarn](./docs/aliases.md#yarn)  
-✨ [apt](./docs/aliases.md#apt)  
 
 <br>
 
@@ -112,10 +106,39 @@ See the [install](./install) script to see all the possibilities. You can hit `.
 
 ## Screenshots
 
-<br>
+<br>  
 
 <img src="./images/screenshots/dotbraga_terminator_2020-04-06_00.21.png" width="420" />
 
 <img src="./images/screenshots/dotbraga_macos_2020-04-07_13.53.png" width="420" />
 
 <img src="./images/screenshots/dotbraga_ubuntu_2020-04-06_00.18.png" width="420" />
+
+## Changelog
+
+### 1.4.0
+
+- Started using **Powerlevel10k** 💪
+- More Dash to Panel changes...
+- Reduced command field height in ViM
+- Add NERDCommenter to ViM
+- New shortcut <kbd>Ctrl</kbd>+<kbd>B</kbd> in ViM to toggle NERDtree like in VSCode
+- Add `htoprc` to config htop
+- Add Slack in kill and open chats scripts
+- Add Ruby to PATH and zshrc
+- Alias for kubectl using minikube
+- Improvements in some ansible scripts
+- Improvements for Windows reboot command
+- Disable Ubuntu animations using `gsettings`
+
+### 1.3.0
+
+- Many improvements to install
+- Aliases improvements
+- Added Clockify CLI aliases and more Docker aliases
+- Improvements for git prompt
+- Improved ansible script for ERP
+- Always changing `terminator` config...
+- Some gsettings scripts
+- Dash to Panel settings update
+- Fix tmux colors
