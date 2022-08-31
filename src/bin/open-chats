@@ -2,7 +2,4 @@
 
 # Open all chat apps
 # ------------------------------------------------------------------------------
-/usr/bin/mattermost-desktop &>/dev/null &
-/usr/bin/discord &>/dev/null &
-/snap/bin/slack &>/dev/null &
-/opt/Telegram/Telegram &>/dev/null &
+for i in discord slack telegram mattermost-desktop; do (${i} &>/dev/null &); done

@@ -2,7 +2,4 @@
 
 # Kill all chat apps
 # ------------------------------------------------------------------------------
-pgrep -i Slack | xargs kill -9 &>/dev/null && printf "Closing %s..." "Slack"
-pgrep -i Discord | xargs kill -9 &>/dev/null && printf "Closing %s..." "Discord"
-pgrep -i Telegram | xargs kill -9 &>/dev/null && printf "Closing %s..." "Telegram"
-pgrep -i Mattermost | xargs kill -9 &>/dev/null && printf "Closing %s..." "Mattermost"
+for i in Discord Slack Telegram Mattermost; do pgrep -i ${i} | xargs kill -9 &>/dev/null; done
