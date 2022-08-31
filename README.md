@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="https://github.com/thiagobraga">@thiagobraga's</a> dotfiles<br>
-  <a href="https://raw.githubusercontent.com/thiagobraga/todoist-userstyles/master/theme.user.css"><img src="https://img.shields.io/badge/version-1.4.0-929faf.svg" align="center" alt="Version 1.4.0"></a>
+  <a href="https://raw.githubusercontent.com/thiagobraga/todoist-userstyles/master/theme.user.css"><img src="https://img.shields.io/badge/version-1.4.1-929faf.svg" align="center" alt="Version 1.4.1"></a>
 </p>
 
 <p align="center">
@@ -115,6 +115,10 @@ See the [install](./install) script to see all the possibilities. You can hit `.
 <img src="./images/screenshots/dotbraga_ubuntu_2020-04-06_00.18.png" width="420" />
 
 ## Changelog
+
+### 1.4.1
+
+- Forgot to version new screenshot 😅
 
 ### 1.4.0
 
