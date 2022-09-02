@@ -14,3 +14,10 @@
         regexp: 'Scaffold'
         replace: '[05.06] Infraestrutura - Cloud'
       with_items: '{{ output.files }}'
+
+    - name: Change 'Firework' at line start to 'Eventos' in Clockify report
+      replace:
+        path: '{{ item.path }}'
+        regexp: '^"(Firework)'
+        replace: '"Eventos'
+      with_items: '{{ output.files }}'
