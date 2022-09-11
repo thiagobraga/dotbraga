@@ -5,7 +5,7 @@
 #
 # Usage:
 #  ./install [--all]   Install everything
-#  ./install ohmyzsh   Install only Oh My ZSH. Other values: dualboot, symlinks,
+#  ./install ohmyzsh   Install only Oh My Zsh. Other values: dualboot, symlinks,
 #                      ViM, autosuggestions, syntax-highlighting, spaceship.
 #
 # After installation, the new `dotbraga` and `dot` aliases are available.
@@ -29,18 +29,18 @@ install() {
   # PUBLIC METHODS
   # ============================================================================
 
-  # Install Oh My ZSH
+  # Install Oh My Zsh
   # ----------------------------------------------------------------------------
   ohmyzsh() {
-    title 'Install Oh My ZSH'
+    title 'Install Oh My Zsh'
     install_or_update "${OHMYZSH_FOLDER}" ${OHMYZSH_URL}
-    success '✅ Oh My ZSH install finished.'
+    success '✅ Oh My Zsh install finished.'
   }
 
-  # Install Spaceship theme for Oh My ZSH
+  # Install Spaceship theme for Oh My Zsh
   # ----------------------------------------------------------------------------
   spaceship() {
-    title 'Install Spaceship theme for Oh My ZSH'
+    title 'Install Spaceship theme for Oh My Zsh'
     THEME_FOLDER="${OHMYZSH_FOLDER}/custom/themes/spaceship-prompt"
     install_or_update "${THEME_FOLDER}" ${SPACESHIP_PROMPT_URL}
     step '🔗 Creating symlink...'
@@ -48,7 +48,7 @@ install() {
     success '✅ Spaceship install finished.'
   }
 
-  # Install zsh-syntax-highlighting plugin for Oh My ZSH
+  # Install zsh-syntax-highlighting plugin for Oh My Zsh
   # ----------------------------------------------------------------------------
   zsh-syntax-highlighting() {
     title 'Install zsh-syntax-highlighting plugin'
@@ -57,7 +57,7 @@ install() {
     success '✅ zsh-syntax-highlighting install finished.'
   }
 
-  # Install zsh-autosuggestions plugin for Oh My ZSH
+  # Install zsh-autosuggestions plugin for Oh My Zsh
   # ----------------------------------------------------------------------------
   zsh-autosuggestions() {
     title 'Install zsh-autosuggestions plugin'
