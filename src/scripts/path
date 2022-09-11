@@ -8,6 +8,7 @@ PATHS=(
   '/usr/sbin'
   '/usr/bin'
   '/snap/bin'
+  '/home/linuxbrew/.linuxbrew/bin'
   "$HOME/.config/composer/vendor/bin"
   "$HOME/.rbenv/versions/2.7.1/bin"
   "$HOME/.local/bin"
