@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# In Gnome 42, developers has changed gnome-screenshot behavior
+# and it affects a lot the workflow in daily usage. It's not intuitive,
+# so I searched a bit and found other users like me unhappy with this change.
+#
+# The methods below try to simulate the old behavior of Gnome Screenshot Tool,
+# so we can finally be happy again!!! :)
+#
+# When capturing to a file, the file name will be in this format:
+#   screenshot_2022-08-30_19-31-41.png
+SCREENSHOT_NAME="screenshot_$(date +'%Y-%m-%d_%H-%M-%S').png"
+TO_CLIPBOARD="-f /tmp/${SCREENSHOT_NAME}"
+TO_FILE="-f $(xdg-user-dir PICTURES)/${SCREENSHOT_NAME}"
+
+area-to-file() { gnome-screenshot -pa ${TO_FILE}; }
+window-to-file() { gnome-screenshot -pw ${TO_FILE}; }
+fullscreen-to-file() { gnome-screenshot -p ${TO_FILE}; }
+area-to-clipboard() { gnome-screenshot -pac ${TO_CLIPBOARD}; }
+window-to-clipboard() { gnome-screenshot -pwc ${TO_CLIPBOARD}; }
+fullscreen-to-clipboard() { gnome-screenshot -pc ${TO_CLIPBOARD}; }
+
+args=("$@")
+for arg in "${args[@]}"; do
+  case $arg in
+  area-to-file) area-to-file ;;
+  window-to-file) window-to-file ;;
+  fullscreen-to-file) fullscreen-to-file ;;
+  area-to-clipboard) area-to-clipboard ;;
+  window-to-clipboard) window-to-clipboard ;;
+  fullscreen-to-clipboard) fullscreen-to-clipboard ;;
+  *) exit ;;
+  esac
+done
