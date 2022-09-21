@@ -1,0 +1,44 @@
+# Changelog
+
+## 1.4.2
+
+- Fix the Gnome 42 Screenshot behavior
+- dBeaver shortcuts
+- Disable scroll icon action in Dash To Panel
+- Add Brew to PATH
+- Add a CHANGELOG and move all changelog in README.md to it
+- Remove version from install and get from VERSION file
+- Add Hyper configuration (maybe again?)
+- Added new replace in ansible file to ERP
+- Make chat scripts oneliner
+
+## 1.4.1
+
+- Forgot to version new screenshot 😅
+
+## 1.4.0
+
+- Started using **Powerlevel10k** 💪
+- More Dash to Panel changes...
+- Reduced command field height in ViM
+- Add NERDCommenter to ViM
+- New shortcut <kbd>Ctrl</kbd>+<kbd>B</kbd> in ViM to toggle NERDtree like in VSCode
+- Add `htoprc` to config htop
+- Add Slack in kill and open chats scripts
+- Add Ruby to PATH and zshrc
+- Alias for kubectl using minikube
+- Improvements in some ansible scripts
+- Improvements for Windows reboot command
+- Disable Ubuntu animations using `gsettings`
+
+## 1.3.0
+
+- Many improvements to install
+- Aliases improvements
+- Added Clockify CLI aliases and more Docker aliases
+- Improvements for git prompt
+- Improved ansible script for ERP
+- Always changing `terminator` config...
+- Some gsettings scripts
+- Dash to Panel settings update
+- Fix tmux colors
