@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="https://github.com/thiagobraga">@thiagobraga's</a> dotfiles<br>
-  <a href="https://raw.githubusercontent.com/thiagobraga/todoist-userstyles/master/theme.user.css"><img src="https://img.shields.io/badge/version-1.4.1-929faf.svg" align="center" alt="Version 1.4.1"></a>
+  <a href="https://raw.githubusercontent.com/thiagobraga/todoist-userstyles/master/theme.user.css"><img src="https://img.shields.io/badge/version-1.4.2-929faf.svg" align="center" alt="Version 1.4.2"></a>
 </p>
 
 <p align="center">
@@ -113,36 +113,3 @@ See the [install](./install) script to see all the possibilities. You can hit `.
 <img src="./images/screenshots/dotbraga_macos_2020-04-07_13.53.png" width="420" />
 
 <img src="./images/screenshots/dotbraga_ubuntu_2020-04-06_00.18.png" width="420" />
-
-## Changelog
-
-### 1.4.1
-
-- Forgot to version new screenshot 😅
-
-### 1.4.0
-
-- Started using **Powerlevel10k** 💪
-- More Dash to Panel changes...
-- Reduced command field height in ViM
-- Add NERDCommenter to ViM
-- New shortcut <kbd>Ctrl</kbd>+<kbd>B</kbd> in ViM to toggle NERDtree like in VSCode
-- Add `htoprc` to config htop
-- Add Slack in kill and open chats scripts
-- Add Ruby to PATH and zshrc
-- Alias for kubectl using minikube
-- Improvements in some ansible scripts
-- Improvements for Windows reboot command
-- Disable Ubuntu animations using `gsettings`
-
-### 1.3.0
-
-- Many improvements to install
-- Aliases improvements
-- Added Clockify CLI aliases and more Docker aliases
-- Improvements for git prompt
-- Improved ansible script for ERP
-- Always changing `terminator` config...
-- Some gsettings scripts
-- Dash to Panel settings update
-- Fix tmux colors
