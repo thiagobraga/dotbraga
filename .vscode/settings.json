@@ -1,12 +1,38 @@
 {
+  // Only filenames
+  // Oh please! Accept glob patterns, please!
   "files.associations": {
-    "**/src/terminator/config": "ini",
-    "**/src/fontconfig/*": "xml",
-    "**/.shellcheckrc": "ini",
-    "**/install": "shellscript",
-    "**/bin/*": "shellscript",
-    "**/scripts/*": "shellscript",
-    "**/.aliases": "shellscript",
-    "**/.zshrc": "shellscript"
-  }
+    ".aliases": "shellscript",
+    ".zshrc": "shellscript",
+    "gnome-42-screenshot": "shellscript",
+    "kill-chats": "shellscript",
+    "open-chats": "shellscript",
+    "restart-desktop": "shellscript",
+    "restart-desktop-windows": "shellscript",
+    "shutdown-desktop": "shellscript",
+    "shutdown-desktop-windows": "shellscript",
+    "htoprc": "ini"
+  },
+
+  // Only one level folder and filename
+  // Oh again! Accept glob patterns, please!
+  "material-icon-theme.files.associations": {
+    "htop/htoprc": "Settings"
+  },
+
+  // The same... only one level folder and filename
+  // ...Please!!
+  "material-icon-theme.folders.associations": {
+    "apps/workbench": "Database",
+    "dotfiles/.config": "Config",
+    "src/dotfiles": "Src",
+    "src/dualboot": "Shared",
+    "src/etc": "Config"
+  },
+
+  // Relaxing shellcheck
+  "shellcheck.exclude": [
+    ".hushlogin",
+    ".sudo_as_admin_successful"
+  ]
 }
