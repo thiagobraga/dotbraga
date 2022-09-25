@@ -22,3 +22,6 @@ alias platform='cd "${HOME}"/www/scaffold/platform'
 alias platform-api='cd "${HOME}"/www/scaffold/platform-api'
 alias questions='cd "${HOME}"/www/scaffold/questions'
 alias activities='cd "${HOME}"/www/scaffold/activities'
+
+alias bastion='ssh bastion'
+alias bastion-qa='ssh bastion-qa'
