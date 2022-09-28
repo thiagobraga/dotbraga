@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.5.0
+
+- Big and breaking changes   
+- Moved all files to make a structure that is likely in the target
+- In src folder we have dotfiles, etc and bin, to move to these specific folders in Linux
+- Improvements in Clockify CLI aliases
+- Refactor install script a lot
+
 ## 1.4.3
 
 - Improvements in path script
