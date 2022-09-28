@@ -1,30 +1,32 @@
-#!/bin/bash
+#!/bin/zsh
 
 # dotbraga
-# ==============================================================================
 #
 # Usage:
-#  ./install [--all]   Install everything
-#  ./install ohmyzsh   Install only Oh My Zsh. Other values: dualboot, symlinks,
-#                      ViM, autosuggestions, syntax-highlighting, spaceship.
-#
-# After installation, the new `dotbraga` and `dot` aliases are available.
-# Also, the variable ${DOTBRAGA} is created to point to the installation folder.
+#  ./install [--all]  Install everything
+#  ./install ohmyzsh  Install only Oh My Zsh.
+#                     Other values: dualboot, links, ViM, zsh-autosuggestions,
+#                     zsh-syntax-highlighting, spaceship, powerlevel10k.
 
 VERSION=$(cat "${DOTBRAGA}/VERSION")
-OHMYZSH_FOLDER="$HOME/.oh-my-zsh"
+
 OHMYZSH_URL='https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh'
+OHMYZSH_FOLDER="${HOME}/.oh-my-zsh"
+POWERLEVEL10K_URL='https://github.com/romkatv/powerlevel10k'
+POWERLEVEL10K_FOLDER="${OHMYZSH_FOLDER}/custom/themes/powerlevel10k"
 SPACESHIP_PROMPT_URL='https://github.com/denysdovhan/spaceship-prompt'
+SPACESHIP_PROMPT_FOLDER="${OHMYZSH_FOLDER}/custom/themes/spaceship-prompt"
 ZSH_AUTOSUGGESTIONS_URL='https://github.com/zsh-users/zsh-autosuggestions'
+ZSH_AUTOSUGGESTIONS_FOLDER="${OHMYZSH_FOLDER}/custom/plugins/zsh-autosuggestions"
 ZSH_SYNTAX_HIGHLIGHTING_URL='https://github.com/zsh-users/zsh-syntax-highlighting'
-PROJECT_PATH=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
+ZSH_SYNTAX_HIGHLIGHTING_FOLDER="${OHMYZSH_FOLDER}/custom/plugins/zsh-syntax-highlighting"
+PROJECT_PATH=$(dirname "$0")
 
-source "${PROJECT_PATH}"/src/scripts/colors
+source "${PROJECT_PATH}/src/scripts/colors"
 
-# Install dotbraga components
+# dotbraga components
 # ==============================================================================
 install() {
-
 
   # PUBLIC METHODS
   # ============================================================================
@@ -32,145 +34,70 @@ install() {
   # Install Oh My Zsh
   # ----------------------------------------------------------------------------
   ohmyzsh() {
-    title 'Install Oh My Zsh'
-    install_or_update "${OHMYZSH_FOLDER}" ${OHMYZSH_URL}
-    success '✅ Oh My Zsh install finished.'
-  }
-
-  # Install Spaceship theme for Oh My Zsh
-  # ----------------------------------------------------------------------------
-  spaceship() {
-    title 'Install Spaceship theme for Oh My Zsh'
-    THEME_FOLDER="${OHMYZSH_FOLDER}/custom/themes/spaceship-prompt"
-    install_or_update "${THEME_FOLDER}" ${SPACESHIP_PROMPT_URL}
-    step '🔗 Creating symlink...'
-    ln ${LN_ARGS} "${THEME_FOLDER}/spaceship.zsh-theme" "${OHMYZSH_FOLDER}/themes/spaceship.zsh-theme"
-    success '✅ Spaceship install finished.'
+    setup 'Oh My Zsh' "${OHMYZSH_FOLDER}" ${OHMYZSH_URL}
   }
 
   # Install zsh-syntax-highlighting plugin for Oh My Zsh
   # ----------------------------------------------------------------------------
   zsh-syntax-highlighting() {
-    title 'Install zsh-syntax-highlighting plugin'
-    PLUGIN_PATH="${OHMYZSH_FOLDER}/custom/plugins/zsh-syntax-highlighting"
-    install_or_update "${PLUGIN_PATH}" ${ZSH_SYNTAX_HIGHLIGHTING_URL}
-    success '✅ zsh-syntax-highlighting install finished.'
+    setup 'zsh-syntax-highlighting' "${ZSH_SYNTAX_HIGHLIGHTING_FOLDER}" ${ZSH_SYNTAX_HIGHLIGHTING_URL}
   }
 
   # Install zsh-autosuggestions plugin for Oh My Zsh
   # ----------------------------------------------------------------------------
   zsh-autosuggestions() {
-    title 'Install zsh-autosuggestions plugin'
-    PLUGIN_PATH="${OHMYZSH_FOLDER}/custom/plugins/zsh-autosuggestions"
-    install_or_update "${PLUGIN_PATH}" ${ZSH_AUTOSUGGESTIONS_URL}
-    success '✅ zsh-autosuggestions install finished.'
+    setup 'zsh-autosuggestions' "${ZSH_AUTOSUGGESTIONS_FOLDER}" ${ZSH_AUTOSUGGESTIONS_URL}
+  }
+
+  # Install Spaceship theme for Oh My Zsh
+  # ----------------------------------------------------------------------------
+  spaceship() {
+    setup 'Spaceship zsh theme' "${SPACESHIP_PROMPT_FOLDER}" ${SPACESHIP_PROMPT_URL}
+  }
+
+  # Install Powerlevel10k theme for Oh My Zsh
+  # ----------------------------------------------------------------------------
+  powerlevel10k() {
+    setup 'Powerlevel10k' "${POWERLEVEL10K_FOLDER}" ${POWERLEVEL10K_URL} true
+    ln -sfnv "${POWERLEVEL10K_FOLDER}/powerlevel10k.zsh-theme" "${OHMYZSH_FOLDER}/themes/powerlevel10k.zsh-theme"
   }
 
   # Shortcut "Restart to Windows" for Dual Boot systems
   # ----------------------------------------------------------------------------
   dualboot() {
     title "Shortcut 'Restart to Windows' for Dual Boot systems"
-    step '💻 Installing...'
-    TARGET='/usr/share/applications'
-    EXTENSIONS=(desktop png sh)
-
-    for EXTENSION in "${EXTENSIONS[@]}"; do
-      sudo ln ${LN_ARGS} \
-        "${PROJECT_PATH}/src/dual-boot/windows.${EXTENSION}" \
-        "${TARGET}"
+    for EXTENSION in desktop png sh; do
+      sudo ln -sfnv "${PROJECT_PATH}/src/dual-boot/windows.${EXTENSION}" /usr/share/applications
     done
-
     success "✅ 'Restart to Windows' created successfuly."
   }
 
-  # Delete all symlinks created with symlinks method
+  # Symlink src/bin scripts to /usr/bin
   # ----------------------------------------------------------------------------
-  # TODO: Create a backup of each file
-  clean-symlinks() {
-    title 'Clean symbolic links created with dotbraga'
-    sudo find "/etc/profile.d" -type l -exec /bin/rm -v {} \;
-    /bin/rm -rfv \
-      "${HOME}/.zshrc" \
-      "${HOME}/.aliases" \
-      "${HOME}/.gitconfig" \
-      "${HOME}/.config/terminator/config" \
-      "${HOME}/.config/fontconfig/conf.d/01-emoji.conf" \
-      "${HOME}/.config/qt5ct/qt5ct.conf" \
-      "${HOME}/scripts" \
-      "${HOME}/.hushlogin" \
-      "${HOME}/.sudo_as_admin_successful"
-    success '✅ Symlinks removed! 🗑️'
+  bin() {
+    step '🔗 Link some scripts to /usr/bin...'
+    find "${PROJECT_PATH}/src/bin" -type f,l -exec sudo ln -sfnv -t /usr/bin {} \;
   }
 
-  # Create symbolic links for settings
+  # Create symlinks
   # ----------------------------------------------------------------------------
-  symlinks() {
-    clean-symlinks
-    title 'Create symbolic links for settings'
-
-    step "🔗 Touching .hushlogin in \$HOME..." && touch "${HOME}/.hushlogin"
-    step "🔗 Touching .sudo_as_admin_successful in \$HOME..." && touch "${HOME}/.sudo_as_admin_successful"
-    step "🔗 Linking .zshrc in \$HOME..." && ln ${LN_ARGS} -t "${HOME}" "${PROJECT_PATH}/src/.zshrc"
-    step "🔗 Linking .aliases in \$HOME..." && ln ${LN_ARGS} -t "${HOME}" "${PROJECT_PATH}/src/.aliases"
-    step "🔗 Linking .gitconfig in \$HOME..." && ln ${LN_ARGS} -t "${HOME}" "${PROJECT_PATH}/src/.gitconfig"
-
-    step '🔗 Linking terminator config...'
-    TARGET="${HOME}/.config/terminator" && mkdir -p "${TARGET}"
-    ln ${LN_ARGS} -t "${TARGET}" "${PROJECT_PATH}/src/terminator/config"
-
-    step '🔗 Linking fontconfig settings...'
-    TARGET="${HOME}/.config/fontconfig/conf.d" && mkdir -p "${TARGET}"
-    ln ${LN_ARGS} -t "${TARGET}" "${PROJECT_PATH}/src/fontconfig/01-emoji.conf"
-
-    step '🔗 Linking Qt5 settings...'
-    TARGET="${HOME}/.config/qt5ct" && mkdir -p "${TARGET}"
-    ln ${LN_ARGS} -t "${TARGET}" "${PROJECT_PATH}/src/qt5ct/qt5ct.conf"
-
-    step '🔗 Linking profile scripts...'
-    TARGET="/etc/profile.d/" && mkdir -p "${TARGET}"
-    sudo find "${PROJECT_PATH}/src/profile" -type f -exec ln ${LN_ARGS} -t "${TARGET}" {} \;
-
-    step '🔗 Linking dotbraga scripts...'
-    TARGET="${HOME}/scripts" && mkdir -p "${TARGET}"
-    find "${PROJECT_PATH}/src/scripts" -type f,l -exec ln ${LN_ARGS} -t "${TARGET}" {} \;
-
-    step '🔗 Linking some scripts to /usr/bin...'
-    find "${PROJECT_PATH}/src/bin" -type f,l -exec sudo ln ${LN_ARGS} -t /usr/bin {} \;
-    success '✅ Symlinks created!'
-  }
-
-  # Test symlinks created
-  # ----------------------------------------------------------------------------
-  test-symlinks() {
-    title 'Test created symbolic links'
-    ls -lah --color=tty \
-      "${HOME}/.zshrc" \
-      "${HOME}/.aliases" \
-      "${HOME}/.profile" \
-      "${HOME}/.gitconfig" \
-      "${HOME}/.config/terminator/config" \
-      "${HOME}/.config/qt5ct/qt5ct.conf" \
-      "${HOME}/scripts/colors" \
-      "${HOME}/scripts/custom/index" \
-      "${HOME}/scripts/custom/path"
-    ls -lah --color=tty \
-      "${HOME}/.hushlogin" \
-      "${HOME}/.sudo_as_admin_successful"
+  links() {
+    setopt NULL_GLOB
+    title 'Create symlinks for dotfiles' && cp -afrsv ${DOTBRAGA}/src/dotfiles/{.,}* ${HOME}
+    title 'Create symlinks for /etc'     && sudo cp -afrsv ${DOTBRAGA}/src/etc/{.,}* /etc
+    title 'Create symlinks for /usr/bin' && sudo cp -afrsv ${DOTBRAGA}/src/bin/{.,}* /usr/bin
+    echo && success '✅ Links created!'
   }
 
   # Install VIM - Vi IMproved with settings
   # ----------------------------------------------------------------------------
   ViM() {
-    title 'Install VIM - Vi IMproved with settings'
-    step '🔍 Check if VIM is installed...'
     VIM_FILE="${HOME}/.vimrc"
     VIM_FOLDER="${HOME}/.vim"
+    title 'Install VIM - Vi IMproved with settings'
+    step '🔍 Check if VIM is installed...'
 
-    if [[ ! $(command -v vim) ]]; then
-      step '💻 Installing vim...'
-    else
-      step '💾 Updating vim...'
-    fi
+    [[ ! $(command -v vim) ]] && step '💻 Installing vim...' || step '💾 Updating vim...'
 
     {
       # Install dependencies
@@ -204,8 +131,8 @@ install() {
     }
 
     step '💻 Installing vim plugins and settings...'
-    ln ${LN_ARGS} "${PROJECT_PATH}"/src/vim/.vimrc "${VIM_FILE}"
-    ln ${LN_ARGS} "${PROJECT_PATH}"/src/vim "${VIM_FOLDER}"
+    ln -sfnv "${PROJECT_PATH}"/src/vim/.vimrc "${VIM_FILE}"
+    ln -sfnv "${PROJECT_PATH}"/src/vim "${VIM_FOLDER}"
     vim -E -s -u "${VIM_FILE}" +PlugInstall +qall >/dev/null
     success '✅ VIM installed and configured'
   }
@@ -215,44 +142,53 @@ install() {
   all() {
     ohmyzsh
     spaceship
+    powerlevel10k
     zsh-syntax-highlighting
     zsh-autosuggestions
     dualboot
-    symlinks
+    bin
+    links
     ViM
     echo
     info 'Finished'
   }
-
 
   # PRIVATE METHODS
   # ============================================================================
 
   # Abstract method to install or update components.
   # ----------------------------------------------------------------------------
-  install_or_update() {
-    step '🔍 Check if installed...'
-    INSTALL_FOLDER=$1
-    INSTALL_URL=$2
-    CLONE=$3
+  setup() {
+    NAME=$1
+    INSTALL_FOLDER=$2
+    INSTALL_URL=$3
+    CLONE=$4
 
-    if [[ ! -d "${INSTALL_FOLDER}" ]]; then
+    title "Install ${NAME}"
+    step '🔍 Check if installed...'
+
+    step '🔗 Creating symlink...'
+    ln -sfnv "${THEME_FOLDER}/spaceship.zsh-theme" "${OHMYZSH_FOLDER}/themes/spaceship.zsh-theme"
+
+    if [[ -d "${INSTALL_FOLDER}" ]]; then
+      step '💾 Updating...'
+      update "${INSTALL_FOLDER}"
+    else
       step '💻 Installing...'
       if [[ ${CLONE} == 'true' ]]; then
         git clone "${INSTALL_URL}" "${INSTALL_FOLDER}"
       else
         sh -c "$(curl -fsSL "${INSTALL_URL}")"
       fi
-    else
-      step '💾 Updating...'
-      update "${INSTALL_FOLDER}"
     fi
+
+    success "✅ ${NAME} install finished."
   }
 
   # Print header.
   # ----------------------------------------------------------------------------
   header() {
-    printf "${BWhite}%s${ColorOff} ${Yellow}%s${ColorOff}\n" 'dotbraga' ${VERSION}
+    printf "${BWhite}%s${ColorOff} ${Yellow}%s${ColorOff}\n" 'dotbraga' "${VERSION}"
   }
 
   # Define title of each internal function.
@@ -309,7 +245,6 @@ install() {
     }
   }
 
-
   # FUNCTION CALL
   # ============================================================================
 
@@ -322,14 +257,15 @@ install() {
   # ...or detect the function to run.
   for arg in "${args[@]}"; do
     case $arg in
-    vim) ViM ;;
-    ohmyzsh) ohmyzsh ;;
-    spaceship) spaceship ;;
+    bin) bin ;;
     dualboot) dualboot ;;
-    autosuggestions | zsh-autosuggestions) zsh-autosuggestions ;;
-    syntax-highlighting | zsh-syntax-highlighting) zsh-syntax-highlighting ;;
-    -l | --link | symlinks) symlinks "$@" ;;
-    --test-symlinks) test-symlinks "$@" ;;
+    ohmyzsh) ohmyzsh ;;
+    powerlevel10k) powerlevel10k ;;
+    spaceship) spaceship ;;
+    vim) ViM ;;
+    zsh-autosuggestions | autosuggestions) zsh-autosuggestions ;;
+    zsh-syntax-highlighting | syntax-highlighting) zsh-syntax-highlighting ;;
+    -l | --link | links) links "$@" ;;
     "" | -a | --all | all) all ;;
     *) exit ;;
     esac

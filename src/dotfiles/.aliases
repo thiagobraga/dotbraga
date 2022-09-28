@@ -16,10 +16,17 @@ alias bss='brew services stop'
 
 # Clockify CLI
 # ---------------------------------------------------
-alias cl='clockify manual -i=0'
-alias cls='clockify manual -i=0 -p Scaffold -d'
-alias clf='clockify manual -i=0 -p Financeiro -d'
-alias clo='clockify manual -i=0 -p Operacional -d'
+alias c='clockify-cli'
+alias cm='c manual -i=0'
+alias cin='c in -i=0'
+alias cs="cm -p Scaffold -s '$(date '+%Y-%m-%d %H:%M')' -d"
+alias cf='cm -p Financeiro -s '$(date '+%Y-%m-%d %H:%M')' -d'
+alias co='cm -p Operacional -s '$(date '+%Y-%m-%d %H:%M')' -d'
+alias ct='cm -p Sociedade -s '$(date '+%Y-%m-%d %H:%M')' -d'
+alias cins="cin -p Scaffold -s '$(date '+%Y-%m-%d %H:%M')' -d"
+alias cinf='cin -p Financeiro -s '$(date '+%Y-%m-%d %H:%M')' -d'
+alias cino='cin -p Operacional -s '$(date '+%Y-%m-%d %H:%M')' -d'
+alias cint='cin -p Sociedade -s '$(date '+%Y-%m-%d %H:%M')' -d'
 
 # Docker
 # ---------------------------------------------------
@@ -116,9 +123,12 @@ alias mi='make install'
 alias mr='make release'
 alias mw='make watch'
 
-# Minikube
+# Kubernetes
 # ---------------------------------------------------
-alias kubectl="minikube kubectl --"
+# alias kubectl="minikube kubectl --"
+alias kct='kubectl'   # hahaha
+alias kctl='kubectl'
+alias kube='kubectl'
 
 # Misc
 # ---------------------------------------------------
@@ -128,9 +138,18 @@ alias aptitude='sudo aptitude'
 alias dpkg='sudo dpkg'
 alias snap='sudo snap'
 alias rm='/bin/rm -v'
-alias l="LC_COLLATE=C ls -alh --color=tty --group-directories-first"
-alias ll="LC_COLLATE=C ls -lh --color=tty --group-directories-first"
-alias ls="LC_COLLATE=C ls -a --color=tty --group-directories-first"
+# ls native
+# alias l="LC_COLLATE=C ls -alh --color=tty --group-directories-first"
+# alias ll="LC_COLLATE=C ls -lh --color=tty --group-directories-first"
+# alias ls="LC_COLLATE=C ls -a --color=tty --group-directories-first"
+# lsd
+# alias l="LC_COLLATE=C lsd -alh --group-directories-first"
+# alias ll="LC_COLLATE=C lsd -lh --group-directories-first"
+# alias ls="LC_COLLATE=C lsd -a --group-directories-first"
+# colorls
+alias l="LC_COLLATE=C colorls -alh --group-directories-first"
+alias ll="LC_COLLATE=C colorls -lh --group-directories-first"
+alias ls="LC_COLLATE=C colorls -a --group-directories-first"
 alias www="cd ${HOME}/www"
 alias oss="cd ${HOME}/www/oss"
 alias r="busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("'"Restarting"'")'"
@@ -140,6 +159,15 @@ alias watch='watch -n 1 '
 # ---------------------------------------------------
 alias tcpdump='sudo tcpdump'
 alias tcp='tcpdump'
+
+# Terraform
+# ---------------------------------------------------
+alias tf='terraform'
+alias tfa='terraform apply'
+alias tfd='terraform destroy'
+alias tff='terraform fmt'
+alias tfi='terraform init'
+alias tfv='terraform validate'
 
 # Vessel
 # ---------------------------------------------------
@@ -170,7 +198,5 @@ alias yyw='yarn && yarn watch'
 
 # Dotbraga
 # ---------------------------------------------------
-alias dotbraga="${HOME}/www/braga/dotbraga"
 alias dot="${HOME}/www/braga/dotbraga/install"
-
-export DOTBRAGA="${HOME}/www/braga/dotbraga"
+alias dotbraga="${HOME}/www/braga/dotbraga/install"

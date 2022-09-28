@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ssh -t thiago@10.0.0.3 'sudo reboot'

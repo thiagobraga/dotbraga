@@ -1,5 +1,5 @@
 [global_config]
-  handle_size = 20
+  handle_size = 7
   scroll_tabbar = True
   title_hide_sizetext = True
   title_transmit_fg_color = "#2e3440"
@@ -12,7 +12,6 @@
   enabled_plugins = ,
   suppress_multiple_term_dialog = True
   always_split_with_profile = True
-  line_height = 1.4
 [keybindings]
   new_tab = <Control>t
   split_horiz = <Control>d
@@ -28,17 +27,18 @@
   [[default]]
     icon_bell = False
     background_color = "#2e3440"
-    background_darkness = 0.95
+    background_darkness = 0.98
     background_type = transparent
     cursor_shape = ibeam
     cursor_color = "#d8dee9"
-    font = Monaco 9
+    font = SauceCodePro Nerd Font 9
     foreground_color = "#d8dee9"
     show_titlebar = False
     scrollback_lines = 5000
     scrollback_infinite = True
-    palette = "#4d566b:#bf616a:#a3be8c:#ebcb8b:#81a1c1:#b48ead:#88c0d0:#e5e9f0:#60687a:#bf616a:#a3be8c:#ebcb8b:#81a1c1:#b48ead:#8fbcbb:#eceff4"
+    palette = "#3b4252:#bf616a:#a3be8c:#ebcb8b:#81a1c1:#b48ead:#88c0d0:#e5e9f0:#4c566a:#bf616a:#a3be8c:#ebcb8b:#81a1c1:#b48ead:#8fbcbb:#eceff4"
     use_system_font = False
+    bold_is_bright = True
 [layouts]
   [[default]]
     [[[child0]]]

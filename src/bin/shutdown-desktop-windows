@@ -1,0 +1,3 @@
+#!/bin/bash
+
+net rpc shutdown -f -t 0 -C 'message' -I thiago-pc
