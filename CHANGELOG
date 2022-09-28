@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.4.3
+
+- Improvements in path script
+- Improve bastion alias
+- Small improvements to transparency in Dash To Panel
+- refactor: Rename dual-boot to dualboot
+- Improve Material Icons detection in VScode
+
 ## 1.4.2
 
 - Fix the Gnome 42 Screenshot behavior
