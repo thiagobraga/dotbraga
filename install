@@ -200,7 +200,7 @@ install() {
   # Print steps information about installation.
   # ----------------------------------------------------------------------------
   step() {
-    printf "${ColorOff}%s${IBlack}\n" "${1}"
+    printf "${ColorOff}%s\n" "${1}"
   }
 
   # Asks the user a question and captures the answer.
