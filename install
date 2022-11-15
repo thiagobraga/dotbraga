@@ -111,7 +111,7 @@ install() {
       # Get Vim latest version
       VIM_DIST=${PROJECT_PATH}/dist
       if [[ ! -d ${VIM_DIST} ]]; then
-        git clone https://github.com:vim/vim "${VIM_DIST}"
+        git clone https://github.com/vim/vim "${VIM_DIST}"
         cd "${VIM_DIST}" || exit
       else
         cd "${VIM_DIST}" || exit
