@@ -8,6 +8,10 @@
 #                     Other values: dualboot, links, ViM, zsh-autosuggestions,
 #                     zsh-syntax-highlighting, spaceship, powerlevel10k.
 
+# Dotbraga global variable
+# ------------------------------------------------------------------------------
+export DOTBRAGA="${HOME}/www/braga/dotbraga"
+
 VERSION=$(cat "${DOTBRAGA}/VERSION")
 
 OHMYZSH_URL='https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh'
