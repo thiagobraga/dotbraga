@@ -67,7 +67,7 @@ install() {
   dualboot() {
     title "Shortcut 'Restart to Windows' for Dual Boot systems"
     for EXTENSION in desktop png sh; do
-      sudo ln -sfnv "${PROJECT_PATH}/src/dual-boot/windows.${EXTENSION}" /usr/share/applications
+      sudo ln -sfnv "${PROJECT_PATH}/src/dualboot/windows.${EXTENSION}" /usr/share/applications
     done
     success "✅ 'Restart to Windows' created successfuly."
   }
@@ -111,7 +111,7 @@ install() {
       # Get Vim latest version
       VIM_DIST=${PROJECT_PATH}/dist
       if [[ ! -d ${VIM_DIST} ]]; then
-        git clone git@github.com:vim/vim "${VIM_DIST}"
+        git clone https://github.com:vim/vim "${VIM_DIST}"
         cd "${VIM_DIST}" || exit
       else
         cd "${VIM_DIST}" || exit
