@@ -126,9 +126,7 @@ install() {
       sed -i '/^#CONF_OPT_PYTHON3 = --enable-python3interp$/s/^#//g' src/Makefile
 
       # Install Vim
-      make
-      make test
-      sudo make install
+      make && sudo make install
 
       # Undo src/Makefile changes
       git checkout src/Makefile
