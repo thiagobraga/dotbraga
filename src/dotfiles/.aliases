@@ -99,18 +99,15 @@ alias gsts='git stash save --include-untracked'
 
 # Kool
 # ---------------------------------------------------
-alias k='kool'
-alias ke='kool exec'
-alias ka='kool exec app'
-alias kea='kool exec app'
+alias ko='kool'
+alias koe='kool exec'
+alias koa='kool exec app'
 alias kr='kool run'
 alias kc='kool run composer'
 alias krc='kool run composer'
 alias kcd='kool run composer dump-autoload'
 alias krcd='kool run composer dump-autoload'
 alias kra='kool run artisan'
-alias km='kool run artisan migrate'
-alias kram='kool run artisan migrate'
 alias ks='kool start'
 alias kstp='kool stop'
 
