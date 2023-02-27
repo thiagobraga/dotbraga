@@ -123,37 +123,37 @@ alias mi='make install'
 alias mr='make release'
 alias mw='make watch'
 
-# Kubernetes
-# ---------------------------------------------------
-# alias kubectl="minikube kubectl --"
-alias kct='kubectl'   # hahaha
-alias kctl='kubectl'
-alias kube='kubectl'
-
 # Misc
 # ---------------------------------------------------
 alias apt='sudo apt'
-alias aptu='apt update && apt upgrade -V && apt autoclean && apt autoremove -V'
+alias aptu='(
+  apt update \
+    && apt upgrade -yV \
+    && apt autoclean \
+    && apt autoremove -yV \
+    && ansible-playbook $DOTBRAGA/src/ansible/dbeaver.yml \
+    && ansible-playbook $DOTBRAGA/src/ansible/gimp.yml
+)'
+
 alias aptitude='sudo aptitude'
 alias dpkg='sudo dpkg'
 alias snap='sudo snap'
-alias rm='/bin/rm -v'
-# ls native
-# alias l="LC_COLLATE=C ls -alh --color=tty --group-directories-first"
-# alias ll="LC_COLLATE=C ls -lh --color=tty --group-directories-first"
-# alias ls="LC_COLLATE=C ls -a --color=tty --group-directories-first"
-# lsd
-# alias l="LC_COLLATE=C lsd -alh --group-directories-first"
-# alias ll="LC_COLLATE=C lsd -lh --group-directories-first"
-# alias ls="LC_COLLATE=C lsd -a --group-directories-first"
-# colorls
-alias l="LC_COLLATE=C colorls -alh --group-directories-first"
-alias ll="LC_COLLATE=C colorls -lh --group-directories-first"
-alias ls="LC_COLLATE=C colorls -a --group-directories-first"
+alias find='sudo find'
+
+alias r="busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("'"Restarting"'")'"
+alias rm='/bin/rm'
+alias watch='watch -n 1 '
+
 alias www="cd ${HOME}/www"
 alias oss="cd ${HOME}/www/oss"
-alias r="busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("'"Restarting"'")'"
-alias watch='watch -n 1 '
+
+# Which `ls` app to use. It can be: `ls`, `lsd` or `colorls`.
+# TODO: Test flag --color=tty
+LS_BIN='colorls'
+LS_CMD="LC_COLLATE=C ${LS_BIN} --group-directories-first"
+alias l="${LS_CMD} -alh"
+alias ll="${LS_CMD} -lh"
+alias ls="${LS_CMD} -a"
 
 # tcpdump
 # ---------------------------------------------------
