@@ -169,6 +169,11 @@ alias tff='terraform fmt'
 alias tfi='terraform init'
 alias tfv='terraform validate'
 
+# Telepresence
+# ---------------------------------------------------
+alias tl='telepresence'
+alias tp='telepresence'
+
 # Vessel
 # ---------------------------------------------------
 alias v='./vessel'
