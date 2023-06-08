@@ -1,4 +1,5 @@
 - hosts: localhost
+  connection: local
   tasks:
     - name: Ensures that Gimp always calls Gimp
       lineinfile:
