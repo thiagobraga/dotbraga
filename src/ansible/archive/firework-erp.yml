@@ -15,9 +15,9 @@
         replace: '[05.06] Infraestrutura - Cloud'
       with_items: '{{ output.files }}'
 
-    - name: Change 'Firework' at line start to 'Eventos' in Clockify report
+    - name: Change 'Firework' at line start to 'Admin Issues' in Clockify report
       replace:
         path: '{{ item.path }}'
         regexp: '^"(Firework)'
-        replace: '"Eventos'
+        replace: '"Admin Issues'
       with_items: '{{ output.files }}'
