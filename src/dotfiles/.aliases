@@ -118,6 +118,10 @@ gitlab-api() {
 
 alias gitlab-runner='docker exec -it -w $PWD gitlab-runner gitlab-runner'
 
+# Helm
+# ---------------------------------------------------
+alias h='helm'
+
 # Kool
 # ---------------------------------------------------
 alias ko='kool'
