@@ -1,0 +1,8 @@
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: Ensures that Gmail is using local icon
+      lineinfile:
+        path: '{{ ansible_env.HOME }}/.local/share/applications/chrome-kmhopmchchfpfdcdjodmpfaaphdclmlj-Default.desktop'
+        regexp: '^Icon.*$'
+        line: 'Icon={{ ansible_env.HOME }}/Imagens/Ícones/gmail.png'

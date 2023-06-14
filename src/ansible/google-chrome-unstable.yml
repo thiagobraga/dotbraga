@@ -1,8 +1,0 @@
-- hosts: localhost
-  connection: local
-  tasks:
-    - name: Ensures that DBeaver is using local icon
-      lineinfile:
-        path: /usr/share/applications/google-chrome-unstable.desktop
-        regexp: '^Icon.*$'
-        line: 'Icon={{ ansible_env.HOME }}/Imagens/Ícones/google-chrome-orange.png'
