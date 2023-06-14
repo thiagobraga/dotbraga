@@ -106,6 +106,18 @@ alias ggc='git gc'
 alias gsts='git stash save --include-untracked'
 
 gch() { git clone git@github.com:$1; }
+
+# Gitlab
+# ---------------------------------------------------
+gitlab-api() {
+  DEBUG=${DEBUG:-false}
+  [[ $DEBUG == 'true' ]] && set -x
+  curl -gsS -X ''"${1:-GET}"'' -H 'PRIVATE-TOKEN: '"${GITLAB_TOKEN}"'' https://gitlab.com/api/v4/${2/\//} | jq ${3:-.}
+  [[ $DEBUG == 'true' ]] && set +x
+}
+
+alias gitlab-runner='docker exec -it -w $PWD gitlab-runner gitlab-runner'
+
 # Kool
 # ---------------------------------------------------
 alias ko='kool'
