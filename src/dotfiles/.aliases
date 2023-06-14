@@ -17,16 +17,18 @@ alias bss='brew services stop'
 # Clockify CLI
 # ---------------------------------------------------
 alias c='clockify-cli'
-alias cm='c manual -i=0'
+# Timer entry
 alias cin='c in -i=0'
-alias cs="cm -p Scaffold -s '$(date '+%Y-%m-%d %H:%M')' -d"
-alias cf='cm -p Financeiro -s '$(date '+%Y-%m-%d %H:%M')' -d'
-alias co='cm -p Operacional -s '$(date '+%Y-%m-%d %H:%M')' -d'
-alias ct='cm -p Sociedade -s '$(date '+%Y-%m-%d %H:%M')' -d'
 alias cins="cin -p Scaffold -s '$(date '+%Y-%m-%d %H:%M')' -d"
-alias cinf='cin -p Financeiro -s '$(date '+%Y-%m-%d %H:%M')' -d'
-alias cino='cin -p Operacional -s '$(date '+%Y-%m-%d %H:%M')' -d'
-alias cint='cin -p Sociedade -s '$(date '+%Y-%m-%d %H:%M')' -d'
+alias cinf="cin -p Financeiro -s '$(date '+%Y-%m-%d %H:%M')' -d"
+alias cino="cin -p Operacional -s '$(date '+%Y-%m-%d %H:%M')' -d"
+alias cint="cin -p Sociedade -s '$(date '+%Y-%m-%d %H:%M')' -d"
+# Manual entry
+alias cm='c manual -i=0'
+alias cms="cm -p Scaffold -s '$(date '+%Y-%m-%d %H:%M')' -d"
+alias cmf="cm -p Financeiro -s '$(date '+%Y-%m-%d %H:%M')' -d"
+alias cmo="cm -p Operacional -s '$(date '+%Y-%m-%d %H:%M')' -d"
+alias cmt="cm -p Sociedade -s '$(date '+%Y-%m-%d %H:%M')' -d"
 
 # Docker
 # ---------------------------------------------------
