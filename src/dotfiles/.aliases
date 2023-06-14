@@ -33,8 +33,10 @@ alias cmt="cm -p Sociedade -s '$(date '+%Y-%m-%d %H:%M')' -d"
 # Docker
 # ---------------------------------------------------
 alias dps='docker ps'
-alias dpsa="docker ps -a --format='table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Command}}\t{{.Status}}'"
-alias dpsag="dpsa | grep"
+alias dpsa="docker ps -a"
+alias dpsas='docker ps -a --format "table {{.Names}}\t{{.Status}}" | (read -r; printf "%s\n" "$REPLY"; sort -k1)'
+alias dpsg="dpsa | grep"
+alias dpssg="dpsas | grep"
 alias dpsaq='docker ps -a -q'
 alias dpsq='docker ps -q'
 alias dstart='docker start'
