@@ -105,6 +105,7 @@ alias ggc='git gc'
 # It overrides 'gsts' from oh-my-zsh 'git stash show --text'
 alias gsts='git stash save --include-untracked'
 
+gch() { git clone git@github.com:$1; }
 # Kool
 # ---------------------------------------------------
 alias ko='kool'
