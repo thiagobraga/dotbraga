@@ -80,3 +80,10 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 # Node n
 # ------------------------------------------------------------------------------
 export N_PREFIX="${HOME}/n"
+
+# Kubectl completion
+# ------------------------------------------------------------------------------
+source <(kubectl completion zsh)
+alias k=kubectl
+complete -o default -F __start_kubectl k
+
