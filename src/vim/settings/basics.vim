@@ -23,6 +23,10 @@ set linebreak
 set mouse=a
 set nobackup
 set nocompatible
+
+" Disable automatic code folding
+set nofoldenable
+
 set nomore
 set noswapfile
 set nowrap
