@@ -2,26 +2,43 @@
 
 alias scf='scaff'
 alias scfe='scaff exec'
+
+# PHP
+alias scfp='scaff exec php'
+
+# npm
 alias scfn='scaff exec npm'
 alias scfni='scaff exec npm i'
-alias scfsm='scaff exec bin/console --no-interaction doctrine:migrations:migrate'
-alias scfco='scaff exec composer'
-alias scfcoi='scaff exec composer install'
-alias scfcod='scaff exec composer dump-autoload'
-alias scfp='scaff exec php'
+
+# Composer
+alias scfc='scaff exec composer'
+alias scfci='scaff exec composer install'
+alias scfcd='scaff exec composer dump-autoload'
+
+# Laravel
 alias scfa='scaff exec php artisan'
-alias scfam='scaff exec php artisan migrate'
 alias scft='scaff exec php artisan tinker'
 alias scfat='scaff exec php artisan tinker'
-alias scfup='scaff up'
-alias scfdn='scaff down'
+# Laravel Artisan migrate
+alias scfam='scaff exec php artisan migrate'
 
+# Symfony migrate
+alias scfsm='scaff exec bin/console --no-interaction doctrine:migrations:migrate'
+
+# Scaff
+alias scfu='scaff up'
+alias scfup='scaff up'
+alias scfub='scaff up --build'
+alias scfupb='scaff up --build'
+alias scfd='scaff down'
+alias scfdn='scaff down'
+alias scfr='scaff restart'
+alias scfrb='scaff restart --build'
+
+# Project folders
 alias scaffold='cd "${HOME}"/www/scaffold'
 alias scfdock='cd "${HOME}"/www/scaffold/scfdock'
 alias platform='cd "${HOME}"/www/scaffold/platform'
 alias platform-api='cd "${HOME}"/www/scaffold/platform-api'
 alias questions='cd "${HOME}"/www/scaffold/questions'
 alias activities='cd "${HOME}"/www/scaffold/activities'
-
-alias bastion='ssh bastion'
-alias qa-bastion='ssh qa-bastion'
