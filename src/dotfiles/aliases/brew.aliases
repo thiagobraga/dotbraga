@@ -1,0 +1,7 @@
+# Brew
+# ---------------------------------------------------
+alias b='brew'
+alias bs='brew services'
+alias bsl='brew services list'
+alias bsr='brew services restart'
+alias bss='brew services stop'

@@ -1,0 +1,8 @@
+# Vessel
+# ---------------------------------------------------
+alias v='./vessel'
+alias vup='v start'
+alias vst='v start'
+alias vstart='v start'
+alias vdn='v down'
+alias vdown='v down'

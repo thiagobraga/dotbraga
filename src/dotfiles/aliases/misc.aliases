@@ -1,0 +1,36 @@
+# Misc
+# ---------------------------------------------------
+alias apt='sudo apt'
+alias apty='sudo apt install -y'
+alias aptr='sudo apt remove -y'
+alias aptp='sudo apt purge -y'
+alias aptu='(
+  apt update \
+    && apt upgrade -yV \
+    && apt autoclean \
+    && apt autoremove -yV \
+    && ansible-playbook $DOTBRAGA/src/ansible/all.yml
+)'
+
+alias aptitude='sudo aptitude'
+alias dpkg='sudo dpkg'
+alias snap='sudo snap'
+alias find='sudo find'
+
+alias ez='exec zsh'
+alias ezsh='exec zsh'
+alias r="busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("'"Restarting"'")'"
+alias rm='/bin/rm'
+alias watch='watch -n1 '
+
+alias www="cd ${HOME}/www"
+alias oss="cd ${HOME}/www/oss"
+
+# Which `ls` app to use. It can be: `ls`, `lsd`, `colorls` or `exa`.
+LS_BIN='exa'
+LS_CMD="LC_COLLATE=C ${LS_BIN} --group-directories-first"
+alias l="${LS_CMD} -alh"
+alias ll="${LS_CMD} -lh"
+alias ls="${LS_CMD} -a"
+
+alias grep='sudo grep -I --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox,bin,vendor,node_modules,storage,debugbar} --exclude={xdebug.log}'

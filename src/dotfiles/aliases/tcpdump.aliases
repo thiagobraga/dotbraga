@@ -1,0 +1,4 @@
+# tcpdump
+# ---------------------------------------------------
+alias tcpdump='sudo tcpdump'
+alias tcp='tcpdump'

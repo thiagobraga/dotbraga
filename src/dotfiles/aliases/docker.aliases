@@ -1,0 +1,29 @@
+# Docker
+# ---------------------------------------------------
+alias dps='docker ps'
+alias dpsa="docker ps -a"
+alias dpsas='docker ps -a --format "table {{.Names}}\t{{.Status}}" | (read -r; printf "%s\n" "$REPLY"; sort -k1)'
+alias dpsg="dpsa | grep"
+alias dpssg="dpsas | grep"
+alias dpsaq='docker ps -a -q'
+alias dpsq='docker ps -q'
+alias dstart='docker start'
+alias dstats='docker stats'
+alias dstop='docker stop'
+alias dkill='docker kill'
+alias dr='docker run'
+alias drm='docker rm'
+alias drmf='docker rm -f'
+alias drma='docker rm $(docker ps -q -a)'
+alias drmfa='docker rm -f $(docker ps -q -a)'
+alias drmi='docker rmi'
+alias drmif='docker rmi -f'
+alias drmia='docker rmi $(docker images -q)'
+alias drmifa='docker rmi -f $(docker images -q)'
+alias di='docker inspect'
+alias dim='docker images'
+alias dn='docker network'
+alias ds='docker system'
+alias dsp='docker system prune'
+alias dspa='docker system prune -a'
+alias dspaf='docker system prune -a -f'

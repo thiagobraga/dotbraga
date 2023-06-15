@@ -1,0 +1,4 @@
+# Bat
+# ---------------------------------------------------
+alias bat='batcat --paging=never --style=plain'
+alias cat='bat'

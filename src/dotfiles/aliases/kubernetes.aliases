@@ -1,0 +1,10 @@
+# Kubernetes
+# ---------------------------------------------------
+# alias kubectl="minikube kubectl --"
+alias k='kubectl'
+alias kd='kubectl describe'
+alias ke='kubectl exec -it'
+alias kl='kubectl logs -f'
+alias kdn='kubectl describe -n'
+alias ken='kubectl exec -it -n'
+alias kln='kubectl logs -f -n'

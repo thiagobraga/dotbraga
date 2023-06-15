@@ -1,0 +1,4 @@
+# PHP tools
+# ---------------------------------------------------
+alias phpdoc='docker run --rm -v $PWD:/data phpdoc/phpdoc:3'
+alias phpqa='docker run --init -it --rm -v "$(pwd):/project" -v "$(pwd)/tmp-phpqa:/tmp" -w /project jakzal/phpqa:alpine'

@@ -1,0 +1,17 @@
+# Yarn
+# ---------------------------------------------------
+alias y='yarn'
+alias ya='yarn add'
+alias yau='yarn audit'
+alias yb='yarn build'
+alias yc='yarn create'
+alias yd='yarn dev'
+alias yp='yarn prod'
+alias yr='yarn release'
+alias yrm='yarn remove'
+alias ys='yarn start'
+alias yt='yarn test'
+alias yw='yarn watch'
+alias yyau='yarn && yarn audit'
+alias yys='yarn && yarn start'
+alias yyw='yarn && yarn watch'

@@ -1,0 +1,8 @@
+# Terraform
+# ---------------------------------------------------
+alias tf='terraform'
+alias tfa='terraform apply'
+alias tfd='terraform destroy'
+alias tff='terraform fmt'
+alias tfi='terraform init'
+alias tfv='terraform validate'

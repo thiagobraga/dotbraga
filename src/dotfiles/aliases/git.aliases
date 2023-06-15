@@ -1,0 +1,29 @@
+# Git
+# ---------------------------------------------------
+alias gb='git --no-pager branch'
+alias gba='git --no-pager branch -a'
+alias gbu='git branch -u'
+alias gbum='git branch -u origin/master master'
+alias gbud='git branch -u origin/develop develop'
+alias gbudm='git branch -u origin/development development'
+alias gco='git checkout'
+alias gcd='git checkout develop'
+alias gcdm='git checkout development'
+alias gcs='git checkout stage'
+alias gcm='git checkout master'
+alias gcma='git checkout main'
+alias gcmain='git checkout main'
+alias gcu='git checkout upstream'
+alias gstl='git --no-pager stash list'
+alias gmn='git merge --no-ff --no-edit'
+alias gfp='git fetch --all --prune'
+alias gcs='git checkout stage'
+alias gpf='git push -f'
+alias ggc='git gc'
+# It overrides 'gsts' from oh-my-zsh 'git stash show --text'
+alias gsts='git stash save --include-untracked'
+
+# Git clone from Github
+gch() {
+  git clone git@github.com:$1
+}

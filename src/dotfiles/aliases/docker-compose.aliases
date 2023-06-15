@@ -1,0 +1,13 @@
+# Docker Compose
+# ---------------------------------------------------
+alias dc='docker-compose'
+alias dcb='docker-compose build'
+alias dcbn='docker-compose build --no-cache'
+alias dce='docker-compose exec'
+alias dck='docker-compose kill'
+alias dcl='docker-compose logs'
+alias dcr='docker-compose kill && docker-compose up'
+alias dcrd='docker-compose kill && docker-compose up -d'
+alias dcup='docker-compose up'
+alias dcupd='docker-compose up -d'
+alias dcdn='docker-compose down'
