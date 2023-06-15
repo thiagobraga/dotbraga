@@ -9,7 +9,7 @@ alias aptu='(
     && apt upgrade -yV \
     && apt autoclean \
     && apt autoremove -yV \
-    && ansible-playbook $DOTBRAGA/src/ansible/all.yml
+    && for file in $DOTBRAGA/src/ansible/*; do [[ -f $file ]] && ansible-playbook $file; done
 )'
 
 alias aptitude='sudo aptitude'
