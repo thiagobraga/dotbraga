@@ -10,10 +10,13 @@ PATHS=(
   '/usr/sbin'
   '/usr/bin'
   '/snap/bin'
+  "${HOME}/.local/lib/python3.10/site-packages"
   "${HOME}/.config/composer/vendor/bin"
   "${HOME}/.rbenv/versions/2.7.1/bin"
   "${HOME}/.local/bin"
   "${HOME}/n/bin"
+  "${HOME}/bin"
+  "${KREW_ROOT:-${HOME}/.krew}/bin"
 )
 
 # Join array elements with delimiter
