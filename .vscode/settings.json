@@ -27,7 +27,6 @@
     "dotfiles/.config": "Config",
     "src/dotfiles": "Src",
     "src/dualboot": "Shared",
-    "src/etc": "Config",
-    "ansible/playbook": "Ansible"
+    "src/etc": "Config"
   }
 }
