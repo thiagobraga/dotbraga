@@ -184,6 +184,7 @@ install() {
       fi
     fi
 
+    # TODO: Check error code
     success "✅ ${NAME} install finished."
   }
 
