@@ -1,8 +1,9 @@
-- hosts: localhost
-  connection: local
+- name: 🎦 Ensures that Google Meet is using local icon
+  hosts: localhost
+  gather_facts: false
   tasks:
-    - name: Ensures that Google Meet is using local icon
-      lineinfile:
-        path: '{{ ansible_env.HOME }}/.local/share/applications/chrome-dbpkegghbgplfeaapbejbnfpbgnbjedf-Default.desktop'
+    - name: Replace icon property using built-in lineinfile
+      ansible.builtin.lineinfile:
+        path: '{{ lookup("env", "HOME") }}/.local/share/applications/chrome-dbpkegghbgplfeaapbejbnfpbgnbjedf-Default.desktop'
+        line: 'Icon={{ lookup("env", "HOME") }}/Imagens/Ícones/google-meet.png'
         regexp: '^Icon.*$'
-        line: 'Icon={{ ansible_env.HOME }}/Imagens/Ícones/google-meet.png'

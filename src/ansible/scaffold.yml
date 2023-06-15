@@ -1,33 +1,34 @@
-- hosts: localhost
-  connection: local
+- name: 🎓 Multiple Scaffold tasks
+  hosts: localhost
+  gather_facts: false
   tasks:
     - name: Ensures that Google Chrome Unstable uses custom orange icon for Scaffold
-      lineinfile:
+      ansible.builtin.lineinfile:
         path: /usr/share/applications/google-chrome-unstable.desktop
         regexp: '^Icon.*$'
-        line: 'Icon={{ ansible_env.HOME }}/Imagens/Ícones/google-chrome-orange.png'
+        line: 'Icon={{ lookup("env", "HOME") }}/Imagens/Ícones/google-chrome-orange.png'
 
     # TODO: Fazer o ansible percorrer todo o arquivo e não só uma ocorrência
     - name: Rename Google Chrome Unstable to Chrome Scaffold
-      lineinfile:
+      ansible.builtin.lineinfile:
         path: /usr/share/applications/google-chrome-unstable.desktop
         regexp: '^Name.*$'
         line: 'Name=Chrome Scaffold'
 
     - name: Makes Gmail Scaffold uses custom orange icon
-      lineinfile:
-        path: '{{ ansible_env.HOME }}/.local/share/applications/chrome-fmgjjmmmlfnkbppncabfkddbjimcfncm-Profile_1.desktop'
+      ansible.builtin.lineinfile:
+        path: '{{ lookup("env", "HOME") }}/.local/share/applications/chrome-fmgjjmmmlfnkbppncabfkddbjimcfncm-Profile_1.desktop'
         regexp: '^Icon.*$'
-        line: 'Icon={{ ansible_env.HOME }}/Imagens/Ícones/gmail-orange.png'
+        line: 'Icon={{ lookup("env", "HOME") }}/Imagens/Ícones/gmail-orange.png'
 
     - name: Makes Zabbix uses custom orange icon for Scaffold
-      lineinfile:
-        path: '{{ ansible_env.HOME }}/.local/share/applications/chrome-pbifopfendgnfioieahmghenoegfhcli-Profile_1.desktop'
+      ansible.builtin.lineinfile:
+        path: '{{ lookup("env", "HOME") }}/.local/share/applications/chrome-pbifopfendgnfioieahmghenoegfhcli-Profile_1.desktop'
         regexp: '^Icon.*$'
-        line: 'Icon={{ ansible_env.HOME }}/Imagens/Ícones/zabbix-orange.png'
+        line: 'Icon={{ lookup("env", "HOME") }}/Imagens/Ícones/zabbix-orange.png'
 
     - name: Ensures that Google Meet uses custom orange icon for Scaffold
-      lineinfile:
-        path: '{{ ansible_env.HOME }}/.local/share/applications/chrome-kjgfgldnnfoeklkmfkjfagphfepbbdan-Profile_1.desktop'
+      ansible.builtin.lineinfile:
+        path: '{{ lookup("env", "HOME") }}/.local/share/applications/chrome-kjgfgldnnfoeklkmfkjfagphfepbbdan-Profile_1.desktop'
         regexp: '^Icon.*$'
-        line: 'Icon={{ ansible_env.HOME }}/Imagens/Ícones/google-meet-orange.png'
+        line: 'Icon={{ lookup("env", "HOME") }}/Imagens/Ícones/google-meet-orange.png'

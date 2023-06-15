@@ -2,8 +2,8 @@
   hosts: localhost
   gather_facts: false
   tasks:
-    - name: Use built-in lineinfile to modify dbeaver icon
+    - name: Replace icon property using built-in lineinfile
       ansible.builtin.lineinfile:
         path: /usr/share/applications/dbeaver-ce.desktop
-        regexp: '^Icon.*$'
         line: 'Icon={{ lookup("env", "HOME") }}/Imagens/Ícones/DBeaver.png'
+        regexp: '^Icon.*$'
