@@ -63,7 +63,7 @@ source "${HOME}/.p10k.zsh"
 
 # Import src/scripts in current shell
 # ------------------------------------------------------------------------------
-for i in ${(f)"$(find "${DOTBRAGA}/src/scripts" -mindepth 1)"}; do source ${i}; done
+for file in $DOTBRAGA/src/scripts/*; do [[ -f $file ]] && source $file; done
 
 # Ruby section
 # ------------------------------------------------------------------------------
