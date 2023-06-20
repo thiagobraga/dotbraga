@@ -3,6 +3,7 @@
 alias dps='docker ps'
 alias dpsa="docker ps -a"
 alias dpsas='docker ps -a --format "table {{.Names}}\t{{.Status}}" | (read -r; printf "%s\n" "$REPLY"; sort -k1)'
+dpst() { docker inspect -f '{{.Name}}'$'\t''{{range .NetworkSettings.Networks}}{{.IPAddress}} {{end}}'$'\t''{{.State.Status}}' $(docker ps -aq) | sed 's/^\///' | column -t -s $'\t'; }
 alias dpsg="dpsa | grep"
 alias dpssg="dpsas | grep"
 alias dpsaq='docker ps -a -q'
