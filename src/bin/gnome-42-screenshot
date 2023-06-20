@@ -13,12 +13,12 @@ SCREENSHOT_NAME="screenshot_$(date +'%Y-%m-%d_%H-%M-%S').png"
 TO_CLIPBOARD="-f /tmp/${SCREENSHOT_NAME}"
 TO_FILE="-f $(xdg-user-dir PICTURES)/${SCREENSHOT_NAME}"
 
-area-to-file() { gnome-screenshot -pa ${TO_FILE}; }
-window-to-file() { gnome-screenshot -pw ${TO_FILE}; }
+area-to-file() { gnome-screenshot -p -a ${TO_FILE}; }
+window-to-file() { gnome-screenshot -p -w ${TO_FILE}; }
 fullscreen-to-file() { gnome-screenshot -p ${TO_FILE}; }
-area-to-clipboard() { gnome-screenshot -pac ${TO_CLIPBOARD}; }
-window-to-clipboard() { gnome-screenshot -pwc ${TO_CLIPBOARD}; }
-fullscreen-to-clipboard() { gnome-screenshot -pc ${TO_CLIPBOARD}; }
+area-to-clipboard() { gnome-screenshot -p -a ${TO_CLIPBOARD} && xclip -selection clipboard -t image/png -i ${TO_CLIPBOARD}; }
+window-to-clipboard() { gnome-screenshot -p -w ${TO_CLIPBOARD} && xclip -selection clipboard -t image/png -i ${TO_CLIPBOARD}; }
+fullscreen-to-clipboard() { gnome-screenshot -p ${TO_CLIPBOARD} && xclip -selection clipboard -t image/png -i ${TO_CLIPBOARD}; }
 
 args=("$@")
 for arg in "${args[@]}"; do
