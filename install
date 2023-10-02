@@ -44,19 +44,20 @@ install() {
   # Install zsh-syntax-highlighting plugin for Oh My Zsh
   # ----------------------------------------------------------------------------
   zsh-syntax-highlighting() {
-    setup 'zsh-syntax-highlighting' "${ZSH_SYNTAX_HIGHLIGHTING_FOLDER}" ${ZSH_SYNTAX_HIGHLIGHTING_URL}
+    setup 'zsh-syntax-highlighting' "${ZSH_SYNTAX_HIGHLIGHTING_FOLDER}" ${ZSH_SYNTAX_HIGHLIGHTING_URL} true
   }
 
   # Install zsh-autosuggestions plugin for Oh My Zsh
   # ----------------------------------------------------------------------------
   zsh-autosuggestions() {
-    setup 'zsh-autosuggestions' "${ZSH_AUTOSUGGESTIONS_FOLDER}" ${ZSH_AUTOSUGGESTIONS_URL}
+    setup 'zsh-autosuggestions' "${ZSH_AUTOSUGGESTIONS_FOLDER}" ${ZSH_AUTOSUGGESTIONS_URL} true
   }
 
   # Install Spaceship theme for Oh My Zsh
   # ----------------------------------------------------------------------------
   spaceship() {
     setup 'Spaceship zsh theme' "${SPACESHIP_PROMPT_FOLDER}" ${SPACESHIP_PROMPT_URL}
+    ln -sfnv "${THEME_FOLDER}/spaceship.zsh-theme" "${OHMYZSH_FOLDER}/themes/spaceship.zsh-theme"
   }
 
   # Install Powerlevel10k theme for Oh My Zsh
@@ -96,8 +97,8 @@ install() {
   # Install VIM - Vi IMproved with settings
   # ----------------------------------------------------------------------------
   ViM() {
-    VIM_FILE="${HOME}/.vimrc"
-    VIM_FOLDER="${HOME}/.vim"
+    vim_file="${HOME}/.vimrc"
+    vim_folder="${HOME}/.vim"
     title 'Install VIM - Vi IMproved with settings'
     step '🔍 Check if VIM is installed...'
 
@@ -113,12 +114,12 @@ install() {
         make
 
       # Get Vim latest version
-      VIM_DIST=${PROJECT_PATH}/dist
-      if [[ ! -d ${VIM_DIST} ]]; then
-        git clone https://github.com/vim/vim "${VIM_DIST}"
-        cd "${VIM_DIST}" || exit
+      vim_dist=${PROJECT_PATH}/dist/vim
+      if [[ ! -d ${vim_dist} ]]; then
+        git clone --depth=1 https://github.com/vim/vim "${vim_dist}"
+        cd "${vim_dist}" || exit
       else
-        cd "${VIM_DIST}" || exit
+        cd "${vim_dist}" || exit
         git pull origin master
       fi
 
@@ -133,9 +134,9 @@ install() {
     }
 
     step '💻 Installing vim plugins and settings...'
-    ln -sfnv "${PROJECT_PATH}"/src/vim/.vimrc "${VIM_FILE}"
-    ln -sfnv "${PROJECT_PATH}"/src/vim "${VIM_FOLDER}"
-    vim -E -s -u "${VIM_FILE}" +PlugInstall +qall >/dev/null
+    ln -sfnv "${PROJECT_PATH}"/src/vim/.vimrc "${vim_file}"
+    ln -sfnv "${PROJECT_PATH}"/src/vim "${vim_folder}"
+    vim -E -s -u "${vim_file}" +PlugInstall +qall >/dev/null
     success '✅ VIM installed and configured'
   }
 
@@ -168,9 +169,6 @@ install() {
 
     title "Install ${NAME}"
     step '🔍 Check if installed...'
-
-    step '🔗 Creating symlink...'
-    ln -sfnv "${THEME_FOLDER}/spaceship.zsh-theme" "${OHMYZSH_FOLDER}/themes/spaceship.zsh-theme"
 
     if [[ -d "${INSTALL_FOLDER}" ]]; then
       step '💾 Updating...'
