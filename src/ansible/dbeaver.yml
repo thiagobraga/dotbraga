@@ -1,9 +1,0 @@
-- name: 🐻 Ensures that DBeaver is using local icon
-  hosts: localhost
-  gather_facts: false
-  tasks:
-    - name: Replace icon property using built-in lineinfile
-      ansible.builtin.lineinfile:
-        path: /usr/share/applications/dbeaver-ce.desktop
-        line: 'Icon={{ lookup("env", "HOME") }}/Imagens/Ícones/DBeaver.png'
-        regexp: '^Icon.*$'

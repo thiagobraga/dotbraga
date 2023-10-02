@@ -1,9 +1,0 @@
-- name: 📩 Ensures that Gmail is using local icon
-  hosts: localhost
-  connection: local
-  tasks:
-    - name: Replace icon property using built-in lineinfile
-      ansible.builtin.lineinfile:
-        path: '{{ lookup("env", "HOME") }}/.local/share/applications/chrome-kmhopmchchfpfdcdjodmpfaaphdclmlj-Default.desktop'
-        line: 'Icon={{ lookup("env", "HOME") }}/Imagens/Ícones/gmail.png'
-        regexp: '^Icon.*$'

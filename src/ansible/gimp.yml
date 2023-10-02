@@ -1,9 +1,0 @@
-- name: 🎨 Ensures that Gimp name is always GIMP
-  hosts: localhost
-  gather_facts: false
-  tasks:
-    - name: Replace name property using built-in lineinfile
-      ansible.builtin.lineinfile:
-        path: /usr/share/applications/gimp.desktop
-        line: 'Name=GIMP'
-        regexp: '^Name.*$'
