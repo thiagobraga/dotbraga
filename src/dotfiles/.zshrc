@@ -62,15 +62,15 @@ for file in $DOTBRAGA/src/scripts/*; do [[ -f $file ]] && source $file; done
 
 # Ruby section
 # ------------------------------------------------------------------------------
-eval "$(rbenv init -)"
-source "$(dirname "$(gem which colorls)")/tab_complete.sh"
+eval "$(rbenv init - zsh)"
+# source "$(dirname "$(gem which colorls)")/tab_complete.sh"
 
 # Load brew correctly
 # ------------------------------------------------------------------------------
-test -d ${HOME}/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
-test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-test -r ${HOME}/.bash_profile && echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ${HOME}/.bash_profile
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# test -d ${HOME}/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+# test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# test -r ${HOME}/.bash_profile && echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ${HOME}/.bash_profile
+# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # Node n
 # ------------------------------------------------------------------------------
