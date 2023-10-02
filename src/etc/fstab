@@ -1,0 +1,27 @@
+# Linux
+# <file system>                            <mount point>  <type>  <options>          <dump>  <pass>
+# -------------------------------------------------------------------------------------------------
+UUID=b64fcde8-b1a2-4932-ba39-c11d24af4cb6  /              ext4    errors=remount-ro  0       1
+UUID=15346b9f-f1b5-4949-af96-76b0a984e269  /home          ext4    defaults           0       2
+/swapfile                                  none           swap    sw                 0       0
+
+
+# Windows
+# <file system>        <mount point>    <type>   <options>                     <dump>  <pass>
+# ---------------------------------------------------------------------------------------------------------------
+UUID=52949D7A949D6171  /mnt/windows     ntfs-3g  auto,users,uid=1000,gid=1000  0       0
+UUID=014949A570E93409  /mnt/desgracera  ntfs-3g  auto,users,uid=1000,gid=1000  0       0
+UUID=56F42EC0F42EA1EB  /mnt/games       ntfs-3g  auto,users,uid=1000,gid=1000  0       0
+
+
+# External drives
+# <file system>        <mount point>  <type>   <options>                          <dump>  <pass>
+# ---------------------------------------------------------------------------------------------------------------
+# UUID=345AE1FF597C6544  /mnt/hd        ntfs-3g  auto,users,exec,nofail,x-systemd.device-timeout=4s,uid=1000,gid=1000  0       0
+
+
+# Samba Shares
+# <file system>          <mount point>  <type>  <options>                                                                       <dump>  <pass>
+# --------------------------------------------------------------------------------------------------------------------------------------------
+//192.168.15.30/Desktop  /mnt/Desktop   cifs    noauto,users,uid=1000,gid=1000,noserverino,credentials=/home/thiago/.smbpasswd  0       0
+
