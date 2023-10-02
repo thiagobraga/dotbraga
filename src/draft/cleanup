@@ -1,0 +1,12 @@
+#!/bin/zsh
+
+# Cleanup script
+#
+# Inspired on BleachBit, I wrote this script to clean all
+# cache and temporary files on Ubuntu. This will be useful
+# before backup actions for example.
+#
+# - APT
+#   - autoclean
+#   - autoremove
+#   -
