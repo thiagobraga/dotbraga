@@ -1,0 +1,17 @@
+# Apt & other package managers
+# ---------------------------------------------------
+alias apt='sudo apt'
+alias apty='sudo apt install -y'
+alias aptr='sudo apt remove -y'
+alias aptp='sudo apt purge -y'
+alias aptu='(
+  apt update \
+    && apt upgrade -yV \
+    && apt autoclean \
+    && apt autoremove -yV \
+    && for file in $DOTBRAGA/src/ansible/*; do [[ -f $file ]] && ansible-playbook $file; done
+)'
+
+alias aptitude='sudo aptitude'
+alias dpkg='sudo dpkg'
+alias snap='sudo snap'
