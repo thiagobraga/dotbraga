@@ -28,7 +28,6 @@
     icon_bell = False
     background_color = "#2e3440"
     background_darkness = 0.98
-    background_type = transparent
     cursor_shape = ibeam
     cursor_color = "#d8dee9"
     font = SauceCodePro Nerd Font 9
