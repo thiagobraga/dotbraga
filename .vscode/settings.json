@@ -2,16 +2,10 @@
   // Only filenames
   // Oh please! Accept glob patterns, please!
   "files.associations": {
-    "*.aliases": "shellscript",
-    ".zshrc": "shellscript",
-    "gnome-42-screenshot": "shellscript",
-    "kill-chats": "shellscript",
-    "open-chats": "shellscript",
-    "restart-desktop": "shellscript",
-    "restart-desktop-windows": "shellscript",
-    "shutdown-desktop": "shellscript",
-    "shutdown-desktop-windows": "shellscript",
-    "htoprc": "ini"
+    "htoprc": "ini",
+    "*.json": "json",
+    "*.yml": "yaml",
+    "*": "shellscript"
   },
 
   // Only one level folder and filename
