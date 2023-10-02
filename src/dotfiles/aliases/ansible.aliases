@@ -1,0 +1,3 @@
+alias ansible-all='(
+  for file in $DOTBRAGA/src/ansible/*; do [[ -f $file ]] && ansible-playbook $file; done
+)'
