@@ -92,3 +92,10 @@ complete -o default -F __start_kubectl k
 OCI_COMPLETION="${HOME}/lib/oracle-cli/lib/python3.10/site-packages/oci_cli/bin/oci_autocomplete.sh"
 [[ -e "$OCI_COMPLETION" ]] && source "$OCI_COMPLETION"
 
+# Java SDK
+# ------------------------------------------------------------------------------
+# Android Studio checks these variable in the current order.
+export STUDIO_JDK=/usr/lib/jvm/java-11-openjdk-amd64
+export JDK_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+export ANDROID_HOME=~/Android/Sdk
