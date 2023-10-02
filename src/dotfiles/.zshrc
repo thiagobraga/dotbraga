@@ -1,5 +1,9 @@
 #!/bin/zsh
 
+# First of all, import .env from home
+# ------------------------------------------------------------------------------
+[[ -e "${HOME}/.env" ]] && source "${HOME}/.env"
+
 # Dotbraga global variable
 # ------------------------------------------------------------------------------
 export DOTBRAGA="${HOME}/www/braga/dotbraga"
