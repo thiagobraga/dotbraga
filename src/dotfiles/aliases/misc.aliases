@@ -34,3 +34,19 @@ alias ll="${ls_cmd} -lgh"
 alias ls="${ls_cmd} -ag"
 
 alias grep='sudo grep -I --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox,bin,vendor,node_modules,storage,debugbar} --exclude={xdebug.log}'
+
+bkp() {
+  for file in ${@}; do mv ${file} ${file}.bkp; done
+}
+
+rst() {
+  for file in "$@"; do
+    if [[ -f "$file" && $file =~ (.+)\.bkp$ ]]; then
+      new_file="${BASH_REMATCH[1]}"
+      mv "$file" "$new_file"
+      echo "Restored $file to $new_file"
+    else
+      echo "Error: $file is not a .bkp file or does not exist."
+    fi
+  done
+}
