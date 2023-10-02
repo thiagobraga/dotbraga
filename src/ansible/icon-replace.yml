@@ -1,0 +1,95 @@
+- name: "⏩⏩⏩⏩⏩ REPLACE APPLICATION ICONS USING BUILT-IN LINEINFILE ⏪⏪⏪⏪⏪"
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: "DBEAVER"
+      tags: always
+      block:
+        - name: "🔷🔷🔷 DBEAVER 🔷🔷🔷"
+          ansible.builtin.command: echo
+          changed_when: false
+
+        - name: "Replace Icon property with icon file from local storage"
+          ansible.builtin.lineinfile:
+            path: /usr/share/applications/dbeaver-ce.desktop
+            line: 'Icon={{ lookup("env", "HOME") }}/Imagens/Ícones/DBeaver.png'
+            regexp: '^Icon.*$'
+
+    - name: "GIMP"
+      tags: always
+      block:
+        - name: "🔷🔷🔷 GIMP 🔷🔷🔷"
+          ansible.builtin.command: echo
+          changed_when: false
+
+        - name: "Replace Icon property with icon file from local storage"
+          ansible.builtin.lineinfile:
+            path: /usr/share/applications/gimp.desktop
+            line: 'Name=GIMP'
+            regexp: '^Name.*$'
+
+    - name: "GMAIL"
+      tags: always
+      block:
+        - name: "🔷🔷🔷 GMAIL 🔷🔷🔷"
+          ansible.builtin.command: echo
+          changed_when: false
+
+        - name: "Find Google Chrome shortcut app desktop file"
+          ansible.builtin.find:
+            paths: "{{ lookup('env', 'HOME') }}/.local/share/applications/"
+            recurse: false
+            patterns: "chrome-*.desktop"
+            contains: "Name=Gmail$"
+          register: meet_file
+
+        - name: "Replace Icon property with icon file from local storage"
+          ansible.builtin.lineinfile:
+            path: "{{ meet_file.files[0].path }}"
+            line: 'Icon={{ lookup("env", "HOME") }}/Imagens/Ícones/gmail.png'
+            regexp: '^Icon.*$'
+          when: meet_file.matched > 0
+
+    - name: "GOOGLE MEET"
+      tags: always
+      block:
+        - name: "🔷🔷🔷 GOOGLE MEET 🔷🔷🔷"
+          ansible.builtin.command: echo
+          changed_when: false
+
+        - name: "Find Google Chrome shortcut app desktop file"
+          ansible.builtin.find:
+            paths: "{{ lookup('env', 'HOME') }}/.local/share/applications/"
+            recurse: false
+            patterns: "chrome-*.desktop"
+            contains: "Name=Meet"
+          register: meet_file
+
+        - name: "Replace Icon property with icon file from local storage"
+          ansible.builtin.lineinfile:
+            path: "{{ meet_file.files[0].path }}"
+            line: 'Icon={{ lookup("env", "HOME") }}/Imagens/Ícones/google-meet.png'
+            regexp: '^Icon.*$'
+          when: meet_file.matched > 0
+
+    - name: "WHATSAPP"
+      tags: always
+      block:
+        - name: "🔷🔷🔷 WHATSAPP 🔷🔷🔷"
+          ansible.builtin.command: echo
+          changed_when: false
+
+        - name: "Find Google Chrome shortcut app desktop file"
+          ansible.builtin.find:
+            paths: "{{ lookup('env', 'HOME') }}/.local/share/applications/"
+            recurse: false
+            patterns: "chrome-*.desktop"
+            contains: "Name=WhatsApp Web"
+          register: meet_file
+
+        - name: "Replace Icon property with icon file from local storage"
+          ansible.builtin.lineinfile:
+            path: "{{ meet_file.files[0].path }}"
+            line: 'Icon={{ lookup("env", "HOME") }}/Imagens/Ícones/WhatsApp-256x256.png'
+            regexp: '^Icon.*$'
+          when: meet_file.matched > 0
