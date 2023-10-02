@@ -1,0 +1,30 @@
+#!/bin/zsh
+
+# '25/10 10:00 12:00 '
+
+parse_date() {
+  INPUT=$1
+  YEAR=$(date '+%Y')
+  DAY_ENTRY=$(echo ${INPUT} | cut -d' ' -f1)
+  DAY=$(echo ${DAY_ENTRY} | cut -d'/' -f1)
+  MONTH=$(echo ${DAY_ENTRY} | cut -d'/' -f2)
+  START=$(echo ${INPUT} | cut -d' ' -f2)
+  END=$(echo ${INPUT} | cut -d' ' -f3)
+  DESC_START=$(echo ${INPUT} | cut -d' ' -f4)
+  CLOCKIFY_START="${YEAR}-${MONTH}-${DAY} ${START}"
+  CLOCKIFY_END="${YEAR}-${MONTH}-${DAY} ${END}"
+
+  echo $(date '+%Y-%m-%d %H:%M')
+  echo ${DAY}
+  echo ${MONTH}
+  echo ${YEAR}
+  echo ${START}
+  echo ${END}
+
+  DESCRIPTION=$(echo ${INPUT:#${DESC_START}})
+  echo $DESCRIPTION
+}
+
+parse_date $1
+
+# clockify-cli manual -i=0 -p Scaffold -s
