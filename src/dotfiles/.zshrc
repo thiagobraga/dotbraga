@@ -47,21 +47,16 @@ export TERM='xterm-256color'
 export EDITOR='/usr/bin/code'
 export VISUAL='/usr/bin/code'
 
-# Configure color overrides for terminal
-# ------------------------------------------------------------------------------
-[[ -f ~/.dircolors ]] && eval "$(dircolors -b ${HOME}/.dircolors)" &>/dev/null
-
-# Source Oh My Zsh and theme settings
+# Load Oh My Zsh and Powerlevel10k
 # ------------------------------------------------------------------------------
 source "${ZSH}/oh-my-zsh.sh"
 source "${HOME}/.p10k.zsh"
 
-# Import .env and .aliases
+# Load .aliases
 # ------------------------------------------------------------------------------
-[[ -e "${HOME}/.env" ]] && source "${HOME}/.env"
 [[ -e "${HOME}/.aliases" ]] && source "${HOME}/.aliases"
 
-# Import src/scripts in current shell
+# Load src/scripts in current shell
 # ------------------------------------------------------------------------------
 for file in $DOTBRAGA/src/scripts/*; do [[ -f $file ]] && source $file; done
 
