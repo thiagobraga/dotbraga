@@ -89,4 +89,6 @@ complete -o default -F __start_kubectl k
 
 # OCI completion
 # ------------------------------------------------------------------------------
-[[ -e "$HOME/lib/oracle-cli/lib/python3.10/site-packages/oci_cli/bin/oci_autocomplete.sh" ]] && source "$HOME/lib/oracle-cli/lib/python3.10/site-packages/oci_cli/bin/oci_autocomplete.sh"
+OCI_COMPLETION="${HOME}/lib/oracle-cli/lib/python3.10/site-packages/oci_cli/bin/oci_autocomplete.sh"
+[[ -e "$OCI_COMPLETION" ]] && source "$OCI_COMPLETION"
+
