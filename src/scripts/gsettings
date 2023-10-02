@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Disable dialog boxes attached to its parents
-gsettings set org.gnome.shell.overrides attach-modal-dialogs false
+gsettings set org.gnome.shell.overrides attach-modal-dialogs true
 
 # Activate theme Nordic
-gsettings set org.gnome.desktop.interface gtk-theme 'Nordic'
-gsettings set org.gnome.desktop.wm.preferences theme 'Nordic'
+gsettings set org.gnome.desktop.interface gtk-theme 'Nordic Darker'
+gsettings set org.gnome.desktop.wm.preferences theme 'Nordic Darker'
 
 # Disable screensaver
 gsettings set org.gnome.desktop.session idle-delay 0
