@@ -1,9 +1,11 @@
 # Apt & other package managers
 # ---------------------------------------------------
 alias apt='sudo apt'
-alias apty='sudo apt install -y'
-alias aptr='sudo apt remove -y'
-alias aptp='sudo apt purge -y'
+alias apty='sudo apt install -yV'
+alias aptr='sudo apt remove -yV'
+alias aptp='sudo apt purge -yV'
+alias aptrm='sudo apt autoremove -yV'
+alias aptcl='sudo apt autoclean'
 alias aptu='(
   apt update \
     && apt upgrade -yV \
