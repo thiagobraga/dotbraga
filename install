@@ -10,10 +10,9 @@
 
 # Dotbraga global variable
 # ------------------------------------------------------------------------------
-export DOTBRAGA="${HOME}/www/braga/dotbraga"
+export DOTBRAGA="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 
 VERSION=$(cat "${DOTBRAGA}/VERSION")
-
 OHMYZSH_URL='https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh'
 OHMYZSH_FOLDER="${HOME}/.oh-my-zsh"
 POWERLEVEL10K_URL='https://github.com/romkatv/powerlevel10k'
@@ -24,9 +23,8 @@ ZSH_AUTOSUGGESTIONS_URL='https://github.com/zsh-users/zsh-autosuggestions'
 ZSH_AUTOSUGGESTIONS_FOLDER="${OHMYZSH_FOLDER}/custom/plugins/zsh-autosuggestions"
 ZSH_SYNTAX_HIGHLIGHTING_URL='https://github.com/zsh-users/zsh-syntax-highlighting'
 ZSH_SYNTAX_HIGHLIGHTING_FOLDER="${OHMYZSH_FOLDER}/custom/plugins/zsh-syntax-highlighting"
-PROJECT_PATH=$(dirname "$0")
 
-source "${PROJECT_PATH}/src/scripts/colors"
+source "${DOTBRAGA}/src/scripts/colors"
 
 # dotbraga components
 # ==============================================================================
@@ -72,7 +70,7 @@ install() {
   dualboot() {
     title "Shortcut 'Restart to Windows' for Dual Boot systems"
     for EXTENSION in desktop png sh; do
-      sudo ln -sfnv "${PROJECT_PATH}/src/dualboot/windows.${EXTENSION}" /usr/share/applications
+      sudo ln -sfnv "${DOTBRAGA}/src/dualboot/windows.${EXTENSION}" /usr/share/applications
     done
     success "✅ 'Restart to Windows' created successfuly."
   }
@@ -81,7 +79,7 @@ install() {
   # ----------------------------------------------------------------------------
   bin() {
     step '🔗 Link some scripts to /usr/bin...'
-    find "${PROJECT_PATH}/src/bin" -type f,l -exec sudo ln -sfnv -t /usr/bin {} \;
+    find "${DOTBRAGA}/src/bin" -type f,l -exec sudo ln -sfnv -t /usr/bin {} \;
   }
 
   # Create symlinks
@@ -89,7 +87,7 @@ install() {
   links() {
     setopt NULL_GLOB
     title 'Create symlinks for dotfiles' && cp -afrsv ${DOTBRAGA}/src/dotfiles/{.,}* ${HOME}
-    title 'Create symlinks for /etc'     && sudo cp -afrsv ${DOTBRAGA}/src/etc/{.,}* /etc
+    title 'Copy files to /etc'           && sudo cp -afrv ${DOTBRAGA}/src/etc/{.,}* /etc
     title 'Create symlinks for /usr/bin' && sudo cp -afrsv ${DOTBRAGA}/src/bin/{.,}* /usr/bin
     echo && success '✅ Links created!'
   }
@@ -97,14 +95,17 @@ install() {
   # Install VIM - Vi IMproved with settings
   # ----------------------------------------------------------------------------
   ViM() {
-    vim_file="${HOME}/.vimrc"
-    vim_folder="${HOME}/.vim"
+    VIM_FILE="${HOME}/.vimrc"
+    VIM_FOLDER="${HOME}/.vim"
+    COMPILE=false
     title 'Install VIM - Vi IMproved with settings'
     step '🔍 Check if VIM is installed...'
 
     [[ ! $(command -v vim) ]] && step '💻 Installing vim...' || step '💾 Updating vim...'
 
-    {
+    if ! ${COMPILE}; then
+      sudo apt install -y vim
+    else
       # Install dependencies
       sudo apt install -y \
         clang \
@@ -114,12 +115,12 @@ install() {
         make
 
       # Get Vim latest version
-      vim_dist=${PROJECT_PATH}/dist/vim
-      if [[ ! -d ${vim_dist} ]]; then
-        git clone --depth=1 https://github.com/vim/vim "${vim_dist}"
-        cd "${vim_dist}" || exit
+      VIM_DIST=${DOTBRAGA}/dist/vim
+      if [[ ! -d ${VIM_DIST} ]]; then
+        git clone --depth=1 https://github.com/vim/vim "${VIM_DIST}"
+        cd "${VIM_DIST}" || exit
       else
-        cd "${vim_dist}" || exit
+        cd "${VIM_DIST}" || exit
         git pull origin master
       fi
 
@@ -127,16 +128,16 @@ install() {
       sed -i '/^#CONF_OPT_PYTHON3 = --enable-python3interp$/s/^#//g' src/Makefile
 
       # Install Vim
-      make && sudo make install
+      make >/dev/null && sudo make install >/dev/null
 
       # Undo src/Makefile changes
       git checkout src/Makefile
-    }
+    fi
 
     step '💻 Installing vim plugins and settings...'
-    ln -sfnv "${PROJECT_PATH}"/src/vim/.vimrc "${vim_file}"
-    ln -sfnv "${PROJECT_PATH}"/src/vim "${vim_folder}"
-    vim -E -s -u "${vim_file}" +PlugInstall +qall >/dev/null
+    ln -sfnv "${DOTBRAGA}"/src/vim/.vimrc "${VIM_FILE}"
+    ln -sfnv "${DOTBRAGA}"/src/vim "${VIM_FOLDER}"
+    vim -E -s -u "${VIM_FILE}" +PlugInstall +qall >/dev/null
     success '✅ VIM installed and configured'
   }
 
