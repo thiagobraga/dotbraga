@@ -54,7 +54,7 @@ install() {
   # Install Spaceship theme for Oh My Zsh
   # ----------------------------------------------------------------------------
   spaceship() {
-    setup 'Spaceship zsh theme' "${SPACESHIP_PROMPT_FOLDER}" ${SPACESHIP_PROMPT_URL}
+    setup 'Spaceship zsh theme' "${SPACESHIP_PROMPT_FOLDER}" ${SPACESHIP_PROMPT_URL} true
     ln -sfnv "${THEME_FOLDER}/spaceship.zsh-theme" "${OHMYZSH_FOLDER}/themes/spaceship.zsh-theme"
   }
 
