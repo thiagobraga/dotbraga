@@ -87,7 +87,7 @@ install() {
   links() {
     setopt NULL_GLOB
     title 'Create symlinks for dotfiles' && cp -afrsv ${DOTBRAGA}/src/dotfiles/{.,}* ${HOME}
-    title 'Copy files to /etc'           && sudo cp -afrv ${DOTBRAGA}/src/etc/{.,}* /etc
+    # title 'Copy files to /etc'           && sudo cp -afrv ${DOTBRAGA}/src/etc/{.,}* /etc
     title 'Create symlinks for /usr/bin' && sudo cp -afrsv ${DOTBRAGA}/src/bin/{.,}* /usr/bin
     echo && success '✅ Links created!'
   }
