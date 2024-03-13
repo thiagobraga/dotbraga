@@ -37,3 +37,10 @@ rst() {
 
 alias myip='curl -s ifconfig.me | awk "{print $1}"'
 
+clear-ram() {
+  sudo su -c "
+    sync; echo 1 > /proc/sys/vm/drop_caches
+    sync; echo 2 > /proc/sys/vm/drop_caches
+    sync; echo 3 > /proc/sys/vm/drop_caches
+  "
+}
