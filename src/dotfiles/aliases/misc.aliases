@@ -34,3 +34,6 @@ rst() {
     fi
   done
 }
+
+alias myip='curl -s ifconfig.me | awk "{print $1}"'
+
