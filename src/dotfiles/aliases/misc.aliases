@@ -11,11 +11,11 @@ alias www="cd ${HOME}/www"
 alias oss="cd ${HOME}/www/oss"
 
 # Which `ls` app to use. It can be: `ls`, `lsd`, `colorls` or `exa`.
-ls_bin='exa'
-ls_cmd="LC_COLLATE=C ${ls_bin} --group-directories-first"
-alias l="${ls_cmd} -algh"
-alias ll="${ls_cmd} -lgh"
-alias ls="${ls_cmd} -ag"
+for LS_BIN in exa colorls lsd ls; do command -v "$LS_BIN" &> /dev/null && break; done
+LS_CMD="LC_COLLATE=C ${LS_BIN} --group-directories-first"
+alias l="${LS_CMD} -algh"
+alias ll="${LS_CMD} -lgh"
+alias ls="${LS_CMD} -ag"
 
 alias grep='sudo grep -I --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox,bin,vendor,node_modules,storage,debugbar} --exclude={xdebug.log}'
 
