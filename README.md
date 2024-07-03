@@ -113,3 +113,5 @@ See the [install](./install) script to see all the possibilities. You can hit `.
 <img src="./images/screenshots/dotbraga_macos_2020-04-07_13.53.png" width="420" />
 
 <img src="./images/screenshots/dotbraga_ubuntu_2020-04-06_00.18.png" width="420" />
+
+<!-- This project is tested with BrowserStack -->
