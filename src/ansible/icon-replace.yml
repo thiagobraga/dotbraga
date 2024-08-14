@@ -12,7 +12,7 @@
         - name: "Replace Icon property with icon file from local storage"
           ansible.builtin.lineinfile:
             path: /usr/share/applications/dbeaver-ce.desktop
-            line: 'Icon={{ lookup("env", "HOME") }}/Imagens/Ícones/DBeaver.png'
+            line: 'Icon={{ lookup("env", "HOME") }}/Pictures/Icons/DBeaver.png'
             regexp: '^Icon.*$'
 
     - name: "GIMP"
@@ -46,7 +46,7 @@
         - name: "Replace Icon property with icon file from local storage"
           ansible.builtin.lineinfile:
             path: "{{ meet_file.files[0].path }}"
-            line: 'Icon={{ lookup("env", "HOME") }}/Imagens/Ícones/gmail.png'
+            line: 'Icon={{ lookup("env", "HOME") }}/Pictures/Icons/gmail.png'
             regexp: '^Icon.*$'
           when: meet_file.matched > 0
 
@@ -68,7 +68,7 @@
         - name: "Replace Icon property with icon file from local storage"
           ansible.builtin.lineinfile:
             path: "{{ meet_file.files[0].path }}"
-            line: 'Icon={{ lookup("env", "HOME") }}/Imagens/Ícones/google-meet.png'
+            line: 'Icon={{ lookup("env", "HOME") }}/Pictures/Icons/google-meet.png'
             regexp: '^Icon.*$'
           when: meet_file.matched > 0
 
@@ -90,6 +90,6 @@
         - name: "Replace Icon property with icon file from local storage"
           ansible.builtin.lineinfile:
             path: "{{ meet_file.files[0].path }}"
-            line: 'Icon={{ lookup("env", "HOME") }}/Imagens/Ícones/WhatsApp-256x256.png'
+            line: 'Icon={{ lookup("env", "HOME") }}/Pictures/Icons/WhatsApp-256x256.png'
             regexp: '^Icon.*$'
           when: meet_file.matched > 0
