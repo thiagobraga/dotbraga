@@ -79,94 +79,94 @@ export BgIWhite='\033[1;30;107m'  # White
 
 print_colors() {
   regular() {
-    printf "${Black} %-9s ${ColorOff} " Black
-    printf "${Red} %-9s ${ColorOff} " Red
-    printf "${Green} %-9s ${ColorOff} " Green
-    printf "${Yellow} %-9s ${ColorOff} " Yellow
-    printf "${Blue} %-9s ${ColorOff} " Blue
-    printf "${Purple} %-9s ${ColorOff} " Purple
-    printf "${Cyan} %-9s ${ColorOff} " Cyan
-    printf "${White} %-9s ${ColorOff} " White
+    printf "${Black}%-9s ${ColorOff} " Black
+    printf "${Red}%-9s ${ColorOff} " Red
+    printf "${Green}%-9s ${ColorOff} " Green
+    printf "${Yellow}%-9s ${ColorOff} " Yellow
+    printf "${Blue}%-9s ${ColorOff} " Blue
+    printf "${Purple}%-9s ${ColorOff} " Purple
+    printf "${Cyan}%-9s ${ColorOff} " Cyan
+    printf "${White}%-9s ${ColorOff} " White
     echo
   }
 
   bold() {
-    printf "${BBlack} %-9s ${ColorOff} " BBlack
-    printf "${BRed} %-9s ${ColorOff} " BRed
-    printf "${BGreen} %-9s ${ColorOff} " BGreen
-    printf "${BYellow} %-9s ${ColorOff} " BYellow
-    printf "${BBlue} %-9s ${ColorOff} " BBlue
-    printf "${BPurple} %-9s ${ColorOff} " BPurple
-    printf "${BCyan} %-9s ${ColorOff} " BCyan
-    printf "${BWhite} %-9s ${ColorOff} " BWhite
+    printf "${BBlack}%-9s ${ColorOff} " BBlack
+    printf "${BRed}%-9s ${ColorOff} " BRed
+    printf "${BGreen}%-9s ${ColorOff} " BGreen
+    printf "${BYellow}%-9s ${ColorOff} " BYellow
+    printf "${BBlue}%-9s ${ColorOff} " BBlue
+    printf "${BPurple}%-9s ${ColorOff} " BPurple
+    printf "${BCyan}%-9s ${ColorOff} " BCyan
+    printf "${BWhite}%-9s ${ColorOff} " BWhite
     echo
   }
 
   underline() {
-    printf "${UBlack} %-9s ${ColorOff} " UBlack
-    printf "${URed} %-9s ${ColorOff} " URed
-    printf "${UGreen} %-9s ${ColorOff} " UGreen
-    printf "${UYellow} %-9s ${ColorOff} " UYellow
-    printf "${UBlue} %-9s ${ColorOff} " UBlue
-    printf "${UPurple} %-9s ${ColorOff} " UPurple
-    printf "${UCyan} %-9s ${ColorOff} " UCyan
-    printf "${UWhite} %-9s ${ColorOff} " UWhite
+    printf "${UBlack}%-9s ${ColorOff} " UBlack
+    printf "${URed}%-9s ${ColorOff} " URed
+    printf "${UGreen}%-9s ${ColorOff} " UGreen
+    printf "${UYellow}%-9s ${ColorOff} " UYellow
+    printf "${UBlue}%-9s ${ColorOff} " UBlue
+    printf "${UPurple}%-9s ${ColorOff} " UPurple
+    printf "${UCyan}%-9s ${ColorOff} " UCyan
+    printf "${UWhite}%-9s ${ColorOff} " UWhite
     echo
   }
 
   background() {
-    printf "${BgBlack} %-9s ${ColorOff} " BgBlack
-    printf "${BgRed} %-9s ${ColorOff} " BgRed
-    printf "${BgGreen} %-9s ${ColorOff} " BgGreen
-    printf "${BgYellow} %-9s ${ColorOff} " BgYellow
-    printf "${BgBlue} %-9s ${ColorOff} " BgBlue
-    printf "${BgPurple} %-9s ${ColorOff} " BgPurple
-    printf "${BgCyan} %-9s ${ColorOff} " BgCyan
-    printf "${BgWhite} %-9s ${ColorOff} " BgWhite
+    printf "${BgBlack}%-9s ${ColorOff} " BgBlack
+    printf "${BgRed}%-9s ${ColorOff} " BgRed
+    printf "${BgGreen}%-9s ${ColorOff} " BgGreen
+    printf "${BgYellow}%-9s ${ColorOff} " BgYellow
+    printf "${BgBlue}%-9s ${ColorOff} " BgBlue
+    printf "${BgPurple}%-9s ${ColorOff} " BgPurple
+    printf "${BgCyan}%-9s ${ColorOff} " BgCyan
+    printf "${BgWhite}%-9s ${ColorOff} " BgWhite
     echo
   }
 
   high-intensity() {
-    printf "${IBlack} %-9s ${ColorOff} " IBlack
-    printf "${IRed} %-9s ${ColorOff} " IRed
-    printf "${IGreen} %-9s ${ColorOff} " IGreen
-    printf "${IYellow} %-9s ${ColorOff} " IYellow
-    printf "${IBlue} %-9s ${ColorOff} " IBlue
-    printf "${IPurple} %-9s ${ColorOff} " IPurple
-    printf "${ICyan} %-9s ${ColorOff} " ICyan
-    printf "${IWhite} %-9s ${ColorOff} " IWhite
+    printf "${IBlack}%-9s ${ColorOff} " IBlack
+    printf "${IRed}%-9s ${ColorOff} " IRed
+    printf "${IGreen}%-9s ${ColorOff} " IGreen
+    printf "${IYellow}%-9s ${ColorOff} " IYellow
+    printf "${IBlue}%-9s ${ColorOff} " IBlue
+    printf "${IPurple}%-9s ${ColorOff} " IPurple
+    printf "${ICyan}%-9s ${ColorOff} " ICyan
+    printf "${IWhite}%-9s ${ColorOff} " IWhite
     echo
   }
 
   bold-high-intensity() {
-    printf "${BIBlack} %-9s ${ColorOff} " BIBlack
-    printf "${BIRed} %-9s ${ColorOff} " BIRed
-    printf "${BIGreen} %-9s ${ColorOff} " BIGreen
-    printf "${BIYellow} %-9s ${ColorOff} " BIYellow
-    printf "${BIBlue} %-9s ${ColorOff} " BIBlue
-    printf "${BIPurple} %-9s ${ColorOff} " BIPurple
-    printf "${BICyan} %-9s ${ColorOff} " BICyan
-    printf "${BIWhite} %-9s ${ColorOff} " BIWhite
+    printf "${BIBlack}%-9s ${ColorOff} " BIBlack
+    printf "${BIRed}%-9s ${ColorOff} " BIRed
+    printf "${BIGreen}%-9s ${ColorOff} " BIGreen
+    printf "${BIYellow}%-9s ${ColorOff} " BIYellow
+    printf "${BIBlue}%-9s ${ColorOff} " BIBlue
+    printf "${BIPurple}%-9s ${ColorOff} " BIPurple
+    printf "${BICyan}%-9s ${ColorOff} " BICyan
+    printf "${BIWhite}%-9s ${ColorOff} " BIWhite
     echo
   }
 
   high-intensity-background() {
-    printf "${BgIBlack} %-9s ${ColorOff} " BgIBlack
-    printf "${BgIRed} %-9s ${ColorOff} " BgIRed
-    printf "${BgIGreen} %-9s ${ColorOff} " BgIGreen
-    printf "${BgIYellow} %-9s ${ColorOff} " BgIYellow
-    printf "${BgIBlue} %-9s ${ColorOff} " BgIBlue
-    printf "${BgIPurple} %-9s ${ColorOff} " BgIPurple
-    printf "${BgICyan} %-9s ${ColorOff} " BgICyan
-    printf "${BgIWhite} %-9s ${ColorOff} " BgIWhite
+    printf "${BgIBlack}%-9s ${ColorOff} " BgIBlack
+    printf "${BgIRed}%-9s ${ColorOff} " BgIRed
+    printf "${BgIGreen}%-9s ${ColorOff} " BgIGreen
+    printf "${BgIYellow}%-9s ${ColorOff} " BgIYellow
+    printf "${BgIBlue}%-9s ${ColorOff} " BgIBlue
+    printf "${BgIPurple}%-9s ${ColorOff} " BgIPurple
+    printf "${BgICyan}%-9s ${ColorOff} " BgICyan
+    printf "${BgIWhite}%-9s ${ColorOff} " BgIWhite
     echo
   }
 
   regular
   bold
   underline
+  # high-intensity
+  # bold-high-intensity
   background
-  high-intensity
-  bold-high-intensity
   high-intensity-background
 }
