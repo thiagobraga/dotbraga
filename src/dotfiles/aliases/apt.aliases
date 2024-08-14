@@ -11,6 +11,8 @@ alias aptu='(
     && apt upgrade -yV \
     && apt autoclean \
     && apt autoremove -yV \
+    && flatpak update -y \
+    && sudo snap refresh \
     && for file in $DOTBRAGA/src/ansible/*; do [[ -f $file ]] && ansible-playbook $file; done
 )'
 
