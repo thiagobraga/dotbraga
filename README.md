@@ -5,7 +5,7 @@
 <h1 align="center">dotbraga</h1>
 
 <p align="center">
-  <a href="https://github.com/thiagobraga">@thiagobraga's</a> dotfiles<br>
+  My dotfiles<br>
   <a href="https://raw.githubusercontent.com/thiagobraga/todoist-userstyles/master/theme.user.css"><img src="https://img.shields.io/badge/version-1.5.0-929faf.svg" align="center" alt="Version 1.5.0"></a>
 </p>
 
@@ -78,19 +78,20 @@ Automates the restart process for Dual Boot systems
 ``` sh
 git clone https://github.com/thiagobraga/dotbraga
 cd dotbraga
-./install
+sudo ln -sfn $(pwd)/dotbraga /usr/local/bin/dot
+sudo ln -sfn $(pwd)/dotbraga /usr/local/bin/dotbraga
 ```
 
-The install script accepts some params. Here's a overview of the usage:
+And the script is able to be used as `dot` or `dotbraga` globally. It accepts some params. Here's a overview of the usage:
 
 ``` sh
-./install           # Install everything
-./install --all     # Install everything
-./install ohmyzsh   # Install only Oh My Zsh
-./install vimrc     # Install Vim and its settings
+dot           # Install everything
+dot --all     # Install everything
+dot ohmyzsh   # Install only Oh My Zsh
+dot vimrc     # Install Vim and its settings
 ```
 
-See the [install](./install) script to see all the possibilities. You can hit `./install -h` or `./install --help` to get help from the script.
+See the [dotbraga](./dotbraga) script to see all the possibilities. You can hit `dot -h` or `dot --help` to get help from the script.
 
 <br>
 
@@ -113,5 +114,3 @@ See the [install](./install) script to see all the possibilities. You can hit `.
 <img src="./images/screenshots/dotbraga_macos_2020-04-07_13.53.png" width="420" />
 
 <img src="./images/screenshots/dotbraga_ubuntu_2020-04-06_00.18.png" width="420" />
-
-<!-- This project is tested with BrowserStack -->

@@ -1,0 +1,75 @@
+#!/bin/bash
+
+alias scf='scaff'
+alias scfu='scaff up'
+alias scfup='scaff up'
+alias scfub='scaff up --build'
+alias scfubn='scaff up --build --no-cache'
+alias scfupb='scaff up --build'
+alias scfupbn='scaff up --build --no-cache'
+alias scfd='scaff down'
+alias scfdn='scaff down'
+alias scfr='scaff restart'
+alias scfrb='scaff restart --build'
+alias scfrbn='scaff restart --build --no-cache'
+
+alias scfe='scaff exec'
+alias scfp='scaff exec php'
+alias scfn='scaff exec npm'
+alias scfni='scaff exec npm i'
+
+# Composer
+alias scfc='scaff exec composer'
+alias scfci='scaff exec composer install'
+alias scfcd='scaff exec composer dump-autoload'
+
+# Laravel
+alias scfa='scaff exec php artisan'
+alias scft='scaff exec php artisan tinker'
+alias scfat='scaff exec php artisan tinker'
+
+# Laravel Artisan migrate
+alias scfam='scaff exec php artisan migrate'
+
+# Symfony migrate
+alias scfsm='scaff exec bin/console --no-interaction doctrine:migrations:migrate'
+
+# Project folders
+alias scaffold='cd "${HOME}"/www/scaffold'
+alias activities='cd "${HOME}"/www/scaffold/activities'
+alias api-antiga='cd "${HOME}"/www/scaffold/api_scaffold'
+alias platform-api='cd "${HOME}"/www/scaffold/platform-api'
+alias platform-react='cd "${HOME}"/www/scaffold/platform-react'
+alias platform='cd "${HOME}"/www/scaffold/platform'
+alias questions='cd "${HOME}"/www/scaffold/questions'
+alias scfdock='cd "${HOME}"/www/scaffold/scfdock'
+
+# VPN section
+VPN_FOLDER="${HOME:-/home/thiago}/www/scaffold/.infra/vpn-oracle"
+
+vpn() {
+  vpn_kill $1
+  sudo openvpn --cd ${VPN_FOLDER} --config scaffold-${1}.ovpn
+}
+
+vpn_kill() {
+  if [[ -z $1 ]]; then
+    pgrep -i openvpn | xargs sudo kill -9 &>/dev/null
+    echo "[info] All VPN killed successfully."
+  else
+    pgrep -i openvpn -a | grep $1 | awk '{print $1}' | xargs sudo kill -9 &>/dev/null
+    echo "[info] VPN $1 killed successfully."
+  fi
+}
+
+alias vpn{q,qa,-qa}='vpn qa'
+alias vpn{p,prod,-prod}='vpn prod'
+alias vpn{g,gitlab,-gitlab}='vpn gitlab'
+alias vpn{k,kill,-kill}='vpn-kill'
+alias vpnkq='vpn-kill qa'
+alias vpnkp='vpn-kill prod'
+alias vpnkg='vpn-kill gitlab'
+
+alias vpn-start='sudo systemctl start scaffold-vpn-{gitlab,prod,qa}.service'
+alias vpn-stop='sudo systemctl stop scaffold-vpn-{gitlab,prod,qa}.service'
+alias vpn-check='nmcli connection show --active | grep -E "tun|tap" &>/dev/null && echo "VPN connected" || echo "VPN not connected"'

@@ -1,0 +1,41 @@
+ssh-tests() {
+  # [[ $1 ~= '-r|--with-root' ]] && with_root=true
+  for ssh_file in ~/.ssh/config.d/*; do
+    filename=$(basename ${ssh_file})
+    [[ "$filename" == "config" ]] && continue
+    printf "\e[1;37m%s\e[0m\n" $filename
+    awk '/^Host\s/ && !/^Host\s\*/ {print $2}' $ssh_file | while read -r host; do
+      [[ $host =~ ^(gist|github|gitlab)$ ]] && command='' || command='echo true'
+      output=$(ssh -n -o ConnectTimeout=1 $host "$command" 2>&1)
+      status_code=$?
+      [[ ! $status_code -eq 255 ]] && icon="\e[1;32m✔\e[0m" || icon="\e[1;31m✘\e[0m"
+      printf "%-23s" $host && echo -e $icon $([ $status_code -eq 255 ] && echo 'Connection timed out')
+    done
+    printf "\n"
+  done
+}
+
+alias ssh-test=ssh-tests
+alias ssht=ssh-tests
+alias ssh-root="ssh -o User=root"
+alias sshr=ssh-root
+
+# ssh() {
+#   local host flag_H=false
+
+#   for arg in "$@"; do
+#     [[ "$arg" == "-H" ]] && flag_H=true && break
+#   done
+
+#   [[ "$flag_H" == false ]] && command ssh "$@" && return 0
+
+#   shift
+
+#   for ((i = 1; i <= $#; i++)); do
+#     host="${!i}"
+#     [[ "$host" != -* ]] && break
+#   done
+
+#   [[ -z "$host" ]] && echo "Usage: ssh -H <alias_name>" && return 1
+#   return $(ssh -G "${host}" | awk '/^hostname / {print $2}')
+# }

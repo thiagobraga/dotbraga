@@ -1,0 +1,3 @@
+#!/bin/bash
+
+for file in ${DOTBRAGA}/dotfiles/aliases/*; do source "$file"; done

@@ -1,0 +1,39 @@
+- name: Copy SSH key from qa-activities to servers in scaffold-qa
+  hosts: qa-activities
+  become: true
+  tasks:
+    - name: Copy private key from qa-activities to local machine
+      ansible.builtin.fetch:
+        src: /home/rundeck/.ssh/id_rsa
+        dest: /tmp/id_rsa
+        flat: true
+        validate_checksum: true
+
+    - name: Copy public key from qa-activities to local machine
+      fetch:
+        src: /home/rundeck/.ssh/id_rsa.pub
+        dest: /tmp/id_rsa.pub
+        flat: yes
+        validate_checksum: yes
+
+- name: Copy SSH key to servers in scaffold-qa
+  hosts: scaffold-qa
+  become: yes
+
+  tasks:
+    - name: Copy private key from local machine to servers in scaffold-qa
+      copy:
+        src: /tmp/id_rsa
+        dest: /home/rundeck/.ssh/id_rsa
+        owner: rundeck
+        group: rundeck
+        mode: '0600'
+
+    - name: Copy public key from local machine to servers in scaffold-qa
+      copy:
+        src: /tmp/id_rsa.pub
+        dest: /home/rundeck/.ssh/id_rsa.pub
+        owner: rundeck
+        group: rundeck
+        mode: '0644'
+

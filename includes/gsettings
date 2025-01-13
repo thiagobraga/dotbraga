@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Disable dialog boxes attached to its parents
+# DEPRECATED in Ubuntu 23.10
+# gsettings set org.gnome.shell.overrides attach-modal-dialogs true
+
+# Activate theme Nordic
+# Disabled in Ubuntu 23.10 because of lack of support
+# gsettings set org.gnome.desktop.interface gtk-theme 'Nordic Darker'
+# gsettings set org.gnome.desktop.wm.preferences theme 'Nordic Darker'
+
+# Disable screensaver
+gsettings set org.gnome.desktop.session idle-delay 0
+
+# Disable screenlock
+gsettings set org.gnome.desktop.screensaver lock-enabled false
+
+# Enable GTK+ Inspector
+gsettings set org.gtk.Settings.Debug enable-inspector-keybinding true
+
+# Disable animations
+gsettings set org.gnome.desktop.interface enable-animations false

@@ -1,0 +1,11 @@
+- name: Crie o usuário 'rundeck' em scaffold-qa
+  hosts: scaffold-qa
+  become: true
+  vars:
+    ansible_user: scaffold
+  tasks:
+    - name: Crie o usuário 'rundeck'
+      ansible.builtin.user:
+        name: rundeck
+        state: present
+        create_home: true

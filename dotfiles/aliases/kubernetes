@@ -1,0 +1,21 @@
+# Kubernetes
+# ---------------------------------------------------
+# alias kubectl="minikube kubectl --"
+alias k='kubectl'
+alias kd='kubectl describe'
+alias ke='kubectl exec -it'
+alias kl='kubectl logs -f'
+alias kdn='kubectl describe -n'
+alias ken='kubectl exec -it -n'
+alias kln='kubectl logs -f -n'
+
+kc() {
+  [ -z "$1" ] && kubectl config get-contexts || kubectl config use-context "$1"
+}
+
+alias kc{qa,homolog}='kc scaffold-qa && kc'
+alias kc{pr,prod}='kc scaffold-prod && kc'
+alias kc{mo,mon,monitoring}='kc scaffold-monitoring && kc'
+alias kc{k,ki,kind}='kc kind-kind && kc'
+alias kc{mi,mini,minikube}='kc minikube && kc'
+

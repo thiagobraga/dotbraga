@@ -1,0 +1,246 @@
+#!/bin/zsh
+
+# Dotbraga global variable
+# ------------------------------------------------------------------------------
+export DOTBRAGA="/home/thiago/www/braga/dotbraga"
+
+FOLDER_DIST="${DOTBRAGA}/.dist"
+FOLDER_DOCS="${DOTBRAGA}/.docs"
+FOLDER_OHMYZSH="${HOME}/.oh-my-zsh"
+FOLDER_OHMYZSH_PLUGINS="${FOLDER_OHMYZSH}/custom/plugins"
+FOLDER_OHMYZSH_THEMES="${FOLDER_OHMYZSH}/custom/themes"
+FOLDER_POWERLEVEL10K="${FOLDER_OHMYZSH_THEMES}/powerlevel10k"
+FOLDER_SPACESHIP_PROMPT="${FOLDER_OHMYZSH_THEMES}/spaceship-prompt"
+FOLDER_ZSH_SUGGESTIONS="${FOLDER_OHMYZSH_PLUGINS}/zsh-autosuggestions"
+FOLDER_ZSH_SYNTAX="${FOLDER_OHMYZSH_PLUGINS}/zsh-syntax-highlighting"
+
+URL_OHMYZSH='https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh'
+URL_POWERLEVEL10K='https://github.com/romkatv/powerlevel10k'
+URL_SPACESHIP_PROMPT='https://github.com/denysdovhan/spaceship-prompt'
+URL_ZSH_SUGGESTIONS='https://github.com/zsh-users/zsh-autosuggestions'
+URL_ZSH_SYNTAX='https://github.com/zsh-users/zsh-syntax-highlighting'
+
+VERSION=$(cat "${DOTBRAGA}/VERSION")
+
+# Import libraries and utilities
+# ------------------------------------------------------------------------------
+source "${DOTBRAGA}/includes/colors"
+
+# dotbraga components
+# ==============================================================================
+dotbraga() {
+  # PUBLIC METHODS
+
+  # Install Oh My Zsh
+  # ----------------------------------------------------------------------------
+  ohmyzsh() { setup 'Oh My Zsh' "${FOLDER_OHMYZSH}" ${URL_OHMYZSH}; }
+
+  # Install zsh-syntax-highlighting plugin for Oh My Zsh
+  # ----------------------------------------------------------------------------
+  zsh-syntax-highlighting() { setup 'zsh-syntax-highlighting' "${FOLDER_ZSH_SYNTAX}" ${URL_ZSH_SYNTAX} true; }
+
+  # Install zsh-autosuggestions plugin for Oh My Zsh
+  # ----------------------------------------------------------------------------
+  zsh-autosuggestions() { setup 'zsh-autosuggestions' "${FOLDER_ZSH_SUGGESTIONS}" ${URL_ZSH_SUGGESTIONS} true; }
+
+  # Install Spaceship theme for Oh My Zsh
+  # ----------------------------------------------------------------------------
+  spaceship() {
+    setup 'Spaceship zsh theme' "${FOLDER_SPACESHIP_PROMPT}" ${URL_SPACESHIP_PROMPT} true
+    ln -sfnv "${FOLDER_SPACESHIP_PROMPT}/spaceship.zsh-theme" "${FOLDER_OHMYZSH}/themes/spaceship.zsh-theme"
+  }
+
+  # Install Powerlevel10k theme for Oh My Zsh
+  # ----------------------------------------------------------------------------
+  powerlevel10k() {
+    setup 'Powerlevel10k' "${FOLDER_POWERLEVEL10K}" ${URL_POWERLEVEL10K} true
+    ln -sfnv "${FOLDER_POWERLEVEL10K}/powerlevel10k.zsh-theme" "${FOLDER_OHMYZSH}/themes/powerlevel10k.zsh-theme"
+  }
+
+  # Shortcut "Restart to Windows" for Dual Boot systems
+  # ----------------------------------------------------------------------------
+  dualboot() {
+    title "Shortcut 'Restart to Windows' for Dual Boot systems"
+    for EXT in desktop png sh; do sudo ln -sfnv "${DOTBRAGA}/dualboot/windows.${EXT}" /usr/share/applications; done
+    success "✅ 'Restart to Windows' created successfuly."
+  }
+
+  # Symlink bin scripts to /usr/bin
+  # ----------------------------------------------------------------------------
+  bin() {
+    step '🔗 Link scripts to /usr/bin...'
+    find "${DOTBRAGA}/bin" -type f,l -exec sudo ln -sfnv -t /usr/bin {} \;
+  }
+
+  # Create symlinks
+  # ----------------------------------------------------------------------------
+  links() {
+    setopt NULL_GLOB
+    title 'Create symlinks for dotfiles' && cp -afrsv ${DOTBRAGA}/dotfiles/{.,}* ${HOME}
+    # title 'Copy files to /etc'           && sudo cp -afrv ${DOTBRAGA}/etc/{.,}* /etc
+    title 'Copy symlinks to /usr/bin' && sudo cp -afrsv ${DOTBRAGA}/bin/{.,}* /usr/bin
+    title 'Copy symlinks to /usr/bin' && sudo cp -afrsv ${DOTBRAGA}/dualboot/{.,}* /usr/bin
+    echo && success '✅ Links created!'
+  }
+
+  # Install VIM - Vi IMproved with settings
+  # ----------------------------------------------------------------------------
+  ViM() {
+    shift
+    COMPILE=${1:-false}
+    VIM_FILE="${HOME}/.vimrc"
+    FOLDER_VIM="${HOME}/.vim"
+
+    title 'Install VIM - Vi IMproved'
+    step '🔍 Check if VIM is installed...'
+
+    [[ ! $(command -v vim) ]] && step '💻 Installing vim...' || step '💾 Updating vim...'
+
+    if [[ ! "${COMPILE}" =~ ^(--compile|-c)$ ]]; then
+      sudo apt install -y vim
+    else
+      sudo apt install -y clang libpython3-dev libtool-bin libxt-dev make
+      VIM_DIST=${FOLDER_DIST}/vim
+      if [[ ! -d ${VIM_DIST} ]]; then
+        git clone --depth=1 https://github.com/vim/vim "${VIM_DIST}"
+        cd "${VIM_DIST}" || exit
+      else
+        cd "${VIM_DIST}" || exit
+        git pull origin master
+      fi
+
+      log "[dotbraga] Compiling vim" vim
+      make &>/dev/null > ${DOTBRAGA}/.logs/vim/make.log \
+        && sudo make install &>/dev/null > ${DOTBRAGA}/.logs/vim/make-install.log
+    fi
+
+    step '💻 Installing vim plugins and settings...'
+    ln -sfnv "${DOTBRAGA}"/dotfiles/vim/.vimrc "${VIM_FILE}"
+    ln -sfnv "${DOTBRAGA}"/dotfiles/vim "${FOLDER_VIM}"
+    vim -E -s -u "${VIM_FILE}" +PlugInstall +qall >/dev/null
+    success '✅ VIM installed and configured'
+  }
+
+  # Call the install script without parameters or passing -a / --all parameter
+  # ----------------------------------------------------------------------------
+  all() {
+    ohmyzsh
+    spaceship
+    powerlevel10k
+    zsh-syntax-highlighting
+    zsh-autosuggestions
+    dualboot
+    bin
+    links
+    ViM
+    echo
+    info 'Finished'
+  }
+
+  # PRIVATE METHODS
+
+  # Abstract method to install or update components.
+  # ----------------------------------------------------------------------------
+  setup() {
+    NAME=$1
+    FOLDER_INSTALL=$2
+    URL_INSTALL=$3
+    CLONE=$4
+
+    title "Install ${NAME}"
+    step '🔍 Check if installed...'
+
+    if [[ -d "${FOLDER_INSTALL}" ]]; then
+      step '💾 Updating...'
+      update "${FOLDER_INSTALL}"
+    else
+      step '💻 Installing...'
+      [[ ${CLONE} == 'true' ]] \
+        && git clone --depth=1 "${URL_INSTALL}" "${FOLDER_INSTALL}" \
+        || sh -c "$(curl -fsSL "${URL_INSTALL}")"
+    fi
+
+    # TODO: Check error code
+    success "✅ ${NAME} install finished."
+  }
+
+  # Print header.
+  # ----------------------------------------------------------------------------
+  header() { printf "${BWhite}%s${ColorOff} ${Yellow}%s${ColorOff}\n" 'dotbraga' "${VERSION}"; }
+
+  # Define title of each internal function.
+  # ----------------------------------------------------------------------------
+  title() { printf "\n${BPurple}%s${ColorOff}\n" "${1}"; }
+
+  # Print steps information about installation.
+  # ----------------------------------------------------------------------------
+  step() { printf "${ColorOff}%s\n" "${1}"; }
+
+  # Asks the user a question and captures the answer.
+  # ----------------------------------------------------------------------------
+  ask() {
+    printf '%s' "${Yellow}" &&
+      read -r "ANSWER?${1} ${2} " &&
+      printf '%s' "${ColorOff}"
+    return "${ANSWER}"
+  }
+
+  # Inform user about some action.
+  # ----------------------------------------------------------------------------
+  info() { printf "${Blue}"'info'"${ColorOff} %s\n" "${1}"; }
+
+  # Debug some information.
+  # ----------------------------------------------------------------------------
+  debug() { printf "${IYellow}"'debug'"${ColorOff} %s\n" "${*}"; }
+
+  # Print done message
+  # ----------------------------------------------------------------------------
+  success() { printf "${Green}success${ColorOff} %s\n" "${1}"; }
+
+  # Abort execution with message
+  # ----------------------------------------------------------------------------
+  abort() { printf "${Red}abort${ColorOff} %s\n" "${1}"; }
+
+  # Log message to file
+  # ----------------------------------------------------------------------------
+  log() {
+    echo ${1:-'[dotbraga]'}
+    mkdir -p ${DOTBRAGA}/.logs/vim
+    echo ${1} >> ${DOTBRAGA}/.logs/vim/dotbraga.log
+  }
+
+  # Update plugin or theme using git pull
+  # ----------------------------------------------------------------------------
+  update() {
+    {
+      cd "${1}" && git pull || exit
+    }
+  }
+
+  # FUNCTION CALL
+  header
+  args=("$@")
+
+  # If empty ARGS, run everything...
+  [[ "${args[*]}" == '' ]] && all
+
+  # ...or detect the function to run.
+  for arg in "${args[@]}"; do
+    case $arg in
+      bin) bin ;;
+      dualboot) dualboot ;;
+      ohmyzsh) ohmyzsh ;;
+      powerlevel10k) powerlevel10k ;;
+      spaceship) spaceship ;;
+      vim) ViM "$@" ;;
+      zsh-autosuggestions | autosuggestions) zsh-autosuggestions ;;
+      zsh-syntax-highlighting | syntax-highlighting) zsh-syntax-highlighting ;;
+      -l | --link | links) links "$@" ;;
+      "" | -a | --all | all) all ;;
+      *) exit ;;
+    esac
+  done
+}
+
+# Call the script
+dotbraga "$@"

@@ -1,0 +1,16 @@
+#!/bin/zsh
+
+# Change security group rule using aws-cli
+# QA
+# Security Group: sg-0c35cd9a36d5282f0 (SSH-for-bastion)
+# Security Group Rule: sgr-0833580124f292b79 (Braga)
+#
+# Prod
+# Security Group: sg-022b9736db069fa65 (SSH access)
+# Security Group Rule: sgr-0674b438a0b8ef1ac (Braga)
+AWS_SECURITY_GROUP='sg-0c35cd9a36d5282f0'
+AWS_SECURITY_GROUP_RULE='sgr-0833580124f292b79'
+
+aws modify-security-group-rules \
+  --group-id \
+  --security-group-rules $AWS

@@ -1,0 +1,65 @@
+- name: "Modify GNOME applications shortcuts"
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    # DBeaver
+    - name: "DBeaver: replace icon"
+      ansible.builtin.lineinfile:
+        path: /usr/share/applications/dbeaver-ce.desktop
+        line: 'Icon={{ lookup("env", "HOME") }}/Pictures/Icons/DBeaver.png'
+        regexp: '^Icon.*$'
+
+    # GIMP
+    - name: "GIMP: change name"
+      ansible.builtin.lineinfile:
+        path: /usr/share/applications/gimp.desktop
+        line: 'Name=GIMP'
+        regexp: '^Name.*$'
+
+    # Gmail
+    - name: "Gmail: find shortcut file"
+      ansible.builtin.find:
+        paths: "{{ lookup('env', 'HOME') }}/.local/share/applications/"
+        recurse: false
+        patterns: "chrome-*.desktop"
+        contains: "Name=Gmail$"
+      register: meet_file
+
+    - name: "Gmail: replace icon"
+      ansible.builtin.lineinfile:
+        path: "{{ meet_file.files[0].path }}"
+        line: 'Icon={{ lookup("env", "HOME") }}/Pictures/Icons/gmail.png'
+        regexp: '^Icon.*$'
+      when: meet_file.matched > 0
+
+    # Google Meet
+    - name: "Google Meet: find shortcut file"
+      ansible.builtin.find:
+        paths: "{{ lookup('env', 'HOME') }}/.local/share/applications/"
+        recurse: false
+        patterns: "chrome-*.desktop"
+        contains: "Name=Meet"
+      register: meet_file
+
+    - name: "Google Meet: replace icon"
+      ansible.builtin.lineinfile:
+        path: "{{ meet_file.files[0].path }}"
+        line: 'Icon={{ lookup("env", "HOME") }}/Pictures/Icons/google-meet.png'
+        regexp: '^Icon.*$'
+      when: meet_file.matched > 0
+
+    # WhatsApp
+    - name: "WhatsApp: find shortcut file"
+      ansible.builtin.find:
+        paths: "{{ lookup('env', 'HOME') }}/.local/share/applications/"
+        recurse: false
+        patterns: "chrome-*.desktop"
+        contains: "Name=WhatsApp Web"
+      register: meet_file
+
+    - name: "WhatsApp: replace icon"
+      ansible.builtin.lineinfile:
+        path: "{{ meet_file.files[0].path }}"
+        line: 'Icon={{ lookup("env", "HOME") }}/Pictures/Icons/WhatsApp-256x256.png'
+        regexp: '^Icon.*$'
+      when: meet_file.matched > 0

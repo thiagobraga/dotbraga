@@ -1,0 +1,24 @@
+#!/bin/bash
+
+export NET_INTERFACE
+export IP_ADDRESS
+
+command nmcli &>/dev/null || return
+
+# If two or more networks are detected,
+# only the first will be used.
+NET_INTERFACE=$(
+  nmcli --terse \
+    --fields DEVICE,TYPE,STATE \
+    device status |
+    grep '\(wifi\|ethernet\):connected' |
+    cut -f1 -d':' |
+    head -n 1
+)
+
+IP_ADDRESS=$(
+  ip addr show "${NET_INTERFACE}" |
+    grep --regexp='inet\s' |
+    awk '{ print $2 }' |
+    cut -d'/' -f1
+)

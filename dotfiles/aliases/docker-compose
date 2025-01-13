@@ -1,0 +1,21 @@
+# Docker Compose
+# ---------------------------------------------------
+if docker compose version &>/dev/null; then
+  DOCKER_COMPOSE='docker compose'
+fi
+
+if [ -z "${DOCKER_COMPOSE}" ]; then
+  DOCKER_COMPOSE='docker-compose'
+fi
+
+alias dc="${DOCKER_COMPOSE}"
+alias dcb="${DOCKER_COMPOSE} build"
+alias dcbn="${DOCKER_COMPOSE} build --no-cache"
+alias dce="${DOCKER_COMPOSE} exec"
+alias dck="${DOCKER_COMPOSE} kill"
+alias dcl="${DOCKER_COMPOSE} logs"
+alias dcr="${DOCKER_COMPOSE} kill && ${DOCKER_COMPOSE} up"
+alias dcrd="${DOCKER_COMPOSE} kill && ${DOCKER_COMPOSE} up -d"
+alias dcup="${DOCKER_COMPOSE} up"
+alias dcupd="${DOCKER_COMPOSE} up -d"
+alias dcdn="${DOCKER_COMPOSE} down"

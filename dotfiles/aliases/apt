@@ -1,0 +1,30 @@
+# Apt & other package managers
+# ---------------------------------------------------
+alias apt='sudo apt'
+alias apty='sudo apt install -yV'
+alias aptr='sudo apt remove -yV'
+alias aptp='sudo apt purge -yV'
+alias aptar='sudo apt autoremove -yV'
+alias aptcl='sudo apt autoclean'
+alias aptf='sudo apt install -f -yV'
+alias aptitude='sudo aptitude'
+alias dpkg='sudo dpkg'
+alias snap='sudo snap'
+
+aptu() {
+  set -x
+  sudo snap remove --purge firefox \
+    && sudo install -d -m 0755 /etc/apt/keyrings \
+    && wget -q https://packages.mozilla.org/apt/repo-signing-key.gpg -O- | sudo tee /etc/apt/keyrings/packages.mozilla.org.asc > /dev/null \
+    && echo "deb [signed-by=/etc/apt/keyrings/packages.mozilla.org.asc] https://packages.mozilla.org/apt mozilla main" | sudo tee /etc/apt/sources.list.d/mozilla.list > /dev/null \
+    && echo 'Package: *\nPin: origin packages.mozilla.org\nPin-Priority: 1000\n' | sudo tee /etc/apt/preferences.d/mozilla > /dev/null \
+    && apt update \
+    && apt upgrade -yV --allow-downgrades \
+    && apt autoclean \
+    && apt autoremove -yV \
+    && flatpak update -y \
+    && snap refresh \
+    && ansible-playbook "${DOTBRAGA}/ansible/gnome-desktop-files.yml" \
+    && ansible-playbook "${DOTBRAGA}/ansible/scaffold.yml"
+}
+

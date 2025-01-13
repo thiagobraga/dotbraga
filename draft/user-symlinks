@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# In Windows 11, Documents and Desktop folders are inside
+# OneDrive folder to keep them in sync.
+
+WINDOWS_MOUNT=/media/thiago/Windows/Users/thiag
+UBUNTU_MOUNT=/home/thiago
+FOLDERS=(
+  Desktop
+  Documents
+  Downloads
+  Music
+  Pictures
+  Templates
+  Videos
+)
+
+# rm -rf Desktop Documentos Downloads Imagens Modelos Música Vídeos
+for folder in "${FOLDERS[@]}"; do
+  echo ln -sfn ${WINDOWS_MOUNT}/${folder} ${UBUNTU_MOUNT}/${folder}
+done
+# ln -s ${WINDOWS_MOUNT}/ ${UBUNTU_MOUNT}/Desktop
+# ln -s ${WINDOWS_MOUNT}/ ${UBUNTU_MOUNT}/Documentos
+# ln -s ${WINDOWS_MOUNT}/ ${UBUNTU_MOUNT}/Downloads
+# ln -s ${WINDOWS_MOUNT}/ ${UBUNTU_MOUNT}/Imagens
+# ln -s ${WINDOWS_MOUNT}/ ${UBUNTU_MOUNT}/Modelos
+# ln -s ${WINDOWS_MOUNT}/ ${UBUNTU_MOUNT}/Música
+# ln -s ${WINDOWS_MOUNT}/ ${UBUNTU_MOUNT}/Vídeos

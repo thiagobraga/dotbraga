@@ -1,5 +1,6 @@
 **/*vim/autoload
 **/*vim/plugged
-dist
+.dist
 .history
+.logs
 .env
