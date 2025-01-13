@@ -1,26 +1,42 @@
 {
-  // Only filenames
-  // Oh please! Accept glob patterns, please!
   "files.associations": {
-    "htoprc": "ini",
-    "*.json": "json",
-    "*.yml": "yaml",
-    "*": "shellscript"
+    ".aliases": "shellscript",
+    "**/aliases/**": "shellscript",
+    "**/bin/**": "shellscript",
+    "**/dotfiles/.config/**": "ini",
+    "**/dotfiles/.config/**/01-emoji.conf": "xml",
+    "**/dotfiles/.config/user-dirs.dirs": "shellscript",
+    "**/dotfiles/.sudo*": "shellscript",
+    "**/draft/**": "shellscript",
+    "**/includes/**": "shellscript",
+    "**/scripts/**": "shellscript",
+    "dotbraga": "shellscript",
+    "VERSION": "plaintext",
   },
 
-  // Only one level folder and filename
-  // Oh again! Accept glob patterns, please!
   "material-icon-theme.files.associations": {
-    "htop/htoprc": "Settings"
+    ".dircolors": "Settings",
+    "01-emoji.conf": "Xml",
+    "windows.desktop": "folder-windows"
   },
 
-  // The same... only one level folder and filename
-  // ...Please!!
   "material-icon-theme.folders.associations": {
+    ".config/fontconfig": "Config",
+    ".config/htop": "Config",
+    ".config/qt5ct": "Config",
+    ".config/terminator": "Config",
+    "apps/gimp": "Images",
     "apps/workbench": "Database",
-    "dotfiles/.config": "Config",
-    "src/dotfiles": "Src",
-    "src/dualboot": "Shared",
-    "src/etc": "Config"
+    "dotfiles": "Src",
+    "dotfiles/aliases": "Scripts",
+    "dotfiles/vim": "Docs",
+    "dualboot": "Windows",
+    "dualboot/windows.desktop": "Shortcut",
+    "etc": "Config",
+    "etc/profile.d": "Config",
+    "extensions/dash-to-panel": "Plugin",
+    "fontconfig/conf.d": "Config",
+    "vim/autoload": "Plugin",
+    "vim/plugged": "Plugin",
   }
 }
