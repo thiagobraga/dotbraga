@@ -4,9 +4,9 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "install",
+      "label": "dotbraga",
       "type": "shell",
-      "command": "./install -f",
+      "command": "cd ~ && dotbraga",
       "presentation": {
         "echo": false,
         "reveal": "always",
