@@ -1,0 +1,40 @@
+#!/bin/bash
+
+source_path="/"
+backup_root="/mnt/hd/Backup/Notebook/Linux"
+current_date=$(date +%Y-%m-%d)
+exclude_paths=(
+  "/cdrom"
+  "/lost+found"
+  "/media"
+  "/mnt"
+  "/proc"
+  "/run"
+  "/sys"
+  "/swapfile"
+  "/tmp"
+  "/var/tmp"
+  ".Trash"
+)
+
+exclude_folders=""
+for path in $(printf '%s\n' "${exclude_paths[@]}" | sort -u); do
+  exclude_folders+="--exclude=$path "
+done
+
+zenity --question \
+  --title "Backup" \
+  --text "Would you like to make a backup?" \
+  --width=250
+
+if [[ $? -eq 0 ]]; then
+  terminator -e "zsh -c '
+    sudo rsync -az \
+      --info=progress2 \
+      --chmod=ugo=rwX \
+      --delete \
+      $exclude_folders \
+      $source_path \
+      $backup_root/$current_date
+  '" && exit 0
+fi
