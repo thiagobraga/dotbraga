@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Open all chat apps
+# ------------------------------------------------------------------------------
+for i in discord slack telegram mattermost-desktop; do (${i} &>/dev/null &); done
